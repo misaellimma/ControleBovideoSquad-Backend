@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleBovideoSquad.Api", "ControleBovideoSquad\ControleBovideoSquad.Api.csproj", "{F1CD1282-4FAF-428A-B719-DB67DA1FF53E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.CrossCutting", "ControleBovideoSquad.CrossCutting\ControleBovideoSquad.CrossCutting.csproj", "{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleBovideoSquad.CrossCutting", "ControleBovideoSquad.CrossCutting\ControleBovideoSquad.CrossCutting.csproj", "{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Domain", "ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj", "{D88FC511-638F-4C5E-A550-637958A52832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleBovideoSquad.Domain", "ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj", "{D88FC511-638F-4C5E-A550-637958A52832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Repository", "ControleBovideoSquad.Repository\ControleBovideoSquad.Repository.csproj", "{1C377E9B-CF55-49FC-96BA-9A39D69D340C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleBovideoSquad.Repository", "ControleBovideoSquad.Repository\ControleBovideoSquad.Repository.csproj", "{1C377E9B-CF55-49FC-96BA-9A39D69D340C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Application", "ControleBovideoSquad.Application\ControleBovideoSquad.Application.csproj", "{BCF94538-D096-441C-BB32-691246CD92D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleBovideoSquad.Application", "ControleBovideoSquad.Application\ControleBovideoSquad.Application.csproj", "{BCF94538-D096-441C-BB32-691246CD92D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Api", "ControleBovideoSquad.Api\ControleBovideoSquad.Api.csproj", "{942ADDCC-7617-4FFA-915C-122D95AB0080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F1CD1282-4FAF-428A-B719-DB67DA1FF53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1CD1282-4FAF-428A-B719-DB67DA1FF53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1CD1282-4FAF-428A-B719-DB67DA1FF53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1CD1282-4FAF-428A-B719-DB67DA1FF53E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{BCF94538-D096-441C-BB32-691246CD92D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF94538-D096-441C-BB32-691246CD92D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF94538-D096-441C-BB32-691246CD92D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942ADDCC-7617-4FFA-915C-122D95AB0080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942ADDCC-7617-4FFA-915C-122D95AB0080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942ADDCC-7617-4FFA-915C-122D95AB0080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942ADDCC-7617-4FFA-915C-122D95AB0080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
