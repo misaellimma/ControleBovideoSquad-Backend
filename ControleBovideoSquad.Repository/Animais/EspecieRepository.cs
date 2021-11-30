@@ -17,10 +17,10 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public Especie? ObterEspeciePorId(int id)
         {
-            return _unityOfWork.Query<Especie>().FirstOrDefault(x => x.IdEspecie == 1);
+            return _unityOfWork.Query<Especie>().FirstOrDefault(x => x.IdEspecie == id);
         }
 
-        public List<Especie> ObterEspecies()
+        public List<Especie> ObterTodos()
         {
             return _unityOfWork.Query<Especie>().ToList();            
         }
