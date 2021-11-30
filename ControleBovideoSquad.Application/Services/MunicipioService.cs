@@ -14,24 +14,23 @@ namespace ControleBovideoSquad.Application.Services
     public class MunicipioService : IMunicipioService
     {
         private readonly IMunicipioRepository municipioRepository;
-        private readonly MunicipioMapper municipioMapper;
 
-        public MunicipioService(IMunicipioRepository municipioRepository, MunicipioMapper municipioMapper)
+        public MunicipioService(IMunicipioRepository municipioRepository)
         {
             this.municipioRepository = municipioRepository;
-            this.municipioMapper = municipioMapper;
         }
 
-        public MunicipioDto ObterPorId(int id)
+        public Municipio ObterPorId(int id)
         {
             var municipio = municipioRepository.ObterPorId(id);
-            return municipioMapper.MapearEntidadeParaDto(municipio);
+            return municipio;
         }
 
-        public List<MunicipioDto> ObterTodos()
+        public List<Municipio> ObterTodos()
         {
             var municipios = municipioRepository.ObterTodos();
-            return municipioMapper.MapearEntidadeParaDto(municipios);
+            return municipios;
+
         }
     }
 }
