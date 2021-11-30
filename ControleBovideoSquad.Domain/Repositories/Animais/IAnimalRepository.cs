@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Domain.Entities;
+﻿using ControleBovideoSquad.Domain.Entities.Animal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
     public interface IAnimalRepository
     {
         Animal ObterAnimalPorId(int id);
+        List<Animal> ObterTodos();
         List<Animal> ObterAnimalPorProdutor(string cpfProdutor);
         List<Animal> ObterAnimalPorPropriedade(string inscricaoEstadual);
         void Salvar(Animal animal);

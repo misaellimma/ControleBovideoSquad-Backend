@@ -19,6 +19,12 @@ namespace ControleBovideoSquad.Repository.Animais
             throw new NotImplementedException();
         }
 
+        public List<Animal> ObterTodos()
+        {
+            return _unitOfWork
+                .Query<Animal>().ToList();
+        }
+
         public Animal ObterAnimalPorId(int id)
         {
             return _unitOfWork
