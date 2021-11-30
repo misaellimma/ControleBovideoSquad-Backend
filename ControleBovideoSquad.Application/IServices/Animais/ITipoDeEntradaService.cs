@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.IServices.Animais
 {
-    public interface IEspecieService
+    public interface ITipoDeEntradaService
     {
-        Especie? ObterPorId(int id);
-        List<Especie> ObterTodos();
+        List<TipoDeEntrada> ObterTodos();
+        TipoDeEntrada ObterPorId(int id);
     }
 }

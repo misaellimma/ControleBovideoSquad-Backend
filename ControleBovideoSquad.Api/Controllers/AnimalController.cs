@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Application.IServices;
+﻿using ControleBovideoSquad.Application.IServices.Animais;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

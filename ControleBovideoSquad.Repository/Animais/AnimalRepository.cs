@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Domain.Entities.Animal;
+﻿using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Repository.Interfaces;
 using NHibernate;

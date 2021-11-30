@@ -1,4 +1,4 @@
-namespace ControleBovideoSquad.Domain.Entities
+namespace ControleBovideoSquad.Domain.Entities.Animais
 {
     public class TipoDeEntrada
     {

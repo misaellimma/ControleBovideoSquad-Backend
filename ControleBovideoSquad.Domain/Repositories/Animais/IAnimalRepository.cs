@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Domain.Entities.Animal;
+﻿using ControleBovideoSquad.Domain.Entities.Animais;
 using System;
 using System.Collections.Generic;
 using System.Linq;

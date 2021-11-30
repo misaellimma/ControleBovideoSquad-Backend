@@ -1,6 +1,4 @@
-using ControleBovideoSquad.Domain.Entities; 
-
-namespace  ControleBovideoSquad.Domain.Entities.Animal
+namespace  ControleBovideoSquad.Domain.Entities.Animais
 {
     public class Animal
     {
