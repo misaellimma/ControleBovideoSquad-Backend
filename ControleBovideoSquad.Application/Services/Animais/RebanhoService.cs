@@ -36,5 +36,10 @@ namespace ControleBovideoSquad.Application.Services.Animais
         {
             return _rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual);
         }
+
+        Rebanho IRebanhoService.ObterRebanhoPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

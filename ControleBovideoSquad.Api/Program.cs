@@ -15,6 +15,8 @@ using ControleBovideoSquad.Repository.Interfaces;
 using ControleBovideoSquad.Repository.Util;
 using ControleBovideoSquad.Repository.Vendas;
 using ControleBovideoSquad.Repository.Vacinas;
+using ControleBovideoSquad.Domain.Repositories.Produtores;
+using ControleBovideoSquad.Repository.Produtores;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,8 @@ builder.Services.AddScoped<IMunicipioService, MunicipioService>();
 builder.Services.AddScoped<IMunicipioRepository, MunicipioRepository>();
 builder.Services.AddScoped<IVacinaRepository, VacinaRepository>();
 builder.Services.AddScoped<IVacinaService, VacinaService>();
+builder.Services.AddScoped<IProdutorService, ProdutorService>();
+builder.Services.AddScoped<IProdutorRepository, ProdutorRepository>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddSingleton<SessionFactory>();
