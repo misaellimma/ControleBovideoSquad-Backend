@@ -1,4 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
+using ControleBovideoSquad.Application.Mapper.Animais;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto.cs;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 
@@ -7,15 +9,17 @@ namespace ControleBovideoSquad.Application.Services.Animais
     public class RebanhoService : IRebanhoService
     {
         private readonly IRebanhoRepository _rebanhoRepository;
+        private readonly RebanhoMapper _rebanhoMapper;
 
         public RebanhoService(IRebanhoRepository rebanhoRepository)
         {
             _rebanhoRepository = rebanhoRepository; 
         }
 
-        public Rebanho ObterRebanhoPorId(int id)
+        public RebanhoDto ObterRebanhoPorId(int id)
         {
-            return _rebanhoRepository.ObterRebanhosPorId(id);
+            var rebanho = _rebanhoRepository.ObterRebanhosPorId(id);
+            return _rebanhoMapper.MapearEntidadeParaDto(rebanho);
         }
 
         public List<Rebanho> ObterRebanhos()

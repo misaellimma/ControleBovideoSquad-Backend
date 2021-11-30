@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
+using ControleBovideoSquad.Application.Mapper.Animais;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using System;
@@ -12,6 +13,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
     public class AnimalService : IAnimalService
     {
         private readonly IAnimalRepository _animalRepository;
+        private readonly AnimalMapper _animalMapper;
 
         public AnimalService(IAnimalRepository animalRepository)
         {
@@ -21,6 +23,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
         public Animal ObterPorId(int id)
         {
             var animal = _animalRepository.ObterAnimalPorId(id);
+            var animalDto = _animalMapper.MapearEntidadeParaDto(animal);
             return animal;
         }
 
