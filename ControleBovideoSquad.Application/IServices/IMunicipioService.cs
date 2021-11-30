@@ -10,8 +10,8 @@ namespace ControleBovideoSquad.Application.IServices
 {
     public interface IMunicipioService
     {
-        List<MunicipioDto> ObterTodos();
-        MunicipioDto ObterPorId(int id);
+        List<Municipio> ObterTodos();
+        Municipio ObterPorId(int id);
 
     }
 }
