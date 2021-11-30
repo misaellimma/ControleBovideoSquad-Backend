@@ -25,5 +25,17 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return Ok(animais);
         }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            var animal = _animalService.ObterPorId(id);
+
+            if (animal == null)
+                return NotFound("animal não encontrado");
+
+            return Ok(animal);
+        }
     }
 }
