@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Animais
 {
-    internal class TipoDeEntradaRepository : ITipoDeEntradaRepository
+    public class TipoDeEntradaRepository : ITipoDeEntradaRepository
     {
         private readonly IUnityOfWork _unityOfWork;
         public TipoDeEntradaRepository(IUnityOfWork unityOfWork)
@@ -18,9 +18,11 @@ namespace ControleBovideoSquad.Repository.Animais
         }
         public TipoDeEntrada ObterTipoDeEntradaPorId(int id)
         {
+#pragma warning disable CS8603 // Possible null reference return.
             return this._unityOfWork
                 .Query<TipoDeEntrada>()
                 .SingleOrDefault(x => x.IdTipoDeEntrada == id);
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public List<TipoDeEntrada> ObterTipos()

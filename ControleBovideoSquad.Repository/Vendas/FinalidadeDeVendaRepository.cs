@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Venda
+namespace ControleBovideoSquad.Repository.Vendas
 {
     public class FinalidadeDeVendaRepository : IFinalidadeDeVendaRepository
     {
