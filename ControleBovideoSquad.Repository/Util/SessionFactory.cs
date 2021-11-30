@@ -34,12 +34,14 @@ namespace ControleBovideoSquad.Repository.Util
 
             configuration.DataBaseIntegration(db =>
             {
-                db.ConnectionString = "Server = DESKTOP - BJMO5PO; Database = DbVacinacaoBovina; User ID = treinamento; Password = senha;";
+                db.ConnectionString = "Server = DESKTOP-BJMO5PO;Database = DbVacinacaoBovina;User ID=treinamento;Password=senha;";
                 db.ConnectionProvider<DriverConnectionProvider>();
                 db.Driver<SqlClientDriver>();
                 db.Dialect<MsSql2012Dialect>();
                 db.BatchSize = 100;
                 db.IsolationLevel = IsolationLevel.ReadCommitted;
+                db.LogFormattedSql = true;
+                db.LogSqlInConsole = true;
             });
 
             var fluentlyConfiguration = Fluently.Configure(configuration);
