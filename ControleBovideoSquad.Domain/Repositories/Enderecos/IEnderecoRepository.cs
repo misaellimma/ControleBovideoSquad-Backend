@@ -6,7 +6,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Enderecos
     {
         Endereco ObterEnderecoPorID(int id);
         List<Endereco> ObterEnderecos();
-        void Incluir();
-        void Editar();
+        void Save(Endereco endereco);        
     }
 }

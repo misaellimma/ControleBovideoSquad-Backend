@@ -1,6 +1,7 @@
 ﻿using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
+using ControleBovideoSquad.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,26 @@ namespace ControleBovideoSquad.Repository.Enderecos
 {
     public class EnderecoRepository : IEnderecoRepository
     {
-        public void Editar()
+        private readonly IUnityOfWork unityOfWork;
+
+        public EnderecoRepository(IUnityOfWork unityOfWork)
         {
-            throw new NotImplementedException();
+            this.unityOfWork = unityOfWork;
         }
 
-        public void Incluir()
+        public void Save(Endereco endereco)
         {
-            throw new NotImplementedException();
+            this.unityOfWork.SaveOrUpdate(endereco);
         }
 
         public Endereco ObterEnderecoPorID(int id)
         {
-            throw new NotImplementedException();
+            return this.unityOfWork.Query<Endereco>().FirstOrDefault(x => x.IdEndereco == id);
         }
 
         public List<Endereco> ObterEnderecos()
         {
-            throw new NotImplementedException();
+            return this.unityOfWork.Query<Endereco>().ToList();
         }
     }
 }
