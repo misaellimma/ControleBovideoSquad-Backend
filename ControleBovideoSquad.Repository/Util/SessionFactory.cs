@@ -4,21 +4,16 @@ using NHibernate.Cfg;
 using NHibernate.Connection;
 using NHibernate.Dialect;
 using NHibernate.Driver;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Interface
+namespace ControleBovideoSquad.Repository.Util
 {
-    public class IUnitOfWork
+    public class SessionFactory
     {
         private readonly ISessionFactory _sessionFactory;        
 
-        public IUnitOfWork()
+        public SessionFactory()
         {
             _sessionFactory = BuildSessionFactory();
         }

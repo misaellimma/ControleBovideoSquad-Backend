@@ -1,11 +1,6 @@
 ﻿using ControleBovideoSquad.Repository.Interfaces;
-using ControleBovideoSquad.Repository.Interface;
+using ControleBovideoSquad.Repository.Util;
 using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Entity
 {
@@ -16,7 +11,7 @@ namespace ControleBovideoSquad.Repository.Entity
         private bool _isCommited = true;
         private ITransaction _transaction;
 
-        public UnityOfWork(IUnitOfWork sessionFactory)
+        public UnityOfWork(SessionFactory sessionFactory)
         {
             _session = sessionFactory.OpenSession();
             _transaction = _session.BeginTransaction();
