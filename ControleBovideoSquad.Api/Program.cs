@@ -1,12 +1,16 @@
 using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.Application.Services;
+using ControleBovideoSquad.Application.Services.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Municipios;
+using ControleBovideoSquad.Domain.Repositories.Vacinas;
 using ControleBovideoSquad.Repository.Animais;
 using ControleBovideoSquad.Repository.Enderecos;
 using ControleBovideoSquad.Repository.Entity;
 using ControleBovideoSquad.Repository.Interfaces;
 using ControleBovideoSquad.Repository.Util;
+using ControleBovideoSquad.Repository.Vacinas;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +27,8 @@ builder.Services.AddScoped<IAnimalService, AnimalService>();
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 builder.Services.AddScoped<IMunicipioService, MunicipioService>();
 builder.Services.AddScoped<IMunicipioRepository, MunicipioRepository>();
+builder.Services.AddScoped<IVacinaRepository, VacinaRepository>();
+builder.Services.AddScoped<IVacinaService, VacinaService>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddSingleton<SessionFactory>();
