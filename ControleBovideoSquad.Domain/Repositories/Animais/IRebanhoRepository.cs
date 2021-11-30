@@ -6,6 +6,7 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
     {
         List<Rebanho> ObterRebanhos();
         List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual);
-        List<Rebanho> ObterRebannhosPorProdutor(string cpf);
+        List<Rebanho> ObterRebanhosPorProdutor(string cpf);
+        Rebanho ObterRebanhosPorId(int id);
     }
 }

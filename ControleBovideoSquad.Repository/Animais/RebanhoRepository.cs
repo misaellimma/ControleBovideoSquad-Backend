@@ -29,9 +29,14 @@ namespace ControleBovideoSquad.Repository.Animais
             return _unityOfWork.Query<Rebanho>().ToList();
         }
 
-        public List<Rebanho> ObterRebannhosPorProdutor(string cpf)
+        public List<Rebanho> ObterRebanhosPorProdutor(string cpf)
         {
             return _unityOfWork.Query<Rebanho>().ToList();
+        }
+
+        public Rebanho ObterRebanhoPorId(int id)
+        {
+            return _unityOfWork.Query<Rebanho>().FirstOrDefault(x => x.IdRebanho == id);
         }
     }
 }
