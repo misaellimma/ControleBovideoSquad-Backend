@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Repository.Entity;
+﻿using ControleBovideoSquad.Domain.Entities.Municipios;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Domain.Entities.Municipio
+namespace ControleBovideoSquad.Domain.Entities.Municipios
 {
     public class Municipio
     {
