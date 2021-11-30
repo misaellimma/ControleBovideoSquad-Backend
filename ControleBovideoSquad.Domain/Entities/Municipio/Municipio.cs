@@ -4,11 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
-namespace ControleBovideoSquad.Domain.Entities
-=======
 namespace ControleBovideoSquad.Domain.Entities.Municipios
->>>>>>> 1360958a3d0367f7201922f17911d6248775f151
 {
     public class Municipio
     {
