@@ -12,13 +12,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Util
+namespace ControleBovideoSquad.Repository.Interface
 {
-    public class SessionFactory
+    public class IUnitOfWork
     {
         private readonly ISessionFactory _sessionFactory;        
 
-        public SessionFactory()
+        public IUnitOfWork()
         {
             _sessionFactory = BuildSessionFactory();
         }

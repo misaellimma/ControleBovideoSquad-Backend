@@ -1,23 +1,19 @@
 ﻿using ControleBovideoSquad.Domain.Entities.Animal;
 using ControleBovideoSquad.Domain.Repositories.Animais;
-using ControleBovideoSquad.Repository.Util;
+using ControleBovideoSquad.Repository.Interfaces;
 using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Animais
 {
     public class AnimalRepository : IAnimalRepository
     {
-        private readonly ISession _session;
+        private readonly IUnityOfWork _unitOfWork;
 
-        public AnimalRepository(SessionFactory session)
+        public AnimalRepository(IUnityOfWork unitOfWork)
         {
-            _session = session;
+            _unitOfWork = unitOfWork;
         }
+
         public void Cancelar(int idAnimal)
         {
             throw new NotImplementedException();
@@ -25,7 +21,9 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public Animal ObterAnimalPorId(int id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork
+                .Query<Animal>()
+                .SingleOrDefault(x => x.IdAnimal == id);
         }
 
         public List<Animal> ObterAnimalPorProdutor(string cpfProdutor)

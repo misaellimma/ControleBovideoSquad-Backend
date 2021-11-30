@@ -1,6 +1,6 @@
 ﻿using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Repositories.Animais;
-using ControleBovideoSquad.Repository.Util;
+using ControleBovideoSquad.Repository.Interface;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ControleBovideoSquad.Repository.Animais
     {
         private readonly ISession _session;
 
-        public EspecieRepository(SessionFactory sessionFactory)
+        public EspecieRepository(IUnitOfWork sessionFactory)
         {
             _session = sessionFactory.OpenSession();
         }
