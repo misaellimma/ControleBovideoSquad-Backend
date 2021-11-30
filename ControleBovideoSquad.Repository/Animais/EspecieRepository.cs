@@ -1,32 +1,28 @@
 ﻿using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Repositories.Animais;
-using ControleBovideoSquad.Repository.Interface;
+using ControleBovideoSquad.Repository.Interfaces;
+using ControleBovideoSquad.Repository.Util;
 using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Animais
 {
     public class EspecieRepository : IEspecieRepository
     {
-        private readonly ISession _session;
+        private readonly IUnityOfWork _unityOfWork;
 
-        public EspecieRepository(IUnitOfWork sessionFactory)
+        public EspecieRepository(IUnityOfWork unityOfWork)
         {
-            _session = sessionFactory.OpenSession();
+            this._unityOfWork = unityOfWork;
         }
 
-        public Especie ObterEspeciePorId(int id)
+        public Especie? ObterEspeciePorId(int id)
         {
-            throw new NotImplementedException();
+            return _unityOfWork.Query<Especie>().FirstOrDefault(x => x.IdEspecie == 1);
         }
 
         public List<Especie> ObterEspecies()
         {
-            return _session.Query<Especie>().ToList();
+            return _unityOfWork.Query<Especie>().ToList();            
         }
     }
 }
