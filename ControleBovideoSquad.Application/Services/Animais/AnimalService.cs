@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.Application.Mapper.Animais;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto.cs;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using System;
@@ -20,11 +21,11 @@ namespace ControleBovideoSquad.Application.Services.Animais
             this._animalRepository = animalRepository;
         }
 
-        public Animal ObterPorId(int id)
+        public AnimalDto ObterPorId(int id)
         {
             var animal = _animalRepository.ObterAnimalPorId(id);
             var animalDto = _animalMapper.MapearEntidadeParaDto(animal);
-            return animal;
+            return animalDto;
         }
 
         public List<Animal> ObterPorProdutor(string cpf)
