@@ -16,7 +16,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
             var animais = _animalService.ObterTodos();
 

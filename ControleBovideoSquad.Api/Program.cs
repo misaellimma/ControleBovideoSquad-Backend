@@ -1,3 +1,5 @@
+using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.Application.Services;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Repository.Animais;
 using ControleBovideoSquad.Repository.Entity;
@@ -15,6 +17,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
 builder.Services.AddScoped<IEspecieRepository, EspecieRepository>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
+builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddSingleton<SessionFactory>();

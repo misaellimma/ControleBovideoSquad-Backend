@@ -30,7 +30,7 @@ namespace ControleBovideoSquad.Repository.Mappings
 
             References(x => x.EspecieAnimal, "IdEspecie").Not.Nullable();
 
-            References(x => x.PropriedadeAnimal, "IdPropriedade").Not.Nullable();
+            //References(x => x.PropriedadeAnimal, "IdPropriedade").Not.Nullable();
 
             References(x => x.TipoDeEntradaAnimal, "IdTipoDeEntrada").Not.Nullable();
         }
