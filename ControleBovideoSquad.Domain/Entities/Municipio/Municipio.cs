@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Domain.Entities.Municipio
+namespace ControleBovideoSquad.Domain.Entities
 {
     public class Municipio
     {
         public virtual int IdMunicipio { get; protected set; }
-        public virtual string Nome { get; protected set; }
-        public virtual string Estado { get; protected set; }
+        public virtual string? Nome { get; protected set; }
+        public virtual string? Estado { get; protected set; }
 
         protected Municipio()
         {
@@ -23,9 +23,9 @@ namespace ControleBovideoSquad.Domain.Entities.Municipio
             Estado = estado;
         }
 
-        public Municipio(int IdMunicipio)
+        public Municipio(int idMunicipio)
         {
-            IdMunicipio = IdMunicipio;
+            IdMunicipio = idMunicipio;
         }
     }
 

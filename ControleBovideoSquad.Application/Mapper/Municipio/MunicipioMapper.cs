@@ -1,7 +1,7 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using ControleBovideoSquad.Application.IMapper;
 using ControleBovideoSquad.CrossCutting.Dto.Municipio;
-using ControleBovideoSquad.Domain.Entities.Municipio;
+using ControleBovideoSquad.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

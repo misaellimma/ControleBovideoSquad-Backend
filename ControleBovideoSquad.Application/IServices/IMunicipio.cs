@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Domain.Entities.Municipio;
+﻿using ControleBovideoSquad.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using ControleBovideoSquad.Domain.Entities;
-using ControleBovideoSquad.Domain.Repositories.Enderecos;
+using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Repository.Util;
 using NHibernate;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Animal
+namespace ControleBovideoSquad.Repository.Animais
 {
     public class EspecieRepository : IEspecieRepository
     {
