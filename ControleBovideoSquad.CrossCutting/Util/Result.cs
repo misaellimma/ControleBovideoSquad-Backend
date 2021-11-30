@@ -8,9 +8,9 @@ namespace ControleBovideoSquad.CrossCutting.Util
 {
     public class Result<TResult>
     {
-        public int StatusCode { get;set; }
-        public TResult Data { get; set; }
-        public ICollection<string> Errors { get; set; }
+        public int StatusCode { get;}
+        public TResult Data { get; }
+        public ICollection<string> Errors { get;}
         
         protected Result(int statusCode, TResult data)
         {
@@ -21,12 +21,18 @@ namespace ControleBovideoSquad.CrossCutting.Util
         protected Result(int statusCode, params string[] msgError)
         {
             StatusCode = statusCode;
-            Errors = msgError;
+            Errors = new List<string>();
+
+            foreach(var msg in msgError)
+            {
+                Errors.Add(msg);
+            }     
         }
 
         protected Result(int statusCode, IEnumerable<string> errors)
         {
             StatusCode = statusCode;
+            Errors = new List<string>();
             foreach(var error in errors)
             {
                 Errors.Add(error);
