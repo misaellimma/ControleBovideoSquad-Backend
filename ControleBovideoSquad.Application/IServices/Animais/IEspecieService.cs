@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Domain.Repositories.Animais
+namespace ControleBovideoSquad.Application.IServices.Animais
 {
-    public interface IEspecieRepository
+    public interface IEspecieService
     {
-        Especie ObterEspeciePorId(int id);
+        Especie? ObterPorId(int id);
         List<Especie> ObterTodos();
     }
 }
