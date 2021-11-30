@@ -1,4 +1,6 @@
-﻿namespace ControleBovideoSquad.Domain.Entities.Enderecos
+﻿using ControleBovideoSquad.Domain.Entities.Municipios;
+
+namespace ControleBovideoSquad.Domain.Entities.Enderecos
 {
     public class Endereco
     {

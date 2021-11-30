@@ -38,7 +38,7 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public void Salvar(Animal animal)
         {
-            throw new NotImplementedException();
+            _unitOfWork.SaveOrUpdate(animal);
         }
 
     }

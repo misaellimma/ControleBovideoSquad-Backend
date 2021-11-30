@@ -11,4 +11,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ControleBovideoSquad.Application\ControleBovideoSquad.Application.csproj" />
+    <ProjectReference Include="..\ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
