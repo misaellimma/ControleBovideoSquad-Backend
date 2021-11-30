@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Interface
+namespace ControleBovideoSquad.Repository.Util
 {
     public class IUnitOfWork
     {

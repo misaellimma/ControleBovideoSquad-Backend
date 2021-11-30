@@ -1,5 +1,5 @@
 using ControleBovideoSquad.Domain.Repositories.Animais;
-using ControleBovideoSquad.Repository.Animal;
+using ControleBovideoSquad.Repository.Animais;
 using ControleBovideoSquad.Repository.Entity;
 using ControleBovideoSquad.Repository.Interfaces;
 using ControleBovideoSquad.Repository.Util;
