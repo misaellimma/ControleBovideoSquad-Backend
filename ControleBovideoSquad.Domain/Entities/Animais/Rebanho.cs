@@ -12,7 +12,7 @@ namespace ControleBovideoSquad.Domain.Entities.Animais
         public virtual int QuantidadeTotal { get; set; }
         public virtual int QuantidadeVacinadaAftosa { get; set; }
         public virtual int QuantidadeVacinadaBrucelose { get; set; }
-        public virtual int IdEspecie { get; set; }
-        public virtual int IdPropriedade { get; set; }
+        public virtual Especie Especie { get; set; }
+        public virtual Propriedade Propriedade { get; set; }
     }
 }
