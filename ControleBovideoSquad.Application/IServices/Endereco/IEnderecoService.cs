@@ -1,4 +1,5 @@
-﻿using ControleBovideoSquad.CrossCutting.Util;
+﻿using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
+using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ControleBovideoSquad.Application.IServices.Enderecos
 {
     public interface IEnderecoService
     {
-        Result<Endereco> Save(Endereco endereco);
+        Result<Endereco> Save(EnderecoDto endereco);
         List<Endereco> ObterTodos();
         Endereco Obter(int id);
     }
