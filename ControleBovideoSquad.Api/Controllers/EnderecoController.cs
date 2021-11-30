@@ -1,4 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Enderecos;
+using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
+using ControleBovideoSquad.Domain.Entities.Enderecos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +27,13 @@ namespace ControleBovideoSquad.Api.Controllers
         public IActionResult ObterPorId(int id)
         {
             return Ok(_enderecoService.Obter(id));
+        }
+
+        [HttpPost]
+        public IActionResult IncluirEndereco([FromBody]EnderecoDto Endereco)
+        {
+            _enderecoService.Save(Endereco);
+            return Ok();
         }
     }
 }

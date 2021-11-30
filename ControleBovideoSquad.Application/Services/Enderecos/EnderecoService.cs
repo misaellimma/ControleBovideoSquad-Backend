@@ -1,4 +1,6 @@
-﻿using ControleBovideoSquad.Application.IServices.Enderecos;
+﻿using ControleBovideoSquad.Application.IMapper;
+using ControleBovideoSquad.Application.IServices.Enderecos;
+using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
@@ -13,10 +15,12 @@ namespace ControleBovideoSquad.Application.Services.Enderecos
     public class EnderecoService : IEnderecoService
     {
         private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IMapper<EnderecoDto, Endereco> _enderecoMapper;
 
-        public EnderecoService(IEnderecoRepository enderecoRepository)
+        public EnderecoService(IEnderecoRepository enderecoRepository, IMapper<EnderecoDto, Endereco> enderecoMapper)
         {
-            this._enderecoRepository = enderecoRepository;
+            _enderecoRepository = enderecoRepository;
+            _enderecoMapper = enderecoMapper;
         }
 
         public Endereco Obter(int id)
@@ -29,22 +33,23 @@ namespace ControleBovideoSquad.Application.Services.Enderecos
             return this._enderecoRepository.ObterEnderecos();
         }
 
-        public Result<Endereco> Save(Endereco endereco)
+        public Result<Endereco> Save(EnderecoDto endereco)
         {
             var response = TempClassToValidate(endereco);
 
             if(response.Any())
                 return Result<Endereco>.Error(response);
 
-            return Result<Endereco>.Success(endereco);
+            _enderecoRepository.Save(_enderecoMapper.MapearDtoParaEntidade(endereco));
+            return Result<Endereco>.Success(_enderecoMapper.MapearDtoParaEntidade(endereco));
 
         }
 
-        public List<string> TempClassToValidate(Endereco endereco)
+        public List<string> TempClassToValidate(EnderecoDto endereco)
         {
             List<string> errors = new List<string>();
 
-            if (endereco.Rua == null || endereco.Numero == null || endereco.Municipio.IdMunicipio == 0)
+            if (endereco.Rua == null || endereco.Numero == null || endereco.IdMunicipio == 0)
             {
                 errors.Add("Rua, Endereco, ou IdMuncipio não pode ser nulo!");
             }
