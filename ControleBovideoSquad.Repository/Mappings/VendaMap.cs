@@ -11,10 +11,6 @@ namespace ControleBovideoSquad.Repository.Mappings
                 .CustomSqlType("int")
                 .GeneratedBy.Identity();
 
-            Map(x => x.IdRebanho).Column("IdRebanho")
-                .Not.Nullable()
-                .CustomSqlType("int");
-
             Map(x => x.Quantidade).Column("Quantidade")
                 .CustomSqlType("int")
                 .Not.Nullable();
@@ -30,6 +26,7 @@ namespace ControleBovideoSquad.Repository.Mappings
             //References(x => x.PropriedadeOrigem, "IdOrigem").Not.Nullable();
             //References(x => x.PropriedadeDestino, "IdDestino").Not.Nullable();
             References(x => x.FinalidadeDeVenda, "IdFinalidadeDeVenda").Not.Nullable();
+            References(x => x.Rebanho, "IdRebanho").Not.Nullable();
         }
     }
 }
