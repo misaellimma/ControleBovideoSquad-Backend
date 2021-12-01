@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.Application.Mapper.Vendas;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
@@ -44,7 +45,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             var response = ValidarVenda(vendaDto);
 
             if (response.Any())
-                return Result<Venda>.Error(response);
+                return Result<Venda>.Error(EStatusCode.BAD_REQUEST, response);
             
             Venda venda = _vendaMapper.MapearDtoParaEntidade(vendaDto);
             _vendaRepository.Save(venda);

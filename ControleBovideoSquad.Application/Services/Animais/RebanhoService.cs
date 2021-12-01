@@ -58,7 +58,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var response =  ValidarRebanho(rebanhoDto);
 
             if (response.Any())
-                return Result<Rebanho>.Error(EStatusCode.NOT_FOUND, response);
+                return Result<Rebanho>.Error(EStatusCode.BAD_REQUEST,response);
 
             Rebanho rebanho = this._rebanhoMapper.MapearDtoParaEntidade(rebanhoDto);
             this._rebanhoRepository.Save(rebanho);

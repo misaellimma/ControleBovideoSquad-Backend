@@ -43,7 +43,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._rebanhoService.SalvarRebanho(rebanhoDto);
 
-            if (response.StatusCode == 400)
+            if (response.Errors != null)
                 return BadRequest(response.Errors);
 
             return Ok(response.Data);

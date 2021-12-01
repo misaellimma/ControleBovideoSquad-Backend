@@ -44,7 +44,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._animalService.SalvarAnimal(animalDto);
 
-            if (response.StatusCode == EStatusCode.BAD_REQUEST)
+            if (response.Errors != null)
                 return BadRequest(response.Errors);
 
             return Ok(response.Data);

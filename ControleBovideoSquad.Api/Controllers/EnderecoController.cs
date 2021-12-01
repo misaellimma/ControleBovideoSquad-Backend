@@ -32,8 +32,14 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpPost]
         public IActionResult IncluirEndereco([FromBody]EnderecoDto Endereco)
         {
-            _enderecoService.Save(Endereco);
-            return Ok();
+            var result =  _enderecoService.Save(Endereco);
+
+            if(result.Errors != null)
+            {
+                return StatusCode((int)result.StatusCode,result.Errors);
+            }
+
+            return StatusCode((int)result.StatusCode, result.Data);
         }
     }
 }
