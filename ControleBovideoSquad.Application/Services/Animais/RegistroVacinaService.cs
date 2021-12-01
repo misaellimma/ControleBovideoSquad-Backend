@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IMapper;
 using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.RegistroVacina;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animal;
@@ -33,7 +34,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             RegistroVacina? registroVacina= _registroVacinaRepository.Obter(id);
 
             if (registroVacina == null)
-                return Result<string>.Error("");
+                return Result<string>.Error(EStatusCode.NOT_FOUND, "");
 
             registroVacina.Cancelar();
             _registroVacinaRepository.Save(registroVacina);
@@ -46,7 +47,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var validation = TempRegistroValidation(registroVacinaDto);
 
             if(validation.Any())
-                return Result<RegistroVacina>.Error(validation);
+                return Result<RegistroVacina>.Error(EStatusCode.BAD_REQUEST, validation);
 
             _registroVacinaRepository.Save(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
 
