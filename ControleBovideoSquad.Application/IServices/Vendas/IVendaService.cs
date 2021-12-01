@@ -1,9 +1,6 @@
-﻿using ControleBovideoSquad.Domain.Entities.Vendas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleBovideoSquad.CrossCutting.Dto.Vendas;
+using ControleBovideoSquad.CrossCutting.Util;
+using ControleBovideoSquad.Domain.Entities.Vendas;
 
 namespace ControleBovideoSquad.Application.IServices.Vendas
 {
@@ -12,5 +9,6 @@ namespace ControleBovideoSquad.Application.IServices.Vendas
         List<Venda> ObterVendas();
         Venda ObterVendaPorId(int id);
         List<Venda> ObterVendaPorProdutor(string cpf);
+        Result<Venda> SalvarVenda(VendaDto vendaDto);
     }
 }

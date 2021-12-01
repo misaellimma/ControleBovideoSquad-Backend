@@ -1,11 +1,6 @@
 ﻿using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
 using ControleBovideoSquad.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Vendas
 {
@@ -32,6 +27,11 @@ namespace ControleBovideoSquad.Repository.Vendas
         public List<Venda> ObterVendas()
         {
             return _unityOfWork.Query<Venda>().ToList();    
+        }
+
+        public void Save(Venda venda) 
+        {
+            _unityOfWork.SaveOrUpdate(venda);
         }
     }
 }
