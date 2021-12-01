@@ -1,8 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
-using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Animais;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers
@@ -44,15 +41,20 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] AnimalDto animalDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             var response = this._animalService.SalvarAnimal(animalDto);
 
             if (response.StatusCode == 400)
                 return BadRequest(response.Errors);
 
             return Ok(response.Data);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Cancel(int id)
+        {
+            var response = _animalService.CancelarAnimal(id);
+            return Ok(response);
         }
     }
 }

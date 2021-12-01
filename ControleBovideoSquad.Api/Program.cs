@@ -22,6 +22,8 @@ using ControleBovideoSquad.Domain.Repositories.Propriedades;
 using ControleBovideoSquad.Repository.Propriedades;
 using ControleBovideoSquad.Application.Mapper;
 using ControleBovideoSquad.Application.Mapper.Produtores;
+using ControleBovideoSquad.Application.IMapper.Animais;
+using ControleBovideoSquad.Application.Mapper.Animais;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +53,8 @@ builder.Services.AddScoped<IVacinaRepository, VacinaRepository>();
 builder.Services.AddScoped<IVacinaService, VacinaService>();
 builder.Services.AddScoped<IProdutorService, ProdutorService>();
 builder.Services.AddScoped<IProdutorMapper, ProdutorMapper>();
+builder.Services.AddScoped<IAnimalMapper, AnimalMapper>();
+builder.Services.AddScoped<IRebanhoMapper, RebanhoMapper>();
 builder.Services.AddScoped<IProdutorRepository, ProdutorRepository>();
 builder.Services.AddScoped<IPropriedadeRepository, PropriedadeRepository>();
 builder.Services.AddScoped<IPropriedadeService, PropriedadeService>();

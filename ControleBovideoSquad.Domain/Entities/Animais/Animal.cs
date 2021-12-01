@@ -29,5 +29,10 @@ namespace  ControleBovideoSquad.Domain.Entities.Animais
             this.TipoDeEntradaAnimal = tipoDeEntradaAnimal;
             this.DataDeEntrada = dataDeEntrada;
         }
+
+        public virtual void Cancelar()
+        {
+            this.Ativo = false;
+        }
     }
 }

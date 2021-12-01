@@ -14,11 +14,6 @@ namespace ControleBovideoSquad.Repository.Animais
             _unitOfWork = unitOfWork;
         }
 
-        public void Cancelar(int idAnimal)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Animal> ObterTodos()
         {
             return _unitOfWork

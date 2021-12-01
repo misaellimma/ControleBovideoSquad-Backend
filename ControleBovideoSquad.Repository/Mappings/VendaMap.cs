@@ -23,8 +23,8 @@ namespace ControleBovideoSquad.Repository.Mappings
                 .CustomSqlType("bit")
                 .Not.Nullable();
 
-            //References(x => x.PropriedadeOrigem, "IdOrigem").Not.Nullable();
-            //References(x => x.PropriedadeDestino, "IdDestino").Not.Nullable();
+            References(x => x.PropriedadeOrigem, "IdOrigem").Not.Nullable();
+            References(x => x.PropriedadeDestino, "IdDestino").Not.Nullable();
             References(x => x.FinalidadeDeVenda, "IdFinalidadeDeVenda").Not.Nullable();
             References(x => x.Rebanho, "IdRebanho").Not.Nullable();
         }

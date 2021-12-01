@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,6 @@ namespace ControleBovideoSquad.Application.IServices.Animais
         List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual);
         List<Rebanho> ObterRebanhosPorProdutor(string cpf);
         Rebanho ObterRebanhoPorId(int id);
-        void SalvarRebanho(RebanhoDto rebanhoDto);
+        Result<Rebanho> SalvarRebanho(RebanhoDto rebanhoDto);
     }
 }
