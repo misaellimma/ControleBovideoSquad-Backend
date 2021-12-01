@@ -31,7 +31,7 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
             TipoDeEntrada TipoDeEntrada = _tipoDeEntradaRepository.ObterTipoDeEntradaPorId(source.IdTipoDeEntrada);
             Propriedade Propriedade = _propriedadeRepository.ObterPorId(source.IdPropriedade);
             return new Animal(source.IdAnimal, source.QuantidadeTotal, source.QuantidadeVacinada, Especie,
-                Propriedade, TipoDeEntrada, source.DataDeEntrada, source.Ativo);
+                Propriedade, TipoDeEntrada, source.DataDeEntrada);
         }
 
         public AnimalDto MapearEntidadeParaDto(Animal source)
@@ -39,7 +39,8 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
             return new AnimalDto(source.IdAnimal, source.QuantidadeTotal, source.QuantidadeVacinada,
                 source.EspecieAnimal.IdEspecie, source.PropriedadeAnimal.IdPropriedade, 
                 source.TipoDeEntradaAnimal.IdTipoDeEntrada,
-                source.DataDeEntrada, source.Ativo);
+                source.DataDeEntrada);
         }
     }
+
 }

@@ -51,11 +51,13 @@ namespace ControleBovideoSquad.Repository.Entity
 
         public IQueryable<T> Query<T>()
         {
+            _session.Clear();
             return _session.Query<T>();
         }
 
         public void SaveOrUpdate<T>(T entity)
         {
+            _session.Clear();
             _session.SaveOrUpdate(entity);
         }
     }

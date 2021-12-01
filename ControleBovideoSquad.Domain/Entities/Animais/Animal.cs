@@ -9,7 +9,7 @@ namespace  ControleBovideoSquad.Domain.Entities.Animais
         public virtual Propriedade? PropriedadeAnimal { get; protected set; }
         public virtual TipoDeEntrada? TipoDeEntradaAnimal { get; protected set; }
         public virtual DateTime DataDeEntrada { get; protected set; }
-        public virtual bool Ativo { get; protected set; }
+        public virtual bool Ativo { get; protected set; } = true;
 
         protected Animal()
         {
@@ -18,7 +18,7 @@ namespace  ControleBovideoSquad.Domain.Entities.Animais
         public Animal(
             int idAnimal, int quantidadeTotal, int quantidadeVacinada, 
             Especie especieAnimal, Propriedade propriedadeAnimal, TipoDeEntrada tipoDeEntradaAnimal,
-            DateTime dataDeEntrada, bool ativo
+            DateTime dataDeEntrada
             )
         {
             this.IdAnimal = idAnimal;

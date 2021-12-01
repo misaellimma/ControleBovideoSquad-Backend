@@ -15,10 +15,9 @@ namespace ControleBovideoSquad.CrossCutting.Dto.AnimaisDto
         public int IdPropriedade { get; set; }
         public int IdTipoDeEntrada { get; set; }
         public DateTime DataDeEntrada { get; set; }
-        public bool Ativo { get; set; }
 
         public AnimalDto(int idAnimal, int quantidadeTotal, int quantidadeVacinada, int idEspecie, 
-            int idPropriedade, int idTipoDeEntrada, DateTime dataDeEntrada, bool ativo)
+            int idPropriedade, int idTipoDeEntrada, DateTime dataDeEntrada)
         {
             IdAnimal = idAnimal;
             QuantidadeTotal = quantidadeTotal;
@@ -27,7 +26,6 @@ namespace ControleBovideoSquad.CrossCutting.Dto.AnimaisDto
             IdPropriedade = idPropriedade;
             IdTipoDeEntrada = idTipoDeEntrada;
             DataDeEntrada = dataDeEntrada;
-            Ativo = ativo;
         }
     }
 }
