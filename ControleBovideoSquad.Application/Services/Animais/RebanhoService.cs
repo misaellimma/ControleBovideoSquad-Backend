@@ -1,6 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.Application.Mapper.Animais;
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto.cs;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 
@@ -16,10 +17,9 @@ namespace ControleBovideoSquad.Application.Services.Animais
             _rebanhoRepository = rebanhoRepository; 
         }
 
-        public RebanhoDto ObterRebanhoPorId(int id)
+        public Rebanho ObterRebanhoPorId(int id)
         {
-            var rebanho = _rebanhoRepository.ObterRebanhosPorId(id);
-            return _rebanhoMapper.MapearEntidadeParaDto(rebanho);
+            return _rebanhoRepository.ObterRebanhosPorId(id);
         }
 
         public List<Rebanho> ObterRebanhos()
@@ -37,9 +37,10 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return _rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual);
         }
 
-        Rebanho IRebanhoService.ObterRebanhoPorId(int id)
+        public void SalvarRebanho(RebanhoDto rebanhoDto)
         {
-            throw new NotImplementedException();
+            Rebanho rebanho = this._rebanhoMapper.MapearDtoParaEntidade(rebanhoDto);
+            this._rebanhoRepository.Save(rebanho);
         }
     }
 }

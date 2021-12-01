@@ -1,4 +1,5 @@
-﻿using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto.cs;
+﻿using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace ControleBovideoSquad.Application.IServices.Animais
         AnimalDto ObterPorId(int id);
         List<Animal> ObterPorProdutor(string cpf);
         List<Animal> ObterPorPropriedade(string inscricaoEstadual);
+        Result<Animal> SalvarAnimal(AnimalDto animal);
     }
 }

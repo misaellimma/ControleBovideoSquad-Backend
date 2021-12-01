@@ -1,24 +1,31 @@
 ﻿using ControleBovideoSquad.Application.IMapper;
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto.cs;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Animais;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ControleBovideoSquad.Domain.Repositories.Animais;
 
 namespace ControleBovideoSquad.Application.Mapper.Animais
 {
     public class RebanhoMapper : IMapper<RebanhoDto, Rebanho>
     {
+        private readonly IEspecieRepository _especieRepository;
+
+        public RebanhoMapper(IEspecieRepository especieRepository)
+        {
+            _especieRepository = especieRepository;
+        }
+
         public Rebanho MapearDtoParaEntidade(RebanhoDto source)
         {
-            throw new NotImplementedException();
+            Especie Especie = _especieRepository.ObterEspeciePorId(source.IdEspecie);
+            return new Rebanho(source.IdRebanho, source.QuantidadeTotal, source.QuantidadeVacinadaAftosa, 
+                source.QuantidadeVacinadaBrucelose, Especie, new Propriedade());
         }
 
         public RebanhoDto MapearEntidadeParaDto(Rebanho source)
         {
-            return new RebanhoDto(source.IdRebanho, source.QuantidadeTotal, source.Especie.Nome, "propriedade");
+            return new RebanhoDto(source.IdRebanho, source.QuantidadeTotal, source.QuantidadeVacinadaAftosa,
+                source.QuantidadeVacinadaBrucelose, source.Especie.IdEspecie, 1);
         }
     }
 }

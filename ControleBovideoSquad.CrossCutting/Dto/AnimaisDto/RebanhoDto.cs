@@ -4,28 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Domain.Entities.Animais
+namespace ControleBovideoSquad.CrossCutting.Dto.AnimaisDto
 {
-    public class Rebanho
+    public class RebanhoDto
     {
         public virtual int IdRebanho { get; set; }
         public virtual int QuantidadeTotal { get; set; }
         public virtual int QuantidadeVacinadaAftosa { get; set; }
         public virtual int QuantidadeVacinadaBrucelose { get; set; }
-        public virtual Especie Especie { get; set; }
-        public virtual Propriedade Propriedade { get; set; }
+        public virtual int IdEspecie { get; set; }
+        public virtual int IdPropriedade { get; set; }
 
-        protected Rebanho() { }
-
-        public Rebanho(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa, 
-            int quantidadeVacinadaBrucelose, Especie especie, Propriedade propriedade)
+        public RebanhoDto(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa, int quantidadeVacinadaBrucelose, int idEspecie, int idPropriedade)
         {
             IdRebanho = idRebanho;
             QuantidadeTotal = quantidadeTotal;
             QuantidadeVacinadaAftosa = quantidadeVacinadaAftosa;
             QuantidadeVacinadaBrucelose = quantidadeVacinadaBrucelose;
-            Especie = especie;
-            Propriedade = propriedade;
+            IdEspecie = idEspecie;
+            IdPropriedade = idPropriedade;
         }
+
     }
 }

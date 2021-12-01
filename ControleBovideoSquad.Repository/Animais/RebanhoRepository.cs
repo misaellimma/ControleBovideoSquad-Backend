@@ -38,5 +38,10 @@ namespace ControleBovideoSquad.Repository.Animais
         {
             return _unityOfWork.Query<Rebanho>().FirstOrDefault(x => x.IdRebanho == id);
         }
+
+        public void Save(Rebanho rebanho)
+        {
+            this._unityOfWork.SaveOrUpdate(rebanho);
+        }
     }
 }
