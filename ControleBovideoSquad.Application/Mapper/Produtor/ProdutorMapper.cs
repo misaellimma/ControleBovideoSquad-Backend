@@ -11,6 +11,10 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
 {
     public class ProdutorMapper : IProdutorMapper
     {
+        public ProdutorMapper()
+        {
+        }
+
         public Produtor MapearDtoParaEntidade(ProdutorDto source)
         {
             throw new NotImplementedException();

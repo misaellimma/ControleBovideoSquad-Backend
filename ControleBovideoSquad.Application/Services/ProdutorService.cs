@@ -1,6 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Produtores;
 using ControleBovideoSquad.Application.IServices;
 using ControleBovideoSquad.CrossCutting.Dto.Produtor;
+using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Produtores;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Municipios;
@@ -16,13 +17,14 @@ namespace ControleBovideoSquad.Application.Services
     public class ProdutorService : IProdutorService
     {
         private readonly IProdutorRepository produtorRepository;
-        private readonly IEnderecoRepository enderecoRepository;
-        private readonly IMunicipioRepository municipioRepository;
+        //private readonly IEnderecoRepository enderecoRepository;
+        //private readonly IMunicipioRepository municipioRepository;
         private readonly IProdutorMapper produtorMapper;
 
-        public ProdutorService(IProdutorRepository produtorRepository)
+        public ProdutorService(IProdutorRepository produtorRepository, IProdutorMapper produtorMapper)
         {
             this.produtorRepository = produtorRepository;
+            this.produtorMapper = produtorMapper;
         }
 
         public void AlterarProdutor(Produtor produtor)
@@ -36,9 +38,13 @@ namespace ControleBovideoSquad.Application.Services
             
         }
 
-        public Produtor ObterProdutorPorCpf(string cpf)
+        public Result<Produtor> ObterProdutorPorCpf(string cpf)
         {
-            return produtorRepository.ObterProdutorPorCpf(cpf);
+            if (!Validacao.ValidaCpf(cpf))
+                return Result<Produtor>.Error("CPF invalido!");
+
+            var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
+            return Result<Produtor>.Success(produtor);
         }
 
         public Produtor ObterProdutorPorId(int id)
@@ -49,10 +55,8 @@ namespace ControleBovideoSquad.Application.Services
         public List<ProdutorDto> ObterTodos()
         {
             var produtores = produtorRepository.ObterTodos();
-            
-            if (produtores == null)
-                return null;
 
+            //return produtores;
             return produtorMapper.MapearEntidadeParaDto(produtores);
         }
     }
