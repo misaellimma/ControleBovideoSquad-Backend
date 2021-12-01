@@ -20,14 +20,12 @@ namespace ControleBovideoSquad.Application.Services
 
         public Vacina ObterPorId(int id)
         {
-            var vacina = vacinaRepository.ObterPorId(id);
-            return vacina;
+            return vacinaRepository.ObterPorId(id);
         }
 
         public List<Vacina> ObterTodos()
         {
-            var vacinas = vacinaRepository.ObterTodos();
-            return vacinas;
+            return vacinaRepository.ObterTodos();
         }
     }
 }

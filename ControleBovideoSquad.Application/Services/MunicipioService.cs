@@ -22,15 +22,12 @@ namespace ControleBovideoSquad.Application.Services
 
         public Municipio ObterPorId(int id)
         {
-            var municipio = municipioRepository.ObterPorId(id);
-            return municipio;
+            return municipioRepository.ObterPorId(id);
         }
 
         public List<Municipio> ObterTodos()
         {
-            var municipios = municipioRepository.ObterTodos();
-            return municipios;
-
+            return municipioRepository.ObterTodos();
         }
     }
 }

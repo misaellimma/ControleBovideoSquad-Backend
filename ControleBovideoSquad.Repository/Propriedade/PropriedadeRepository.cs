@@ -11,11 +11,11 @@ namespace ControleBovideoSquad.Repository.Propriedades
 {
     public class PropriedadeRepository : IPropriedadeRepository
     {
-        private readonly IUnityOfWork _unityOfWork;
+        private readonly IUnityOfWork unityOfWork;
 
         public PropriedadeRepository(IUnityOfWork unityOfWork)
         {
-            this._unityOfWork = unityOfWork;
+            this.unityOfWork = unityOfWork;
         
         }
 
@@ -26,17 +26,23 @@ namespace ControleBovideoSquad.Repository.Propriedades
 
         public Propriedade ObterPorId(int id)
         {
-            return _unityOfWork.Query<Propriedade>().FirstOrDefault(x => x.IdPropriedade == id);
+            return unityOfWork
+                .Query<Propriedade>()
+                .FirstOrDefault(e => e.IdPropriedade == id);
         }
 
         public Propriedade ObterPorInscricaoEstadual(string InscricaoEstadual)
         {
-            throw new NotImplementedException();
+            return unityOfWork
+                .Query<Propriedade>()
+                .FirstOrDefault(e => e.InscricaoEstadual == InscricaoEstadual);
         }
 
         public List<Propriedade> ObterTodos()
         {
-            throw new NotImplementedException();
+            return unityOfWork
+                .Query<Propriedade>()
+                .ToList();
         }
     }
 }

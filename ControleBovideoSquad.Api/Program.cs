@@ -24,6 +24,9 @@ using ControleBovideoSquad.Application.Mapper;
 using ControleBovideoSquad.Application.Mapper.Produtores;
 using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.Mapper.Animais;
+using ControleBovideoSquad.Application.Mapper.Propriedades;
+using ControleBovideoSquad.Application.IMapper.Propriedades;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +61,7 @@ builder.Services.AddScoped<IRebanhoMapper, RebanhoMapper>();
 builder.Services.AddScoped<IProdutorRepository, ProdutorRepository>();
 builder.Services.AddScoped<IPropriedadeRepository, PropriedadeRepository>();
 builder.Services.AddScoped<IPropriedadeService, PropriedadeService>();
+builder.Services.AddScoped<IPropriedadeMapper, PropriedadeMapper>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddSingleton<SessionFactory>();

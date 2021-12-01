@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,7 +44,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._animalService.SalvarAnimal(animalDto);
 
-            if (response.StatusCode == 400)
+            if (response.StatusCode == EStatusCode.BAD_REQUEST)
                 return BadRequest(response.Errors);
 
             return Ok(response.Data);

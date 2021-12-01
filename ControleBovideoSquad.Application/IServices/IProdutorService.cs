@@ -12,8 +12,8 @@ namespace ControleBovideoSquad.Application.IServices
     public interface IProdutorService
     {
         List<ProdutorDto> ObterTodos();
-        Result<Produtor> ObterProdutorPorCpf(string cpf);
-        Produtor ObterProdutorPorId(int id);
+        Result<ProdutorDto> ObterProdutorPorCpf(string cpf);
+        Result<ProdutorDto> ObterProdutorPorId(int id);
         void CriarProdutor(Produtor produtor);
         void AlterarProdutor(Produtor produtor);
     }

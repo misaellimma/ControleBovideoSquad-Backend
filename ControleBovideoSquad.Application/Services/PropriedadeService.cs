@@ -1,5 +1,12 @@
-﻿using ControleBovideoSquad.Application.IServices;
+﻿using ControleBovideoSquad.Application.IMapper.Propriedades;
+using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.Application.Mapper.Propriedades;
+using ControleBovideoSquad.CrossCutting;
+using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
+using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities;
+using ControleBovideoSquad.Domain.Repositories.Enderecos;
+using ControleBovideoSquad.Domain.Repositories.Propriedades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,26 +15,57 @@ using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services
 {
+
     public class PropriedadeService : IPropriedadeService
     {
-        public void CriarOuAlterar(Propriedade produtor)
+        private readonly IPropriedadeRepository propriedadeRepository;
+        private readonly IEnderecoRepository enderecoRepository;
+        private readonly IPropriedadeMapper propriedadeMapper;
+
+        public PropriedadeService(IPropriedadeRepository propriedadeRepository/*, IEnderecoRepository enderecoRepository*/, IPropriedadeMapper propriedadeMapper)
+        {
+            this.propriedadeRepository = propriedadeRepository;
+            //this.enderecoRepository = enderecoRepository;
+            this.propriedadeMapper = propriedadeMapper;
+        }
+
+        public void Alterar(Propriedade produtor)
         {
             throw new NotImplementedException();
         }
 
-        public Propriedade ObterPorId(int id)
+        public void Criar(Propriedade produtor)
         {
             throw new NotImplementedException();
         }
 
-        public Propriedade ObterPorInscricaoEstadual(string InscricaoEstadual)
+        public Result<PropriedadeDto> ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var propriedade = propriedadeRepository.ObterPorId(id);
+
+            if(propriedade == null)
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não localizado!");
+            else
+                return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
         }
 
-        public List<Propriedade> ObterTodos()
+        public Result<PropriedadeDto> ObterPorInscricaoEstadual(string InscricaoEstadual)
         {
-            throw new NotImplementedException();
+            if (!Validacao.ValidarInscricaoEstadual(InscricaoEstadual))
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscrição Estadual inválida!");
+
+            var propriedade = propriedadeRepository.ObterPorInscricaoEstadual(InscricaoEstadual);
+            
+            if (propriedade == null)
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não localizado!");
+            else
+                return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
+        }
+
+        public List<PropriedadeDto> ObterTodos()
+        {
+            var propriedades = propriedadeRepository.ObterTodos();
+            return propriedadeMapper.MapearEntidadeParaDto(propriedades);
         }
     }
 }
