@@ -3,9 +3,11 @@ using ControleBovideoSquad.Application.Mapper.Vendas;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
+using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
+using ControleBovideoSquad.Domain.Repositories.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
 
 namespace ControleBovideoSquad.Application.Services.Vendas
@@ -14,15 +16,17 @@ namespace ControleBovideoSquad.Application.Services.Vendas
     {
         private readonly IVendaRepository _vendaRepository;
         private readonly IRebanhoRepository _rebanhoRepository;
+        private readonly IPropriedadeRepository _propriedadeRepository;
         private readonly IFinalidadeDeVendaRepository _finalidadeDeVendaRepository;
         private readonly VendaMapper _vendaMapper;
 
         public VendaService(IVendaRepository vendaRepository, IRebanhoRepository rebanhoRepository,
-            IFinalidadeDeVendaRepository finalidadeDeVendaRepository)
+            IFinalidadeDeVendaRepository finalidadeDeVendaRepository, IPropriedadeRepository propriedadeRepository)
         {
             _vendaRepository = vendaRepository;
             _rebanhoRepository = rebanhoRepository;
             _finalidadeDeVendaRepository = finalidadeDeVendaRepository;
+            _propriedadeRepository = propriedadeRepository;
         }
 
         public Venda ObterVendaPorId(int id)
@@ -46,8 +50,20 @@ namespace ControleBovideoSquad.Application.Services.Vendas
 
             if (response.Any())
                 return Result<Venda>.Error(EStatusCode.BAD_REQUEST, response);
-            
+
             Venda venda = _vendaMapper.MapearDtoParaEntidade(vendaDto);
+            // Adicionar no rebanho da propriedade de destino e tirar do rebanho da propriedade de origem;
+
+            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, 
+                venda.Rebanho.Especie.IdEspecie);
+
+            if (rebanhoNoDestino == null)
+                _rebanhoRepository.Save(new Rebanho(0, vendaDto.Quantidade, vendaDto.Quantidade, vendaDto.Quantidade
+                    , venda.Rebanho.Especie, venda.PropriedadeDestino));
+            else 
+                rebanhoNoDestino.AdicionarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
+                _rebanhoRepository.Save(rebanhoNoDestino);
+        
             _vendaRepository.Save(venda);
 
             return Result<Venda>.Success(venda);
@@ -58,12 +74,25 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             List<string> errors = new List<string>();
             Rebanho rebanho = _rebanhoRepository.ObterRebanhosPorId(vendaDto.IdRebanho);
             FinalidadeDeVenda finalidade = _finalidadeDeVendaRepository.ObterPorId(vendaDto.IdFinalidadeDeVenda);
+            Propriedade propriedadeOrigem = _propriedadeRepository.ObterPorId(vendaDto.IdPropriedadeOrigem);
+            Propriedade propriedadeDestino = _propriedadeRepository.ObterPorId(vendaDto.IdPropriedadeDestino);
+            // verificar se existe propriedade origem e destino
+            // verificar na propriedade origem se tem rebanho vacinado disponivel
 
             if (rebanho == null)
                 errors.Add("Rebanho nao encontrado");
 
             if (finalidade == null)
                 errors.Add("Finalidade de venda nao encontrada");
+
+            if(propriedadeOrigem == null)
+                errors.Add("Propriedade de origem nao encontrada");
+
+            if(propriedadeDestino == null)
+            errors.Add("Propriedade de destino nao encontrada");
+
+            if (rebanho.QuantidadeVacinadaAftosa < vendaDto.Quantidade || rebanho.QuantidadeVacinadaBrucelose < vendaDto.Quantidade)
+                errors.Add("Numero insuficiente de rebanhos vacinados");
 
             return errors;
         }

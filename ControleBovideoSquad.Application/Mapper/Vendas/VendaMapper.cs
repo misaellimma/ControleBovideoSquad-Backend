@@ -29,7 +29,7 @@ namespace ControleBovideoSquad.Application.Mapper.Vendas
             var propriedadeOrigem = _propriedadeRepository.ObterPorId(source.IdPropriedadeOrigem);
             var propriedadeDestino = _propriedadeRepository.ObterPorId(source.IdPropriedadeDestino);
             return new Venda(source.IdVenda, source.Quantidade, propriedadeOrigem,propriedadeDestino , rebanho,
-                finalidadeDeVenda, source.DataDeVenda, source.Ativo);
+                finalidadeDeVenda, source.DataDeVenda);
         }
 
         public VendaDto MapearEntidadeParaDto(Venda source)

@@ -11,19 +11,18 @@ namespace ControleBovideoSquad.Domain.Entities.Vendas
         public virtual Rebanho Rebanho { get; protected set; }
         public virtual FinalidadeDeVenda FinalidadeDeVenda { get; protected set; }
         public virtual DateTime DataDeVenda { get; protected set; }
-        public virtual bool Ativo { get; protected set; }
+        public virtual bool Ativo { get; protected set; } = true;
 
         protected Venda() { }
 
         public Venda(
             int idVenda, int quantidade, Propriedade propriedadeOrigem, Propriedade propriedadeDestino,
-            Rebanho rebanho, FinalidadeDeVenda finalidadeDeVenda, DateTime dataDeVenda, bool ativo)
+            Rebanho rebanho, FinalidadeDeVenda finalidadeDeVenda, DateTime dataDeVenda)
         {
             this.IdVenda = idVenda;
             this.Quantidade = quantidade;   
             this.PropriedadeOrigem = propriedadeOrigem;   
             this.PropriedadeDestino = propriedadeDestino;
-            this.Ativo = ativo;
             this.Rebanho = rebanho;
             this.DataDeVenda = dataDeVenda;
             this.FinalidadeDeVenda = finalidadeDeVenda;

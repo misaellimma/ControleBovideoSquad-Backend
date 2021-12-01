@@ -33,5 +33,10 @@ namespace ControleBovideoSquad.Repository.Vendas
         {
             _unityOfWork.SaveOrUpdate(venda);
         }
+
+        public void Cancel(Venda venda)
+        {
+            
+        }
     }
 }

@@ -7,11 +7,6 @@ using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services
 {

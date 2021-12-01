@@ -8,5 +8,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Vendas
         Venda ObterVendaPorId(int id);
         List<Venda> ObterVendaPorProdutor(string cpf);
         void Save(Venda Venda);
+        void Cancel(Venda venda);
     }
 }
