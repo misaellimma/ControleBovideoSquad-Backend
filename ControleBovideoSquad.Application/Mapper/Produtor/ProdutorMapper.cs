@@ -1,5 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Produtores;
 using ControleBovideoSquad.CrossCutting.Dto.Produtor;
+using ControleBovideoSquad.Domain.Entities.Enderecos;
+using ControleBovideoSquad.Domain.Entities.Municipios;
 using ControleBovideoSquad.Domain.Entities.Produtores;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,30 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
         {
         }
 
-        public Produtor MapearDtoParaEntidade(ProdutorDto source)
+        public Produtor MapearDtoParaEntidade(ProdutorDto produtorDto)
         {
-            throw new NotImplementedException();
+            Municipio municipio = new Municipio
+                (
+                    produtorDto.IdMunicipio,
+                    produtorDto.Municipio,
+                    produtorDto.Estado
+                );
+
+            Endereco endereco = new Endereco
+                (
+                    produtorDto.IdEndereco,
+                    produtorDto.Rua,
+                    produtorDto.Numero,
+                    municipio
+                );
+
+            return new Produtor
+                (
+                    produtorDto.IdProdutor,
+                    produtorDto.Nome,
+                    produtorDto.CPF,
+                    endereco
+                );
         }
 
         public List<ProdutorDto> MapearEntidadeParaDto(List<Produtor> produtores)
@@ -26,23 +49,37 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
             if (produtores.Any())
                 foreach(Produtor produtor in produtores)
                 {
-                    var produtorDto = new ProdutorDto(produtor.IdProdutor,
-                                                      produtor.Nome,
-                                                      produtor.CPF,
-                                                      "",
-                                                      "",
-                                                      "",
-                                                      "",
-                                                      ""
-                                                      );
+                    var produtorDto = new ProdutorDto
+                        (
+                            produtor.IdProdutor,
+                            produtor.Nome,
+                            produtor.CPF,
+                            produtor.Endereco.IdEndereco,
+                            produtor.Endereco.Rua,
+                            produtor.Endereco.Numero,
+                            produtor.Endereco.Municipio.Nome,
+                            produtor.Endereco.Municipio.IdMunicipio,
+                            produtor.Endereco.Municipio.Estado
+                        );
                     produtoresDto.Add(produtorDto);
                 }
             return produtoresDto;
         }
 
-        public ProdutorDto MapearEntidadeParaDto(Produtor source)
+        public ProdutorDto MapearEntidadeParaDto(Produtor produtor)
         {
-            throw new NotImplementedException();
+            return new ProdutorDto
+                (
+                    produtor.IdProdutor,
+                    produtor.Nome,
+                    produtor.CPF,
+                    produtor.Endereco.IdEndereco,
+                    produtor.Endereco.Rua,
+                    produtor.Endereco.Numero,
+                    produtor.Endereco.Municipio.Nome,
+                    produtor.Endereco.Municipio.IdMunicipio,
+                    produtor.Endereco.Municipio.Estado
+                );
         }
     }
 }

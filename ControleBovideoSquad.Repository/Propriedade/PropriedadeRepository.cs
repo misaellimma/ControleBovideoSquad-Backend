@@ -16,12 +16,11 @@ namespace ControleBovideoSquad.Repository.Propriedades
         public PropriedadeRepository(IUnityOfWork unityOfWork)
         {
             this.unityOfWork = unityOfWork;
-        
         }
 
-        public void CriarOuAlterar(Domain.Entities.Propriedade produtor)
+        public void CriarOuAlterar(Propriedade produtor)
         {
-            throw new NotImplementedException();
+            unityOfWork.SaveOrUpdate(produtor);
         }
 
         public Propriedade ObterPorId(int id)
