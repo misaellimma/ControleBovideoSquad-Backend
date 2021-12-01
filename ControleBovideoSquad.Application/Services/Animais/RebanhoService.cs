@@ -17,7 +17,8 @@ namespace ControleBovideoSquad.Application.Services.Animais
         private readonly IEspecieRepository _especieRepository;
         private readonly IRebanhoMapper _rebanhoMapper;
 
-        public RebanhoService(IRebanhoRepository rebanhoRepository, IRebanhoMapper rebanhoMapper, IPropriedadeRepository propriedadeRepository,
+        public RebanhoService(IRebanhoRepository rebanhoRepository, IRebanhoMapper rebanhoMapper, 
+            IPropriedadeRepository propriedadeRepository,
             IEspecieRepository especieRepository)
         {
             _rebanhoRepository = rebanhoRepository; 
@@ -44,6 +45,11 @@ namespace ControleBovideoSquad.Application.Services.Animais
         public List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual)
         {
             return _rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual);
+        }
+
+        public Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
+        {
+            return _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(inscricaoEstadual, idEspecie);
         }
 
         public Result<Rebanho> SalvarRebanho(RebanhoDto rebanhoDto)

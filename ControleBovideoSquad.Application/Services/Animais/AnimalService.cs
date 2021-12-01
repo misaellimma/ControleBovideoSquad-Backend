@@ -21,16 +21,21 @@ namespace ControleBovideoSquad.Application.Services.Animais
         private readonly ITipoDeEntradaRepository _tipoDeEntradaRepository;
         private readonly IEspecieRepository _especieRepository;
         private readonly IPropriedadeRepository _propriedadeRepository;
+        private readonly IRebanhoService _rebanhoService;
         private readonly IAnimalMapper _animalMapper;
+        private readonly IRebanhoMapper _rebanhoMapper;
 
         public AnimalService(IAnimalRepository animalRepository, ITipoDeEntradaRepository tipoDeEntradaRepository,
-            IEspecieRepository especieRepository, IAnimalMapper animalMapper, IPropriedadeRepository propriedadeRepository)
+            IEspecieRepository especieRepository, IAnimalMapper animalMapper, IPropriedadeRepository propriedadeRepository,
+            IRebanhoService rebanhoService, IRebanhoMapper rebanhoMapper)
         {
             this._animalRepository = animalRepository;
             this._tipoDeEntradaRepository = tipoDeEntradaRepository;
             this._especieRepository = especieRepository;
             this._animalMapper = animalMapper;
             this._propriedadeRepository = propriedadeRepository;
+            this._rebanhoService = rebanhoService;
+            this._rebanhoMapper = rebanhoMapper;
         }
 
         public AnimalDto ObterPorId(int id)
@@ -64,6 +69,19 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
             if (response.Any())
                 return Result<Animal>.Error(response);
+
+            var animal = _animalMapper.MapearDtoParaEntidade(animalDto);
+
+            var rebanhoAtual = _rebanhoService.ObterRebanhoPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual, 
+                animal.EspecieAnimal.IdEspecie);
+
+            if (rebanhoAtual == null)
+                this._rebanhoService.SalvarRebanho(_rebanhoMapper.MapearEntidadeParaDto(new Rebanho(0, 
+                    animal.QuantidadeTotal, animal.QuantidadeVacinada, animal.QuantidadeVacinada
+                    , animal.EspecieAnimal, animal.PropriedadeAnimal)));
+            else 
+                rebanhoAtual.AdicionarNoRebanho(animal.QuantidadeTotal, animal.QuantidadeVacinada);
+                this._rebanhoService.SalvarRebanho(_rebanhoMapper.MapearEntidadeParaDto(rebanhoAtual));
 
             this._animalRepository.Salvar(_animalMapper.MapearDtoParaEntidade(animalDto));
 

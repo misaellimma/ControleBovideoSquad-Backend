@@ -9,5 +9,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
         List<Rebanho> ObterRebanhosPorProdutor(string cpf);
         Rebanho ObterRebanhosPorId(int id);
         void Save(Rebanho rebanho); 
+        Rebanho ObterRebanhoPorPropriedadeEEspecie(string ie, int idEspecie);
     }
 }

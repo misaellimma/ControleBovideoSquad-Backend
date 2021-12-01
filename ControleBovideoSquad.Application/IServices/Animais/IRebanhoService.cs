@@ -13,6 +13,7 @@ namespace ControleBovideoSquad.Application.IServices.Animais
     {
         List<Rebanho> ObterRebanhos();
         List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual);
+        Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie);
         List<Rebanho> ObterRebanhosPorProdutor(string cpf);
         Rebanho ObterRebanhoPorId(int id);
         Result<Rebanho> SalvarRebanho(RebanhoDto rebanhoDto);

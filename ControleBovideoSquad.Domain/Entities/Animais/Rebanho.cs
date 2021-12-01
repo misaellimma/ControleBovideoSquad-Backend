@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleBovideoSquad.Domain.Entities.Animais
+﻿namespace ControleBovideoSquad.Domain.Entities.Animais
 {
     public class Rebanho
     {
@@ -27,5 +21,19 @@ namespace ControleBovideoSquad.Domain.Entities.Animais
             Especie = especie;
             Propriedade = propriedade;
         }
+
+        public virtual void AdicionarNoRebanho(int quantidadeTotal, int quantidadeVacinada)
+        {
+            this.QuantidadeTotal += quantidadeTotal;
+            this.QuantidadeVacinadaAftosa += quantidadeVacinada;
+            this.QuantidadeVacinadaBrucelose += quantidadeVacinada;
+        }
+
+        // public virtual void DebitarNoRebanho(int quantidadeTotal, int quantidadeVacinada)
+        // {
+        //     this.QuantidadeTotal -= quantidadeTotal;
+        //     this.QuantidadeVacinadaAftosa -= quantidadeVacinada;
+        //     this.QuantidadeVacinadaBrucelose -= quantidadeVacinada;
+        // }
     }
 }
