@@ -1,4 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
+using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Util;
+using ControleBovideoSquad.Domain.Entities.Animais;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +39,20 @@ namespace ControleBovideoSquad.Api.Controllers
                 return NotFound("animal não encontrado");
 
             return Ok(animal);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] AnimalDto animalDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var response = this._animalService.SalvarAnimal(animalDto);
+
+            if (response.StatusCode == 400)
+                return BadRequest(response.Errors);
+
+            return Ok(response.Data);
         }
     }
 }
