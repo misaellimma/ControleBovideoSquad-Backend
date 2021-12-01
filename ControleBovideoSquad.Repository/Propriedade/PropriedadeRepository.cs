@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Repository.Propriedade
+namespace ControleBovideoSquad.Repository.Propriedades
 {
     public class PropriedadeRepository : IPropriedadeRepository
     {

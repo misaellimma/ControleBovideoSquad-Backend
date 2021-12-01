@@ -11,7 +11,7 @@ namespace ControleBovideoSquad.Domain.Entities
         public virtual Endereco Endereco { get; protected set; }
         public virtual Produtor Produtor { get; protected set; }
 
-        protected Propriedade()
+        public Propriedade()
         {
         }
 

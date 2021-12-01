@@ -18,6 +18,10 @@ using ControleBovideoSquad.Repository.Vacinas;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
 using ControleBovideoSquad.Repository.Produtores;
 using ControleBovideoSquad.Application.IMapper.Produtores;
+using ControleBovideoSquad.Domain.Repositories.Propriedades;
+using ControleBovideoSquad.Repository.Propriedades;
+using ControleBovideoSquad.Application.Mapper;
+using ControleBovideoSquad.Application.Mapper.Produtores;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,12 +45,15 @@ builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 builder.Services.AddScoped<ITipoDeEntradaRepository, TipoDeEntradaRepository>();
 builder.Services.AddScoped<ITipoDeEntradaService, TipoDeEntradaService>();
 builder.Services.AddScoped<IMunicipioService, MunicipioService>();
+builder.Services.AddScoped<MunicipioMapper, MunicipioMapper>();
 builder.Services.AddScoped<IMunicipioRepository, MunicipioRepository>();
 builder.Services.AddScoped<IVacinaRepository, VacinaRepository>();
 builder.Services.AddScoped<IVacinaService, VacinaService>();
 builder.Services.AddScoped<IProdutorService, ProdutorService>();
-builder.Services.AddScoped<IProdutorMapper, IProdutorMapper>();
+builder.Services.AddScoped<IProdutorMapper, ProdutorMapper>();
 builder.Services.AddScoped<IProdutorRepository, ProdutorRepository>();
+builder.Services.AddScoped<IPropriedadeRepository, PropriedadeRepository>();
+builder.Services.AddScoped<IPropriedadeService, PropriedadeService>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddSingleton<SessionFactory>();
