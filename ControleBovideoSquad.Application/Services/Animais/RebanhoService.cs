@@ -1,6 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.Application.Mapper.Animais;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities;
@@ -57,7 +58,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var response =  ValidarRebanho(rebanhoDto);
 
             if (response.Any())
-                return Result<Rebanho>.Error(response);
+                return Result<Rebanho>.Error(EStatusCode.NOT_FOUND, response);
 
             Rebanho rebanho = this._rebanhoMapper.MapearDtoParaEntidade(rebanhoDto);
             this._rebanhoRepository.Save(rebanho);

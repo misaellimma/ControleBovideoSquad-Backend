@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.IServices.Animais;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
 using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
 using ControleBovideoSquad.CrossCutting.Util;
@@ -68,7 +69,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var response = ValidarAnimal(animalDto);
 
             if (response.Any())
-                return Result<Animal>.Error(response);
+                return Result<Animal>.Error(EStatusCode.NOT_FOUND, response);
 
             var animal = _animalMapper.MapearDtoParaEntidade(animalDto);
 

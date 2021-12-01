@@ -1,4 +1,6 @@
-﻿using ControleBovideoSquad.Domain.Entities;
+﻿using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
+using ControleBovideoSquad.CrossCutting.Util;
+using ControleBovideoSquad.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,10 @@ namespace ControleBovideoSquad.Application.IServices
 {
     public interface IPropriedadeService
     {
-        List<Propriedade> ObterTodos();
-        Propriedade ObterPorInscricaoEstadual(string InscricaoEstadual);
-        Propriedade ObterPorId(int id);
-        void CriarOuAlterar(Propriedade produtor);
+        List<PropriedadeDto> ObterTodos();
+        Result<PropriedadeDto> ObterPorInscricaoEstadual(string InscricaoEstadual);
+        Result<PropriedadeDto> ObterPorId(int id);
+        void Alterar(Propriedade produtor);
+        void Criar(Propriedade produtor);
     }
 }

@@ -20,9 +20,6 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var municipios = municipioService.ObterTodos();
 
-            if (municipios == null)
-                return NotFound("Municípios não localizados!");
-
             return Ok(municipios);
         }
 

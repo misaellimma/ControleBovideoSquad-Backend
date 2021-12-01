@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Produtores;
 using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Produtor;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Produtores;
@@ -34,29 +35,29 @@ namespace ControleBovideoSquad.Application.Services
 
         public void CriarProdutor(Produtor produtor)
         {
+
             produtorRepository.CriarOuAlterarProdutor(produtor);
             
         }
 
-        public Result<Produtor> ObterProdutorPorCpf(string cpf)
+        public Result<ProdutorDto> ObterProdutorPorCpf(string cpf)
         {
             if (!Validacao.ValidaCpf(cpf))
-                return Result<Produtor>.Error("CPF invalido!");
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
-            return Result<Produtor>.Success(produtor);
+            return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 
-        public Produtor ObterProdutorPorId(int id)
+        public Result<ProdutorDto> ObterProdutorPorId(int id)
         {
-            return produtorRepository.ObterProdutorPorId(id);
+            var produtor = produtorRepository.ObterProdutorPorId(id);
+            return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 
         public List<ProdutorDto> ObterTodos()
         {
             var produtores = produtorRepository.ObterTodos();
-
-            //return produtores;
             return produtorMapper.MapearEntidadeParaDto(produtores);
         }
     }

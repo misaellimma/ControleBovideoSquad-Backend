@@ -22,7 +22,7 @@ namespace ControleBovideoSquad.Api.Controllers
         public IActionResult Cancelar(int id)
         {
             var response = _registroVacinaService.Cancelar(id);
-            if (response.Errors.Any()) 
+            if (response.Errors != null) 
                 return BadRequest(response.Errors);
 
             return Ok();

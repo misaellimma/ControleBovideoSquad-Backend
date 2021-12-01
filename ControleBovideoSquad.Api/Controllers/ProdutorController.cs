@@ -20,9 +20,6 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var produtores = produtorService.ObterTodos();
 
-            if (produtores == null)
-                return NotFound("Produtores não localizados!");
-
             return Ok(produtores);
         }
 
@@ -45,8 +42,22 @@ namespace ControleBovideoSquad.Api.Controllers
 
             var produtor = produtorService.ObterProdutorPorCpf(cpf);
 
-            if (produtor == null)
+            if (produtor.Data == null)
                 return NotFound("Não existe o CPF na base de dados!");
+
+            return Ok(produtor);
+        }
+
+        [HttpGet("validacpf/{cpf}")]
+        public IActionResult ValidaCpf(string cpf)
+        {
+            if (cpf == null)
+                return NotFound("CPF vazio!");
+
+            var produtor = produtorService.ObterProdutorPorCpf(cpf);
+
+            if (produtor.Data != null)
+                return NotFound("CPF já cadastrado!");
 
             return Ok(produtor);
         }
