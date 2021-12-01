@@ -8,17 +8,17 @@ namespace ControleBovideoSquad.CrossCutting.Util
 {
     public class Result<TResult>
     {
-        public int StatusCode { get;}
+        public EStatusCode StatusCode { get;}
         public TResult Data { get; }
         public ICollection<string> Errors { get;}
         
-        protected Result(int statusCode, TResult data)
+        protected Result(EStatusCode statusCode, TResult data)
         {
             StatusCode = statusCode;
             Data = data;
         }
 
-        protected Result(int statusCode, params string[] msgError)
+        protected Result(EStatusCode statusCode, params string[] msgError)
         {
             StatusCode = statusCode;
             Errors = new List<string>();
@@ -29,7 +29,7 @@ namespace ControleBovideoSquad.CrossCutting.Util
             }     
         }
 
-        protected Result(int statusCode, IEnumerable<string> errors)
+        protected Result(EStatusCode statusCode, IEnumerable<string> errors)
         {
             StatusCode = statusCode;
             Errors = new List<string>();
@@ -39,9 +39,9 @@ namespace ControleBovideoSquad.CrossCutting.Util
             }
         }
 
-        public static Result<TResult> Error(string msgError) { return new Result<TResult>(400,msgError); }
-        public static Result<TResult> Error(IEnumerable<string> msgError) { return new Result<TResult>(400, msgError); }
-        public static Result<TResult> Success(TResult data) { return new Result<TResult>(200, data); }
+        public static Result<TResult> Error(EStatusCode statusCode,string msgError) { return new Result<TResult>(statusCode,msgError); }
+        public static Result<TResult> Error(EStatusCode statusCode,IEnumerable<string> msgError) { return new Result<TResult>(statusCode, msgError); }
+        public static Result<TResult> Success(TResult data) { return new Result<TResult>(EStatusCode.OK, data); }
         
     }
 }
