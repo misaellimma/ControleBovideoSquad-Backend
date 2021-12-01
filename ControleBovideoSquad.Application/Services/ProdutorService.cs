@@ -43,7 +43,7 @@ namespace ControleBovideoSquad.Application.Services
         public Result<ProdutorDto> ObterProdutorPorCpf(string cpf)
         {
             if (!Validacao.ValidaCpf(cpf))
-                return Result<Produtor>.Error(EStatusCode.BAD_REQUEST, "CPF invalido!");
+                return Result<ProdutorDto>.Error(EStatusCode.BAD_REQUEST, "CPF invalido!");
 
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));

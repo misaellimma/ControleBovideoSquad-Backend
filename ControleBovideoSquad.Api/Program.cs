@@ -40,6 +40,8 @@ using ControleBovideoSquad.Application.Mapper.RegistroVacinas;
 using ControleBovideoSquad.Application.Validators;
 using ControleBovideoSquad.Application.Validators.Endereco;
 using System.Reflection;
+using ControleBovideoSquad.Application.IMapper.Propriedades;
+using ControleBovideoSquad.Application.Mapper.Propriedades;
 
 var builder = WebApplication.CreateBuilder(args);
 
