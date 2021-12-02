@@ -18,8 +18,7 @@ namespace ControleBovideoSquad.Application.Validators
         {
             foreach (var item in value.GetType().GetProperties()){
                                
-                if (item.GetValue(value).ToString()  == null || 
-                    item.GetValue(value).ToString() == "0"   ||
+                if (item.GetValue(value).ToString() == null || 
                     item.GetValue(value).ToString() == ""
                     )
                 {                

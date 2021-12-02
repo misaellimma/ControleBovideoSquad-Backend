@@ -12,7 +12,7 @@ namespace ControleBovideoSquad.Domain.Entities.Produtores
         public virtual int IdProdutor { get; protected set; }
         public virtual string Nome { get; protected set; }
         public virtual string CPF { get; protected set; }
-        public virtual Endereco Endereco { get; protected set; }
+        public virtual Endereco? Endereco { get; protected set; }
 
         protected Produtor()
         {

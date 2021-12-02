@@ -29,9 +29,9 @@ namespace ControleBovideoSquad.Repository.Util
 
             configuration.DataBaseIntegration(db =>
             {
-                //db.ConnectionString = "Server = 192.168.0.104; Database = DbVacinacaoBovina; User ID = treinamento; Password = senha;";
+                db.ConnectionString = "Server = 192.168.0.104; Database = DbVacinacaoBovina; User ID = treinamento; Password = senha;";
                 //db.ConnectionString = "Server = DESKTOP-BJMO5PO;Database = DbVacinacaoBovina;User ID=treinamento;Password=senha;";
-                db.ConnectionString = "Server=(local);Database = DbVacinacaoBovina;Integrated Security = SSPI;";
+                //db.ConnectionString = "Server=(local);Database = DbVacinacaoBovina;Integrated Security = SSPI;";
                 db.ConnectionProvider<DriverConnectionProvider>();
                 db.Driver<SqlClientDriver>();
                 db.Dialect<MsSql2012Dialect>();
