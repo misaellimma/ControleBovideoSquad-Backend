@@ -2,8 +2,8 @@ namespace ControleBovideoSquad.Domain.Entities.Animais
 {
     public class TipoDeEntrada
     {
-        public virtual int IdTipoDeEntrada { get; set; }
-        public virtual string Nome { get; set; }
+        public virtual int IdTipoDeEntrada { get; protected set; }
+        public virtual string Nome { get; protected set; }
 
         protected TipoDeEntrada()
         {

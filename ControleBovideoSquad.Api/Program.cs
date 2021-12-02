@@ -28,6 +28,7 @@ using ControleBovideoSquad.Application.Mapper.Propriedades;
 using ControleBovideoSquad.Application.IMapper.Vendas;
 using ControleBovideoSquad.Application.Mapper.Vendas;
 using ControleBovideoSquad.Application.Validators.RegistroVacina;
+using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+            options.AddPolicy("AllowAnyOrigin", builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            })
+        );
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -65,7 +74,7 @@ builder.Services.AddScoped<IVendaMapper, VendaMapper>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddScoped(typeof(IMapper<EnderecoDto, Endereco>), typeof(EnderecoMapper));
-builder.Services.AddScoped(typeof(IMapper<RegistroVacinaDto, RegistroVacina>), typeof(RegistroVacinaMapper));
+builder.Services.AddScoped(typeof(IRegistroVacinaDtoMapper), typeof(RegistroVacinaMapper));
 builder.Services.AddScoped(typeof(IValidator<EnderecoDto>), typeof(EnderecoValidator));
 builder.Services.AddScoped<IRegistroVacinaValidator, RegistroVacinaValidator>();
 
@@ -91,6 +100,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAnyOrigin");
 
 app.UseHttpsRedirection();
 

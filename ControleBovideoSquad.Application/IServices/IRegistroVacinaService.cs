@@ -13,6 +13,6 @@ namespace ControleBovideoSquad.Application.IServices
     {
         Result<string> Cancelar(int id);
         Result<RegistroVacina> Incluir(RegistroVacinaDto registroVacina);
-        List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual); 
+        List<RegistroVacinaDto> ObterPorPropriedade(string inscricaoEstadual); 
     }
 }

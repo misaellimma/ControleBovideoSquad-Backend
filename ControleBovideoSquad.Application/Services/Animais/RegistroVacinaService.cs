@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IMapper;
+using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
 using ControleBovideoSquad.Application.IServices;
 using ControleBovideoSquad.Application.Validators.RegistroVacina;
 using ControleBovideoSquad.CrossCutting;
@@ -7,29 +8,24 @@ using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Entities.Animal;
 using ControleBovideoSquad.Domain.Repositories.Animais;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services.Animais
 {
     public class RegistroVacinaService : IRegistroVacinaService
     {
         private readonly IRegistroVacinaRepository _registroVacinaRepository;
-        private readonly IMapper<RegistroVacinaDto, RegistroVacina> _registroMapper;
+        private readonly IRegistroVacinaDtoMapper _registroMapper;        
         private readonly IRebanhoRepository _rebanhoRepository;
         private readonly IRegistroVacinaValidator _registroVacinaValidator;
 
         public RegistroVacinaService(IRegistroVacinaRepository registroVacinaRepository,
-            IMapper<RegistroVacinaDto, RegistroVacina> registroMapper,
+            IRegistroVacinaDtoMapper registroMapper,            
             IRebanhoRepository rebanhoRepository,
             IRegistroVacinaValidator registroVacinaValidator
             )
         {
             _registroVacinaRepository = registroVacinaRepository;
-            _registroMapper = registroMapper;
+            _registroMapper = registroMapper;            
             _rebanhoRepository = rebanhoRepository;
             _registroVacinaValidator = registroVacinaValidator;
         }
@@ -68,9 +64,12 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }
 
-        public List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual)
+        public List<RegistroVacinaDto> ObterPorPropriedade(string inscricaoEstadual)
         {
-            return _registroVacinaRepository.ObterPorPropriedade(inscricaoEstadual);
+            var registros = _registroVacinaRepository.ObterPorPropriedade(inscricaoEstadual);
+            var result = _registroMapper.MapearListaParaEntidadeDto(registros);
+
+            return result;
         }             
     }
 }
