@@ -27,5 +27,10 @@ namespace ControleBovideoSquad.Domain.Entities.Vendas
             this.DataDeVenda = dataDeVenda;
             this.FinalidadeDeVenda = finalidadeDeVenda;
         }
+
+        public virtual void CancelarVenda()
+        {
+            this.Ativo = false;
+        }
     }
 }

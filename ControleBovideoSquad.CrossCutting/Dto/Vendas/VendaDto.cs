@@ -9,10 +9,10 @@ namespace ControleBovideoSquad.CrossCutting.Dto.Vendas
         public int IdRebanho { get; protected set; }
         public int IdFinalidadeDeVenda { get; protected set; }
         public DateTime DataDeVenda { get; protected set; }
-        public bool Ativo { get; protected set; }
+        public bool Ativo { get; protected set; } = true;
 
         public VendaDto(int idVenda, int quantidade, int idPropriedadeOrigem, int idPropriedadeDestino, 
-            int idRebanho, int idFinalidadeDeVenda, DateTime dataDeVenda, bool ativo)
+            int idRebanho, int idFinalidadeDeVenda, DateTime dataDeVenda)
         {
             IdVenda = idVenda;
             Quantidade = quantidade;
@@ -21,7 +21,6 @@ namespace ControleBovideoSquad.CrossCutting.Dto.Vendas
             IdRebanho = idRebanho;
             IdFinalidadeDeVenda = idFinalidadeDeVenda;
             DataDeVenda = dataDeVenda;
-            Ativo = ativo;
         }
     }
 }

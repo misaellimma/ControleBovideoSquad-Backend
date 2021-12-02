@@ -42,6 +42,8 @@ using ControleBovideoSquad.Application.Validators.Endereco;
 using System.Reflection;
 using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.Application.Mapper.Propriedades;
+using ControleBovideoSquad.Application.IMapper.Vendas;
+using ControleBovideoSquad.Application.Mapper.Vendas;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,6 +77,7 @@ builder.Services.AddScoped<MunicipioMapper, MunicipioMapper>();
 builder.Services.AddScoped<IProdutorMapper, ProdutorMapper>();
 builder.Services.AddScoped<IAnimalMapper, AnimalMapper>();
 builder.Services.AddScoped<IRebanhoMapper, RebanhoMapper>();
+builder.Services.AddScoped<IVendaMapper, VendaMapper>();
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 
 builder.Services.AddScoped(typeof(IMapper<EnderecoDto, Endereco>), typeof(EnderecoMapper));

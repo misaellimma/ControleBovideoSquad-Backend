@@ -1,4 +1,5 @@
 using ControleBovideoSquad.Application.IMapper;
+using ControleBovideoSquad.Application.IMapper.Vendas;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Vendas;
@@ -8,7 +9,7 @@ using ControleBovideoSquad.Domain.Repositories.Vendas;
 
 namespace ControleBovideoSquad.Application.Mapper.Vendas
 {
-    public class VendaMapper : IMapper<VendaDto, Venda>
+    public class VendaMapper : IVendaMapper
     {
         private readonly IFinalidadeDeVendaRepository _finalidadeDeVendaRepository;
         private readonly IRebanhoRepository _rebanhoRepository;
@@ -24,11 +25,12 @@ namespace ControleBovideoSquad.Application.Mapper.Vendas
 
         public Venda MapearDtoParaEntidade(VendaDto source)
         {
+            Console.Write($"flag de venda: {source.DataDeVenda}");
             var finalidadeDeVenda = _finalidadeDeVendaRepository.ObterPorId(source.IdFinalidadeDeVenda);
             var rebanho = _rebanhoRepository.ObterRebanhosPorId(source.IdRebanho);
             var propriedadeOrigem = _propriedadeRepository.ObterPorId(source.IdPropriedadeOrigem);
             var propriedadeDestino = _propriedadeRepository.ObterPorId(source.IdPropriedadeDestino);
-            return new Venda(source.IdVenda, source.Quantidade, propriedadeOrigem,propriedadeDestino , rebanho,
+            return new Venda(0, source.Quantidade, propriedadeOrigem, propriedadeDestino, rebanho,
                 finalidadeDeVenda, source.DataDeVenda);
         }
 

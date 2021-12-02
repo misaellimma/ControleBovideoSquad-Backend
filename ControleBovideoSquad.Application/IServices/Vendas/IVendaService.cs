@@ -10,5 +10,6 @@ namespace ControleBovideoSquad.Application.IServices.Vendas
         Venda ObterVendaPorId(int id);
         List<Venda> ObterVendaPorProdutor(string cpf);
         Result<Venda> SalvarVenda(VendaDto vendaDto);
+        string CancelarVenda(int id);
     }
 }

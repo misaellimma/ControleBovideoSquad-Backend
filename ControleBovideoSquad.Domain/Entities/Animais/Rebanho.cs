@@ -29,11 +29,11 @@
             this.QuantidadeVacinadaBrucelose += quantidadeVacinada;
         }
 
-        // public virtual void DebitarNoRebanho(int quantidadeTotal, int quantidadeVacinada)
-        // {
-        //     this.QuantidadeTotal -= quantidadeTotal;
-        //     this.QuantidadeVacinadaAftosa -= quantidadeVacinada;
-        //     this.QuantidadeVacinadaBrucelose -= quantidadeVacinada;
-        // }
+        public virtual void DebitarNoRebanho(int quantidadeTotal, int quantidadeVacinada)
+        {
+            this.QuantidadeTotal -= quantidadeTotal;
+            this.QuantidadeVacinadaAftosa -= quantidadeVacinada;
+            this.QuantidadeVacinadaBrucelose -= quantidadeVacinada;
+        }
     }
 }

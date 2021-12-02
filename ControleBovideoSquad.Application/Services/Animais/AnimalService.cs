@@ -96,7 +96,6 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 return "animal nao encontrado";
 
             animal.Cancelar();
-            Console.WriteLine(animal);
             _animalRepository.Salvar(animal);
             return "animal cancelado";
         }

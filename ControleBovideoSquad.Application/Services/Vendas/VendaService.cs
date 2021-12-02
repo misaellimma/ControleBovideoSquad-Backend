@@ -1,5 +1,5 @@
-﻿using ControleBovideoSquad.Application.IServices.Vendas;
-using ControleBovideoSquad.Application.Mapper.Vendas;
+﻿using ControleBovideoSquad.Application.IMapper.Vendas;
+using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
@@ -18,15 +18,17 @@ namespace ControleBovideoSquad.Application.Services.Vendas
         private readonly IRebanhoRepository _rebanhoRepository;
         private readonly IPropriedadeRepository _propriedadeRepository;
         private readonly IFinalidadeDeVendaRepository _finalidadeDeVendaRepository;
-        private readonly VendaMapper _vendaMapper;
+        private readonly IVendaMapper _vendaMapper;
 
         public VendaService(IVendaRepository vendaRepository, IRebanhoRepository rebanhoRepository,
-            IFinalidadeDeVendaRepository finalidadeDeVendaRepository, IPropriedadeRepository propriedadeRepository)
+            IFinalidadeDeVendaRepository finalidadeDeVendaRepository, IPropriedadeRepository propriedadeRepository,
+            IVendaMapper vendaMapper)
         {
             _vendaRepository = vendaRepository;
             _rebanhoRepository = rebanhoRepository;
             _finalidadeDeVendaRepository = finalidadeDeVendaRepository;
             _propriedadeRepository = propriedadeRepository;
+            _vendaMapper = vendaMapper;
         }
 
         public Venda ObterVendaPorId(int id)
@@ -53,6 +55,9 @@ namespace ControleBovideoSquad.Application.Services.Vendas
 
             Venda venda = _vendaMapper.MapearDtoParaEntidade(vendaDto);
             // Adicionar no rebanho da propriedade de destino e tirar do rebanho da propriedade de origem;
+            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterRebanhosPorId(vendaDto.IdRebanho);
+            rebanhoNaOrigem.DebitarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
+            _rebanhoRepository.Save(rebanhoNaOrigem);
 
             Rebanho rebanhoNoDestino = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, 
                 venda.Rebanho.Especie.IdEspecie);
@@ -69,6 +74,29 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             return Result<Venda>.Success(venda);
         }
 
+        public string CancelarVenda(int id)
+        {
+            Venda venda = _vendaRepository.ObterVendaPorId(id);
+
+            if (venda == null)
+                return "venda nao encontrada";
+            if (venda.Ativo == false)
+                return "essa venda ja esta inativa";
+            
+            venda.CancelarVenda();
+            // Creditar de volta na propriedade de origem
+            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterRebanhosPorId(venda.Rebanho.IdRebanho);
+            rebanhoNaOrigem.AdicionarNoRebanho(venda.Quantidade, venda.Quantidade);
+            _rebanhoRepository.Save(rebanhoNaOrigem);
+            // Debitar da propriedade de destino
+            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, venda.Rebanho.Especie.IdEspecie);
+            rebanhoNoDestino.DebitarNoRebanho(venda.Quantidade, venda.Quantidade);
+            _rebanhoRepository.Save(rebanhoNaOrigem);
+
+            _vendaRepository.Save(venda);
+            return "venda cancelada";
+        }
+
         public List<string> ValidarVenda(VendaDto vendaDto)
         {
             List<string> errors = new List<string>();
@@ -79,9 +107,6 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             // verificar se existe propriedade origem e destino
             // verificar na propriedade origem se tem rebanho vacinado disponivel
 
-            if (rebanho == null)
-                errors.Add("Rebanho nao encontrado");
-
             if (finalidade == null)
                 errors.Add("Finalidade de venda nao encontrada");
 
@@ -91,8 +116,12 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             if(propriedadeDestino == null)
             errors.Add("Propriedade de destino nao encontrada");
 
-            if (rebanho.QuantidadeVacinadaAftosa < vendaDto.Quantidade || rebanho.QuantidadeVacinadaBrucelose < vendaDto.Quantidade)
-                errors.Add("Numero insuficiente de rebanhos vacinados");
+            if (rebanho == null)
+                errors.Add("Rebanho nao encontrado");
+            else
+                Console.Write(rebanho.QuantidadeTotal);
+                if (rebanho.QuantidadeVacinadaAftosa < vendaDto.Quantidade || rebanho.QuantidadeVacinadaBrucelose < vendaDto.Quantidade)
+                    errors.Add("Numero insuficiente de rebanhos vacinados");
 
             return errors;
         }

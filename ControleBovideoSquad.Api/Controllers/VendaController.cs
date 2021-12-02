@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IServices.Vendas;
+using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +49,25 @@ namespace ControleBovideoSquad.Api.Controllers
                 return NotFound("as vendas não foram encontradas");
 
             return Ok(venda);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] VendaDto vendaDto)
+        {
+            var response = _vendaService.SalvarVenda(vendaDto);
+
+            if (response.Errors != null)
+                return BadRequest(response.Errors);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IActionResult Cancel(int id)
+        {
+            var response = _vendaService.CancelarVenda(id);
+            return Ok(response);
         }
     }
 }
