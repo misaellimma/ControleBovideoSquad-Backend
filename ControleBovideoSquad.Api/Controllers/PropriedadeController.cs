@@ -64,5 +64,33 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] PropriedadeDto propriedadeDto)
+        {
+            if (propriedadeDto == null)
+                return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
+
+            var produtor = propriedadeService.Criar(propriedadeDto);
+
+            if (produtor.Errors != null)
+                return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Put(int id, [FromBody] PropriedadeDto propriedadeDto)
+        {
+            if (propriedadeDto == null)
+                return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
+
+            var produtor = propriedadeService.Alterar(id, propriedadeDto);
+
+            if (produtor.Errors != null)
+                return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
+
+            return Ok();
+        }
     }
 }

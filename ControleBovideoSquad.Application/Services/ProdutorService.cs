@@ -18,8 +18,6 @@ namespace ControleBovideoSquad.Application.Services
     public class ProdutorService : IProdutorService
     {
         private readonly IProdutorRepository produtorRepository;
-        //private readonly IEnderecoRepository enderecoRepository;
-        //private readonly IMunicipioRepository municipioRepository;
         private readonly IProdutorMapper produtorMapper;
 
         public ProdutorService(IProdutorRepository produtorRepository, IProdutorMapper produtorMapper)
@@ -28,22 +26,37 @@ namespace ControleBovideoSquad.Application.Services
             this.produtorMapper = produtorMapper;
         }
 
-        public void AlterarProdutor(Produtor produtor)
+        public Result<ProdutorDto> AlterarProdutor(int id, ProdutorDto produtor)
         {
-            throw new NotImplementedException();
+            if (produtor.IdProdutor != id)
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Id da Url está divergente do body!");
+
+            produtor.CPF = Formatar.FormatarString(produtor.CPF);
+            produtorRepository.CriarOuAlterarProdutor(produtorMapper.MapearDtoParaEntidade(produtor));
+            return Result<ProdutorDto>.Success(produtor);
         }
 
-        public void CriarProdutor(Produtor produtor)
+        public Result<ProdutorDto> CriarProdutor(ProdutorDto produtorDto)
         {
+            if (!Validacao.ValidaCpf(produtorDto.CPF))
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
+            produtorDto.CPF = Formatar.FormatarString(produtorDto.CPF);
+
+            produtorDto.IdEndereco = null;
+            var produtor = produtorMapper.MapearDtoParaEntidade(produtorDto);
             produtorRepository.CriarOuAlterarProdutor(produtor);
-            
+
+            return Result<ProdutorDto>.Success(produtorDto);
         }
 
         public Result<ProdutorDto> ObterProdutorPorCpf(string cpf)
         {
+            if (cpf == null)
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF vazio!");
+
             if (!Validacao.ValidaCpf(cpf))
-                return Result<ProdutorDto>.Error(EStatusCode.BAD_REQUEST, "CPF invalido!");
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
@@ -52,6 +65,10 @@ namespace ControleBovideoSquad.Application.Services
         public Result<ProdutorDto> ObterProdutorPorId(int id)
         {
             var produtor = produtorRepository.ObterProdutorPorId(id);
+
+            if (produtor == null)
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o produtor na base de dados");
+
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 

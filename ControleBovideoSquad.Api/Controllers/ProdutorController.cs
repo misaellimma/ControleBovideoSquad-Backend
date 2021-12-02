@@ -63,6 +63,7 @@ namespace ControleBovideoSquad.Api.Controllers
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
             var produtor = produtorService.CriarProdutor(produtorDto);
+            
             if(produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
 

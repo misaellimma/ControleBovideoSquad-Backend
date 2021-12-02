@@ -14,24 +14,35 @@ namespace ControleBovideoSquad.Application.Services
     public class PropriedadeService : IPropriedadeService
     {
         private readonly IPropriedadeRepository propriedadeRepository;
-        private readonly IEnderecoRepository enderecoRepository;
         private readonly IPropriedadeMapper propriedadeMapper;
 
-        public PropriedadeService(IPropriedadeRepository propriedadeRepository/*, IEnderecoRepository enderecoRepository*/, IPropriedadeMapper propriedadeMapper)
+        public PropriedadeService(IPropriedadeRepository propriedadeRepository, IPropriedadeMapper propriedadeMapper)
         {
             this.propriedadeRepository = propriedadeRepository;
-            //this.enderecoRepository = enderecoRepository;
             this.propriedadeMapper = propriedadeMapper;
         }
 
-        public void Alterar(Propriedade produtor)
+        public Result<PropriedadeDto> Alterar(int id, PropriedadeDto propriedadeDto)
         {
-            throw new NotImplementedException();
+            if (propriedadeDto.IdPropriedade != id)
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Id da Url está divergente do body!");
+
+            propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
+            propriedadeRepository.CriarOuAlterar(propriedadeMapper.MapearDtoParaEntidade(propriedadeDto));
+            return Result<PropriedadeDto>.Success(propriedadeDto);
         }
 
-        public void Criar(Propriedade produtor)
+        public Result<PropriedadeDto> Criar(PropriedadeDto propriedadeDto)
         {
-            throw new NotImplementedException();
+            if (!Validacao.ValidarInscricaoEstadual(propriedadeDto.InscricaoEstadual))
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual invalido!");
+
+            propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
+
+            var produtor = propriedadeMapper.MapearDtoParaEntidade(propriedadeDto);
+            propriedadeRepository.CriarOuAlterar(produtor);
+
+            return Result<PropriedadeDto>.Success(propriedadeDto);
         }
 
         public Result<PropriedadeDto> ObterPorId(int id)
