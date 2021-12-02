@@ -16,11 +16,10 @@ namespace ControleBovideoSquad.Application.Validators
 
         public List<string> IsValid(T value)
         {
+            if(value != null)
             foreach (var item in value.GetType().GetProperties()){
                                
-                if (item.GetValue(value).ToString() == null || 
-                    item.GetValue(value).ToString() == ""
-                    )
+                if (item.GetValue(value)?.ToString() is null or "")
                 {                
                     errors.Add($"{item.Name} não pode ser Nulo");
                 }
