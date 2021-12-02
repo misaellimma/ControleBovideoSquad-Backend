@@ -2,6 +2,10 @@
 using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
 using ControleBovideoSquad.Domain.Entities;
+using ControleBovideoSquad.Domain.Entities.Enderecos;
+using ControleBovideoSquad.Domain.Entities.Municipios;
+using ControleBovideoSquad.Domain.Repositories.Enderecos;
+using ControleBovideoSquad.Domain.Repositories.Produtores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +16,40 @@ namespace ControleBovideoSquad.Application.Mapper.Propriedades
 {
     public class PropriedadeMapper : IPropriedadeMapper
     {
+        private readonly IProdutorRepository produtorRepository;
+
+        public PropriedadeMapper(IProdutorRepository produtorRepository)
+        {
+            this.produtorRepository = produtorRepository;
+        }
+
         public Propriedade MapearDtoParaEntidade(PropriedadeDto source)
         {
-            throw new NotImplementedException();
+            Municipio municipio = new Municipio
+                (
+                    source.IdMunicipio,
+                    source.Municipio,
+                    source.Estado
+                );
+
+            Endereco endereco = new Endereco
+                (
+                    source.IdEndereco,
+                    source.Rua,
+                    source.Numero,
+                    municipio
+                );
+
+            var produtor = produtorRepository.ObterProdutorPorId(source.IdProdutor);
+
+            return new Propriedade
+                (
+                    source.IdPropriedade,
+                    source.InscricaoEstadual,
+                    source.Nome,
+                    endereco,
+                    produtor
+                );
         }
 
         public PropriedadeDto MapearEntidadeParaDto(Propriedade source)

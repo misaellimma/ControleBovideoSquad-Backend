@@ -35,10 +35,16 @@ namespace ControleBovideoSquad.Application.Services
         public Result<PropriedadeDto> Criar(PropriedadeDto propriedadeDto)
         {
             if (!Validacao.ValidarInscricaoEstadual(propriedadeDto.InscricaoEstadual))
-                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual invalido!");
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual invalida!");
 
             propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
+            var propriedadeInscricao = propriedadeRepository.ObterPorInscricaoEstadual(propriedadeDto.InscricaoEstadual);
+            
+            if (propriedadeInscricao != null)
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!");
 
+            propriedadeDto.IdPropriedade = 0;
+            propriedadeDto.IdEndereco = null;
             var produtor = propriedadeMapper.MapearDtoParaEntidade(propriedadeDto);
             propriedadeRepository.CriarOuAlterar(produtor);
 
@@ -50,7 +56,7 @@ namespace ControleBovideoSquad.Application.Services
             var propriedade = propriedadeRepository.ObterPorId(id);
 
             if(propriedade == null)
-                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não localizado!");
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Propriedade não localizada!");
             else
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
         }
@@ -63,7 +69,7 @@ namespace ControleBovideoSquad.Application.Services
             var propriedade = propriedadeRepository.ObterPorInscricaoEstadual(InscricaoEstadual);
             
             if (propriedade == null)
-                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não localizado!");
+                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Propriedade não localizada!");
             else
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
         }

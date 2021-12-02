@@ -42,7 +42,12 @@ namespace ControleBovideoSquad.Application.Services
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
             produtorDto.CPF = Formatar.FormatarString(produtorDto.CPF);
+            var produtorDtoCpf = produtorRepository.ObterProdutorPorCpf(produtorDto.CPF);
 
+            if(produtorDtoCpf != null)
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF já cadastrado!");
+
+            produtorDto.IdProdutor = 0;
             produtorDto.IdEndereco = null;
             var produtor = produtorMapper.MapearDtoParaEntidade(produtorDto);
             produtorRepository.CriarOuAlterarProdutor(produtor);
