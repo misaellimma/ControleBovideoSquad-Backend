@@ -1,8 +1,10 @@
 ﻿using ControleBovideoSquad.Application.IMapper;
 using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.Application.Validators.RegistroVacina;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.RegistroVacina;
 using ControleBovideoSquad.CrossCutting.Util;
+using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Entities.Animal;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using System;
@@ -18,15 +20,18 @@ namespace ControleBovideoSquad.Application.Services.Animais
         private readonly IRegistroVacinaRepository _registroVacinaRepository;
         private readonly IMapper<RegistroVacinaDto, RegistroVacina> _registroMapper;
         private readonly IRebanhoRepository _rebanhoRepository;
+        private readonly IRegistroVacinaValidator _registroVacinaValidator;
 
         public RegistroVacinaService(IRegistroVacinaRepository registroVacinaRepository,
             IMapper<RegistroVacinaDto, RegistroVacina> registroMapper,
-            IRebanhoRepository rebanhoRepository
+            IRebanhoRepository rebanhoRepository,
+            IRegistroVacinaValidator registroVacinaValidator
             )
         {
             _registroVacinaRepository = registroVacinaRepository;
             _registroMapper = registroMapper;
             _rebanhoRepository = rebanhoRepository;
+            _registroVacinaValidator = registroVacinaValidator;
         }
 
         public Result<string> Cancelar(int id)
@@ -44,13 +49,21 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<RegistroVacina> Incluir(RegistroVacinaDto registroVacinaDto)
         {
-            var validation = TempRegistroValidation(registroVacinaDto);
+            Rebanho rebanho = _rebanhoRepository.ObterRebanhosPorId(registroVacinaDto.IdRebanho);
 
-            if(validation.Any())
+            _registroVacinaValidator.IsValid(registroVacinaDto);
+            _registroVacinaValidator.VerificarQuantidade(registroVacinaDto,rebanho);
+
+            var validation = _registroVacinaValidator.errors;
+
+            if (validation.Any())
                 return Result<RegistroVacina>.Error(EStatusCode.BAD_REQUEST, validation);
 
-            _registroVacinaRepository.Save(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
 
+            rebanho.AdicionarNoRebanho(0,registroVacinaDto.Quantidade);
+
+            _rebanhoRepository.Save(rebanho);
+            _registroVacinaRepository.Save(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));          
 
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }
@@ -58,26 +71,6 @@ namespace ControleBovideoSquad.Application.Services.Animais
         public List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual)
         {
             return _registroVacinaRepository.ObterPorPropriedade(inscricaoEstadual);
-        }
-        
-        public List<string> TempRegistroValidation(RegistroVacinaDto registroVacinaDto)
-        {
-            List<string> error = new List<string>();
-
-            if(registroVacinaDto.Quantidade <= 0)
-            {
-                error.Add("Quantidade não pode ser nula!");
-            }
-            if(registroVacinaDto.IdVacina <= 0)
-            {
-                error.Add("Vacina não pode ser nula!");
-            }
-            if (registroVacinaDto.IdRebanho <= 0)
-            {
-                error.Add("Rebanho não pode ser nulo!");
-            }
-            
-            return error;
-        }
+        }             
     }
 }
