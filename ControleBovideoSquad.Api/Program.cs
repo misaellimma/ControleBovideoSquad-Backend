@@ -42,6 +42,7 @@ using ControleBovideoSquad.Application.Validators.Endereco;
 using System.Reflection;
 using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.Application.Mapper.Propriedades;
+using ControleBovideoSquad.Application.Validators.RegistroVacina;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +81,8 @@ builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 builder.Services.AddScoped(typeof(IMapper<EnderecoDto, Endereco>), typeof(EnderecoMapper));
 builder.Services.AddScoped(typeof(IMapper<RegistroVacinaDto, RegistroVacina>), typeof(RegistroVacinaMapper));
 builder.Services.AddScoped(typeof(IValidator<EnderecoDto>), typeof(EnderecoValidator));
+builder.Services.AddScoped<IRegistroVacinaValidator, RegistroVacinaValidator>();
+
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
 builder.Services.AddSingleton<SessionFactory>();
 
