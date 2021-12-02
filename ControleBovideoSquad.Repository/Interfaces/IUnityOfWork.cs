@@ -11,6 +11,6 @@ namespace ControleBovideoSquad.Repository.Interfaces
         void Commit();
         void SaveOrUpdate<T>(T entity);
         void Delete<T>(T entity); 
-        IQueryable<T> Query<T>();
+        IQueryable<T> Query<T>();        
     }
 }

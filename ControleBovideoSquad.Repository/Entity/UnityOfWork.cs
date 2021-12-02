@@ -9,7 +9,7 @@ namespace ControleBovideoSquad.Repository.Entity
         private readonly ISession _session;
         private bool _isAlive = true;
         private bool _isCommited = true;
-        private ITransaction _transaction;
+        private readonly ITransaction _transaction;
 
         public UnityOfWork(SessionFactory sessionFactory)
         {
@@ -46,6 +46,7 @@ namespace ControleBovideoSquad.Repository.Entity
             {
                 _transaction.Dispose();
                 _session.Dispose();
+                GC.SuppressFinalize(this);
             }
         }
 
