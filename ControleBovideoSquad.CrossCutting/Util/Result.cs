@@ -9,8 +9,8 @@ namespace ControleBovideoSquad.CrossCutting.Util
     public class Result<TResult>
     {
         public EStatusCode StatusCode { get;}
-        public TResult Data { get; }
-        public ICollection<string> Errors { get;}
+        public TResult? Data { get; }
+        public ICollection<string>? Errors { get;}
         
         protected Result(EStatusCode statusCode, TResult data)
         {
