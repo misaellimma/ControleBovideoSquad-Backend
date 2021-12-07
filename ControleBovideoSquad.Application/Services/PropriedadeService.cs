@@ -74,6 +74,14 @@ namespace ControleBovideoSquad.Application.Services
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
         }
 
+        public List<PropriedadeDto> ObterPorIdProdutor(int Id)
+        {
+            var result = propriedadeMapper.MapearEntidadeParaDto(propriedadeRepository.ObterPorIdProdutor(Id));
+
+            return result;
+
+        }
+
         public List<PropriedadeDto> ObterTodos()
         {
             var propriedades = propriedadeRepository.ObterTodos();

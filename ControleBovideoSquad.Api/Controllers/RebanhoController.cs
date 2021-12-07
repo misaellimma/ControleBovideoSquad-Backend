@@ -48,5 +48,25 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return Ok(response.Data);
         }
+
+        [HttpGet("{inscricaoEstadual}/Propriedade")]
+        public IActionResult GetByPropriedade(string inscricaoEstadual)
+        {
+            var response = this._rebanhoService.ObterRebanhosPorPropriedade(inscricaoEstadual);
+
+            if (response == null) return NotFound();
+
+            return Ok(response);
+        }
+
+        [HttpGet("{cpf}/Produtor")]
+        public IActionResult GetByProdutor(string cpf)
+        {
+            var response = this._rebanhoService.ObterRebanhosPorProdutor(cpf);
+
+            if(response == null) return NotFound();
+
+            return Ok(response);
+        }
     }
 }

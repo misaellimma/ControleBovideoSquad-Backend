@@ -36,14 +36,20 @@ namespace ControleBovideoSquad.Application.Validators.RegistroVacina
             if (registroVacinaDto.Quantidade == 0|| registroVacinaDto.IdVacina == 0)
             {
                 errors.Add("Quantidade ou Vacina não pode ser 0 ou nulo");
-            }
-            if (registroVacinaDto.IdVacina == 1 && rebanho.QuantidadeVacinadaBrucelose == rebanho.QuantidadeTotal)
+            }            
+            if (registroVacinaDto.IdVacina == 1)
             {
-                errors.Add("Animais já vacinados contra brucelose");            
+                if(rebanho.QuantidadeVacinadaBrucelose == rebanho.QuantidadeTotal)
+                    errors.Add("Animais já vacinados contra brucelose");
+                else if (registroVacinaDto.Quantidade > rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaBrucelose)
+                    errors.Add($"Quantidade de vacinados não pode ser maior que quantidade restante a vacinar: {rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaBrucelose}");                
             }
-            if (registroVacinaDto.IdVacina == 2 && rebanho.QuantidadeVacinadaAftosa == rebanho.QuantidadeTotal)
+            else if (registroVacinaDto.IdVacina == 2)
             {
-                errors.Add("Animais já vacinados contra Aftose");            
+                if (rebanho.QuantidadeVacinadaAftosa == rebanho.QuantidadeTotal)
+                    errors.Add("Animais já vacinados contra Aftosa");
+                else if (registroVacinaDto.Quantidade > rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaAftosa)
+                    errors.Add($"Quantidade de vacinados não pode ser maior que quantidade restante a vacinar: {rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaAftosa}");
             }
         }
     }

@@ -25,7 +25,7 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual)
         {            
-            return _unityOfWork.Query<RegistroVacina>().Where(x => x.Rebanho.Propriedade.InscricaoEstadual == inscricaoEstadual).ToList();
+            return _unityOfWork.Query<RegistroVacina>().Where(x => x.Rebanho.Propriedade.InscricaoEstadual == inscricaoEstadual && x.Ativo == true).ToList();
         }
 
         public void Save(RegistroVacina registroVacina)

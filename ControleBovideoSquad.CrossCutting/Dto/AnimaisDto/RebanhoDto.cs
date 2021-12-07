@@ -13,9 +13,12 @@ namespace ControleBovideoSquad.CrossCutting.Dto.AnimaisDto
         public virtual int QuantidadeVacinadaAftosa { get; set; }
         public virtual int QuantidadeVacinadaBrucelose { get; set; }
         public virtual int IdEspecie { get; set; }
+        public virtual string Especie { get; set; }        
         public virtual int IdPropriedade { get; set; }
+        public virtual string NomePropriedade { get; set; }
 
-        public RebanhoDto(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa, int quantidadeVacinadaBrucelose, int idEspecie, int idPropriedade)
+        public RebanhoDto(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa, int quantidadeVacinadaBrucelose, int idEspecie, int idPropriedade, string especie,
+            string nomePropriedade)
         {
             IdRebanho = idRebanho;
             QuantidadeTotal = quantidadeTotal;
@@ -23,6 +26,8 @@ namespace ControleBovideoSquad.CrossCutting.Dto.AnimaisDto
             QuantidadeVacinadaBrucelose = quantidadeVacinadaBrucelose;
             IdEspecie = idEspecie;
             IdPropriedade = idPropriedade;
+            Especie = especie;
+            NomePropriedade = nomePropriedade;
         }
 
     }

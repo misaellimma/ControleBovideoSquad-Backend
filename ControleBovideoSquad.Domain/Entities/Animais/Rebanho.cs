@@ -35,5 +35,25 @@
             this.QuantidadeVacinadaAftosa -= quantidadeVacinada;
             this.QuantidadeVacinadaBrucelose -= quantidadeVacinada;
         }
+
+        public virtual void DebitarBrucelose(int quantidade)
+        {
+            this.QuantidadeVacinadaBrucelose -= quantidade;
+        }
+
+        public virtual void DebitarAftosa(int quantidade)
+        {
+            this.QuantidadeVacinadaAftosa -= quantidade;
+        }
+
+        public virtual void AdicionarBrucelose(int quantidade)
+        {
+            this.QuantidadeVacinadaBrucelose += quantidade;
+        }
+
+        public virtual void AdicionarAftosa(int quantidade)
+        {
+            this.QuantidadeVacinadaAftosa += quantidade;
+        }
     }
 }

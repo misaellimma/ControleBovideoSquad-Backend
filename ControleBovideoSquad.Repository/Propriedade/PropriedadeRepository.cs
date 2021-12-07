@@ -43,5 +43,13 @@ namespace ControleBovideoSquad.Repository.Propriedades
                 .Query<Propriedade>()
                 .ToList();
         }
+
+        public List<Propriedade> ObterPorIdProdutor(int Id)
+        {
+            return unityOfWork
+                .Query<Propriedade>()
+                .Where(x => x.Produtor.IdProdutor == Id)
+                .ToList();
+        }
     }
 }

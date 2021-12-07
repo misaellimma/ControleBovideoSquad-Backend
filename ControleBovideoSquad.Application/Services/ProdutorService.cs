@@ -3,15 +3,7 @@ using ControleBovideoSquad.Application.IServices;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Produtor;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Produtores;
-using ControleBovideoSquad.Domain.Repositories.Enderecos;
-using ControleBovideoSquad.Domain.Repositories.Municipios;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services
 {
@@ -63,7 +55,13 @@ namespace ControleBovideoSquad.Application.Services
             if (!Validacao.ValidaCpf(cpf))
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
+            cpf = Formatar.FormatarString(cpf);
+
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
+
+            if (produtor == null)
+                return null;
+            
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 

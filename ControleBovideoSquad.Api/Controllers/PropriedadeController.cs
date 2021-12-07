@@ -51,6 +51,16 @@ namespace ControleBovideoSquad.Api.Controllers
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }
 
+        [HttpGet("{Id}/Produtor")]
+        public IActionResult ObterPorIdProdutor(int id)
+        {
+            var result = propriedadeService.ObterPorIdProdutor(id);
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
+        
+
         [HttpGet("validainscricao/{inscricao}")]
         public IActionResult ValidaCpf(string inscricao)
         {
