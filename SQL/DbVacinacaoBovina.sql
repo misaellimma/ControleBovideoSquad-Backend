@@ -102,7 +102,7 @@ create table Venda(
 	Quantidade int not null,
 	IdOrigem int not null references Propriedade(IdPropriedade),
 	IdDestino int not null references Propriedade(IdPropriedade),
-	IdRebanho int not null references Rebanho(idRebanho),
+	IdEspecie int not null references Especie(idEspecie),
 	IdFinalidadeDeVenda int not null references FinalidadeDeVenda(IdFinalidadeDeVenda),
 	DataDeVenda datetime not null,
 	Ativo bit not null default 1
