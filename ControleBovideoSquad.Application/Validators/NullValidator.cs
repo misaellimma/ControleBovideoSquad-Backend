@@ -19,7 +19,7 @@ namespace ControleBovideoSquad.Application.Validators
             if(value != null)
             foreach (var item in value.GetType().GetProperties()){
                                
-                if (item.GetValue(value)?.ToString() is null or "")
+                if (item.GetValue(value)?.ToString() is null or "" && item.PropertyType.IsValueType)
                 {                
                     errors.Add($"{item.Name} não pode ser Nulo");
                 }
