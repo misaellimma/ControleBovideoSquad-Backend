@@ -1,5 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
+using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,9 +41,10 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        [Route("produtor/{cpf}")]
-        public IActionResult GetByProdutor(string cpf)
+        [Route("produtor/{cpfComMascara}")]
+        public IActionResult GetByProdutor(string cpfComMascara)
         {
+            var cpf = Formatar.FormatarString(cpfComMascara);
             var venda = _vendaService.ObterVendaPorProdutor(cpf);
 
             if (venda == null)

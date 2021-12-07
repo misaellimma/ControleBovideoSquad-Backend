@@ -85,9 +85,34 @@ namespace ControleBovideoSquad.Application.Services.Animais
         public string CancelarAnimal(int id)
         {
             Animal animal = _animalRepository.ObterAnimalPorId(id);
+            Rebanho rebanho = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual,
+                    animal.EspecieAnimal.IdEspecie);
 
             if (animal == null)
                 return "animal nao encontrado";
+
+            if (rebanho.QuantidadeTotal < animal.QuantidadeTotal)
+            {
+                rebanho.QuantidadeTotal = 0;
+                rebanho.QuantidadeVacinadaAftosa = 0;
+                rebanho.QuantidadeVacinadaBrucelose = 0;
+            }
+            else
+            {
+                rebanho.QuantidadeTotal -= animal.QuantidadeTotal;
+                if (rebanho.QuantidadeVacinadaAftosa < animal.QuantidadeVacinada
+                    || rebanho.QuantidadeVacinadaBrucelose < animal.QuantidadeVacinada)
+                {
+                    rebanho.QuantidadeVacinadaBrucelose = 0;
+                    rebanho.QuantidadeVacinadaAftosa = 0;
+                } else
+                {
+                    rebanho.QuantidadeVacinadaBrucelose -= animal.QuantidadeVacinada;
+                    rebanho.QuantidadeVacinadaAftosa -= animal.QuantidadeVacinada;
+                }
+            }
+
+            _rebanhoRepository.Save(rebanho);
 
             animal.Cancelar();
             _animalRepository.Salvar(animal);

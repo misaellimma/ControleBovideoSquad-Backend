@@ -17,7 +17,7 @@ namespace ControleBovideoSquad.Repository.Animais
         public List<Animal> ObterTodos()
         {
             return _unitOfWork
-                .Query<Animal>().ToList();
+                .Query<Animal>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeAnimal.Nome).ToList();
         }
 
         public Animal ObterAnimalPorId(int id)

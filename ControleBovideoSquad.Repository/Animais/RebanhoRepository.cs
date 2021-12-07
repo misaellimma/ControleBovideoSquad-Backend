@@ -15,7 +15,7 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public List<Rebanho> ObterRebanhos()
         {
-            return _unityOfWork.Query<Rebanho>().ToList();
+            return _unityOfWork.Query<Rebanho>().OrderBy(x => x.Propriedade.Nome).ToList();
         }
 
         // TODO: implementar quando a classe de Propriedade estiver pronta.
