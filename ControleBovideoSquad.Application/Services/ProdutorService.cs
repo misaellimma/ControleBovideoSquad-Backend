@@ -3,15 +3,7 @@ using ControleBovideoSquad.Application.IServices;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Produtor;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Produtores;
-using ControleBovideoSquad.Domain.Repositories.Enderecos;
-using ControleBovideoSquad.Domain.Repositories.Municipios;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services
 {

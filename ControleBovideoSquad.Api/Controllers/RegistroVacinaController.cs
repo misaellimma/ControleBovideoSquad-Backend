@@ -18,7 +18,7 @@ namespace ControleBovideoSquad.Api.Controllers
             this._registroVacinaService = registroVacinaService;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Cancelar(int id)
         {
             var response = _registroVacinaService.Cancelar(id);
@@ -32,7 +32,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = _registroVacinaService.Incluir(registroVacina);
 
-            if (response.Errors.Any())
+            if (response.Errors != null)
                 return BadRequest(response.Errors);
 
             return Ok();

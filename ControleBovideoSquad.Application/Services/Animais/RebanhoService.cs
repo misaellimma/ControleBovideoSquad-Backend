@@ -40,6 +40,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public List<RebanhoDto> ObterRebanhosPorProdutor(string cpf)
         {
+            cpf = Formatar.FormatarString(cpf);
             return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhosPorProdutor(cpf));
         }
 
