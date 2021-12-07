@@ -12,14 +12,14 @@ namespace ControleBovideoSquad.Application.Mapper.Vendas
     public class VendaMapper : IVendaMapper
     {
         private readonly IFinalidadeDeVendaRepository _finalidadeDeVendaRepository;
-        private readonly IRebanhoRepository _rebanhoRepository;
+        private readonly IEspecieRepository _especieRepository;
         private readonly IPropriedadeRepository _propriedadeRepository;
 
-        public VendaMapper(IFinalidadeDeVendaRepository finalidadeDeVendaRepository, IRebanhoRepository rebanhoRepository,
+        public VendaMapper(IFinalidadeDeVendaRepository finalidadeDeVendaRepository, IEspecieRepository especieRepository,
             IPropriedadeRepository propriedadeRepository)
         {
             _finalidadeDeVendaRepository = finalidadeDeVendaRepository;
-            _rebanhoRepository = rebanhoRepository;
+            _especieRepository = especieRepository;
             _propriedadeRepository = propriedadeRepository;
         }
 
@@ -27,10 +27,10 @@ namespace ControleBovideoSquad.Application.Mapper.Vendas
         {
             Console.Write($"flag de venda: {source.DataDeVenda}");
             var finalidadeDeVenda = _finalidadeDeVendaRepository.ObterPorId(source.IdFinalidadeDeVenda);
-            var rebanho = _rebanhoRepository.ObterRebanhosPorId(source.IdRebanho);
+            var especie = _especieRepository.ObterEspeciePorId(source.IdEspecie);
             var propriedadeOrigem = _propriedadeRepository.ObterPorId(source.IdPropriedadeOrigem);
             var propriedadeDestino = _propriedadeRepository.ObterPorId(source.IdPropriedadeDestino);
-            return new Venda(0, source.Quantidade, propriedadeOrigem, propriedadeDestino, rebanho,
+            return new Venda(0, source.Quantidade, propriedadeOrigem, propriedadeDestino, especie,
                 finalidadeDeVenda, source.DataDeVenda);
         }
 

@@ -20,13 +20,12 @@ namespace ControleBovideoSquad.Repository.Vendas
 
         public List<Venda> ObterVendaPorProdutor(string cpf)
         {
-            return _unityOfWork.Query<Venda>().ToList();
-            //return _unityOfWork.Query<Venda>().Where(x => x.PropriedadeOrigem.Produtor.cpf == cpf);
+            return _unityOfWork.Query<Venda>().Where(x => x.PropriedadeOrigem.Produtor.CPF == cpf && x.Ativo == true).ToList();
         }
 
         public List<Venda> ObterVendas()
         {
-            return _unityOfWork.Query<Venda>().ToList();    
+            return _unityOfWork.Query<Venda>().Where(x => x.Ativo == true).ToList();    
         }
 
         public void Save(Venda venda) 

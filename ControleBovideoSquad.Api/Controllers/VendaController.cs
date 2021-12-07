@@ -59,7 +59,7 @@ namespace ControleBovideoSquad.Api.Controllers
             if (response.Errors != null)
                 return BadRequest(response.Errors);
 
-            return Ok();
+            return Ok(response);
         }
 
         [HttpDelete]

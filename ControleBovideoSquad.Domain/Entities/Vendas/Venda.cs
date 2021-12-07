@@ -8,7 +8,7 @@ namespace ControleBovideoSquad.Domain.Entities.Vendas
         public virtual int Quantidade { get; protected set; }
         public virtual Propriedade PropriedadeOrigem { get; protected set; }
         public virtual Propriedade PropriedadeDestino { get; protected set; }
-        public virtual Rebanho Rebanho { get; protected set; }
+        public virtual Especie Especie { get; protected set; }
         public virtual FinalidadeDeVenda FinalidadeDeVenda { get; protected set; }
         public virtual DateTime DataDeVenda { get; protected set; }
         public virtual bool Ativo { get; protected set; } = true;
@@ -17,13 +17,13 @@ namespace ControleBovideoSquad.Domain.Entities.Vendas
 
         public Venda(
             int idVenda, int quantidade, Propriedade propriedadeOrigem, Propriedade propriedadeDestino,
-            Rebanho rebanho, FinalidadeDeVenda finalidadeDeVenda, DateTime dataDeVenda)
+            Especie especie, FinalidadeDeVenda finalidadeDeVenda, DateTime dataDeVenda)
         {
             this.IdVenda = idVenda;
             this.Quantidade = quantidade;   
             this.PropriedadeOrigem = propriedadeOrigem;   
             this.PropriedadeDestino = propriedadeDestino;
-            this.Rebanho = rebanho;
+            this.Especie = especie;
             this.DataDeVenda = dataDeVenda;
             this.FinalidadeDeVenda = finalidadeDeVenda;
         }

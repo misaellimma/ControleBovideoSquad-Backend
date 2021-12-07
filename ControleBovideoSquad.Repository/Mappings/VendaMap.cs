@@ -26,7 +26,7 @@ namespace ControleBovideoSquad.Repository.Mappings
             References(x => x.PropriedadeOrigem, "IdOrigem").Not.Nullable();
             References(x => x.PropriedadeDestino, "IdDestino").Not.Nullable();
             References(x => x.FinalidadeDeVenda, "IdFinalidadeDeVenda").Not.Nullable();
-            References(x => x.Rebanho, "IdRebanho").Not.Nullable();
+            References(x => x.Especie, "IdEspecie").Not.Nullable();
         }
     }
 }
