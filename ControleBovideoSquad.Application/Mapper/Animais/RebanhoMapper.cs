@@ -29,7 +29,28 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
         public RebanhoDto MapearEntidadeParaDto(Rebanho source)
         {
             return new RebanhoDto(source.IdRebanho, source.QuantidadeTotal, source.QuantidadeVacinadaAftosa,
-                source.QuantidadeVacinadaBrucelose, source.Especie.IdEspecie, source.Propriedade.IdPropriedade);
+                source.QuantidadeVacinadaBrucelose, source.Especie.IdEspecie, source.Propriedade.IdPropriedade,source.Especie.Nome,source.Propriedade.Nome);
+        }
+
+        public List<RebanhoDto> MaperListaEntidadeParaDto(List<Rebanho> rebanho)
+        {
+            List<RebanhoDto> listRebanhoDto = new List<RebanhoDto>();
+
+
+            foreach(var source in rebanho)
+            {
+                listRebanhoDto.Add(new RebanhoDto(source.IdRebanho,
+                                                  source.QuantidadeTotal,
+                                                  source.QuantidadeVacinadaAftosa,
+                                                  source.QuantidadeVacinadaBrucelose,
+                                                  source.Especie.IdEspecie,
+                                                  source.Propriedade.IdPropriedade,
+                                                  source.Especie.Nome,
+                                                  source.Propriedade.Nome));
+            }
+
+            return listRebanhoDto;
+            
         }
     }
 }

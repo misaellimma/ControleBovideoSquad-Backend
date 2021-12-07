@@ -33,19 +33,19 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return _rebanhoRepository.ObterRebanhosPorId(id);
         }
 
-        public List<Rebanho> ObterRebanhos()
+        public List<RebanhoDto> ObterRebanhos()
         {
-            return _rebanhoRepository.ObterRebanhos();
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhos());
         }
 
-        public List<Rebanho> ObterRebanhosPorProdutor(string cpf)
+        public List<RebanhoDto> ObterRebanhosPorProdutor(string cpf)
         {
-            return _rebanhoRepository.ObterRebanhosPorProdutor(cpf);
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhosPorProdutor(cpf));
         }
 
-        public List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual)
+        public List<RebanhoDto> ObterRebanhosPorPropriedade(string inscricaoEstadual)
         {
-            return _rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual);
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual));
         }
 
         public Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)

@@ -63,7 +63,13 @@ namespace ControleBovideoSquad.Application.Services
             if (!Validacao.ValidaCpf(cpf))
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
+            cpf = Formatar.FormatarString(cpf);
+
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
+
+            if (produtor == null)
+                return null;
+            
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 

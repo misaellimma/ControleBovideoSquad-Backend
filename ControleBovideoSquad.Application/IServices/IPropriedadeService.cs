@@ -12,6 +12,7 @@ namespace ControleBovideoSquad.Application.IServices
     public interface IPropriedadeService
     {
         List<PropriedadeDto> ObterTodos();
+        List<PropriedadeDto> ObterPorIdProdutor(int id);
         Result<PropriedadeDto> ObterPorInscricaoEstadual(string InscricaoEstadual);
         Result<PropriedadeDto> ObterPorId(int id);
         Result<PropriedadeDto> Alterar(int id, PropriedadeDto propriedadeDto);
