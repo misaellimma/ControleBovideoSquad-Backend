@@ -21,8 +21,8 @@ namespace ControleBovideoSquad.Application.Services
         public Result<bool> AlterarProdutor(int id, ProdutorDto produtor)
         {
             var produtorBD = produtorRepository.ObterProdutorPorId(id);
-            produtorBD.AtualizarProdutor(produtor);
             produtor.CPF = Formatar.FormatarString(produtor.CPF);
+            produtorBD.AtualizarProdutor(produtor);           
             produtorRepository.CriarOuAlterarProdutor(produtorBD);
             return Result<bool>.Success(true);
         }
