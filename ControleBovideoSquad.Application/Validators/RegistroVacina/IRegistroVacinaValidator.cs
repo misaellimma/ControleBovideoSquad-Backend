@@ -6,5 +6,6 @@ namespace ControleBovideoSquad.Application.Validators.RegistroVacina
     public interface IRegistroVacinaValidator : IValidator<RegistroVacinaDto>
     {
         void VerificarQuantidade(RegistroVacinaDto registroVacinaDto, Rebanho rebanho);
+
     }
 }
