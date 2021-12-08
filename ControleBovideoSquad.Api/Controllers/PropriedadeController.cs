@@ -46,7 +46,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var propriedade = propriedadeService.ObterPorInscricaoEstadual(inscricao);
 
             if (propriedade.Data == null)
-                return StatusCode((int)propriedade.StatusCode, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Não existe a Inscricao Estadual na base de dados!"));
+                return StatusCode((int)propriedade.StatusCode, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, propriedade.Errors));
 
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }
@@ -94,13 +94,13 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] PropriedadeDto propriedadeDto)
+        [HttpPut]
+        public ActionResult Put([FromBody] PropriedadeDto propriedadeDto)
         {
             if (propriedadeDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
-            var produtor = propriedadeService.Alterar(id, propriedadeDto);
+            var produtor = propriedadeService.Alterar(propriedadeDto);
 
             if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);

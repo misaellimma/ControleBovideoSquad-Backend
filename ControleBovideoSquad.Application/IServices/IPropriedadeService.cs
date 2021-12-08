@@ -15,7 +15,7 @@ namespace ControleBovideoSquad.Application.IServices
         List<PropriedadeDto> ObterPorIdProdutor(int id);
         Result<PropriedadeDto> ObterPorInscricaoEstadual(string InscricaoEstadual);
         Result<PropriedadeDto> ObterPorId(int id);
-        Result<PropriedadeDto> Alterar(int id, PropriedadeDto propriedadeDto);
+        Result<PropriedadeDto> Alterar(PropriedadeDto propriedadeDto);
         Result<PropriedadeDto> Criar(PropriedadeDto propriedadeDto);
     }
 }

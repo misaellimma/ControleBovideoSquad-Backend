@@ -22,11 +22,8 @@ namespace ControleBovideoSquad.Application.Services
             this.propriedadeMapper = propriedadeMapper;
         }
 
-        public Result<PropriedadeDto> Alterar(int id, PropriedadeDto propriedadeDto)
+        public Result<PropriedadeDto> Alterar(PropriedadeDto propriedadeDto)
         {
-            if (propriedadeDto.IdPropriedade != id)
-                return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Id da Url está divergente do body!");
-
             propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
             propriedadeRepository.CriarOuAlterar(propriedadeMapper.MapearDtoParaEntidade(propriedadeDto));
             return Result<PropriedadeDto>.Success(propriedadeDto);

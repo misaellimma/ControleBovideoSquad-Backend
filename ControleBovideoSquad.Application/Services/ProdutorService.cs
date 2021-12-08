@@ -59,7 +59,7 @@ namespace ControleBovideoSquad.Application.Services
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
 
             if (produtor == null)
-                return null;
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "");
             
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }

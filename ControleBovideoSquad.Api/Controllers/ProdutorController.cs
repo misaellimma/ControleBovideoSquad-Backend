@@ -39,8 +39,17 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var produtor = produtorService.ObterProdutorPorCpf(cpf);
 
-            if (produtor.Data == null)
-                return StatusCode((int)produtor.StatusCode, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o CPF na base de dados!"));
+            if (produtor.StatusCode == EStatusCode.NOT_FOUND 
+                && produtor.Errors.FirstOrDefault().Length == 0)
+            {
+                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o CPF na base de dados!"));
+            }
+
+            if (produtor.StatusCode == EStatusCode.NOT_FOUND
+                && produtor.Errors.FirstOrDefault().Length > 0)
+            {
+                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, produtor.Errors));
+            }
 
             return StatusCode((int)produtor.StatusCode, produtor.Data);
         }
