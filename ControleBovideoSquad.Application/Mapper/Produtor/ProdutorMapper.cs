@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
 
             Endereco endereco = new Endereco
                 (
-                    produtorDto.IdEndereco,
+                    0,
                     produtorDto.Rua,
                     produtorDto.Numero,
                     municipio

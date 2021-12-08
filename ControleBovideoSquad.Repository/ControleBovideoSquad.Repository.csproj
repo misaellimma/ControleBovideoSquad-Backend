@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControleBovideoSquad.CrossCutting\ControleBovideoSquad.CrossCutting.csproj" />
     <ProjectReference Include="..\ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj" />
   </ItemGroup>
 

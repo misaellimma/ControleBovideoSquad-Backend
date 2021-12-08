@@ -59,18 +59,23 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return Ok(result);
         }
-        
+
 
         [HttpGet("validainscricao/{inscricao}")]
         public IActionResult ValidaCpf(string inscricao)
         {
             if (inscricao == null)
-                return NotFound("Inscricao Estadual vazia!");
+                return StatusCode((int)EStatusCode.NOT_FOUND, "Inscricao Estadual vazia!");
 
             var propriedade = propriedadeService.ObterPorInscricaoEstadual(inscricao);
 
             if (propriedade.Data != null)
-                return StatusCode((int)propriedade.StatusCode, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!"));
+                return StatusCode((int)propriedade.StatusCode, "Inscricao Estadual já cadastrada!");
+
+            if (propriedade.StatusCode == EStatusCode.NOT_FOUND)
+                if (propriedade.Errors.FirstOrDefault().Contains("Propriedade"))
+                    return StatusCode((int)EStatusCode.OK);
+            return StatusCode((int)propriedade.StatusCode, propriedade.Errors.FirstOrDefault());
 
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }

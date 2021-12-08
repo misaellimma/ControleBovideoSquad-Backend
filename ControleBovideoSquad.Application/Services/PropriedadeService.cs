@@ -39,14 +39,17 @@ namespace ControleBovideoSquad.Application.Services
 
             propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
             var propriedadeInscricao = propriedadeRepository.ObterPorInscricaoEstadual(propriedadeDto.InscricaoEstadual);
-            
+
             if (propriedadeInscricao != null)
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!");
 
-            propriedadeDto.IdPropriedade = 0;
-            propriedadeDto.IdEndereco = null;
-            var produtor = propriedadeMapper.MapearDtoParaEntidade(propriedadeDto);
-            propriedadeRepository.CriarOuAlterar(produtor);
+            //var enderecoDto = new EnderecoDto(0, propriedadeDto.Rua, propriedadeDto.Numero, propriedadeDto.IdMunicipio);
+            //var endereco = enderecoMapper.MapearDtoParaEntidade(enderecoDto);
+            //enderecoRepository.Save(endereco);
+
+            //propriedadeDto.IdEndereco = endereco.IdEndereco;
+            var propriedade = propriedadeMapper.MapearDtoParaEntidade(propriedadeDto);
+            propriedadeRepository.CriarOuAlterar(propriedade);
 
             return Result<PropriedadeDto>.Success(propriedadeDto);
         }

@@ -16,8 +16,4 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

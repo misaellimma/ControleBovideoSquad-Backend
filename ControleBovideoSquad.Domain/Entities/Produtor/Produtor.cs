@@ -1,4 +1,5 @@
-﻿using ControleBovideoSquad.Domain.Entities.Enderecos;
+﻿using ControleBovideoSquad.CrossCutting.Dto.Produtor;
+using ControleBovideoSquad.Domain.Entities.Enderecos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,15 @@ namespace ControleBovideoSquad.Domain.Entities.Produtores
         public virtual int IdProdutor { get; protected set; }
         public virtual string Nome { get; protected set; }
         public virtual string CPF { get; protected set; }
-        public virtual Endereco? Endereco { get; protected set; }
+        public virtual Endereco Endereco { get; protected set; }
 
         protected Produtor()
         {
+        }
+
+        public Produtor(int idProdutor)
+        {
+            IdProdutor = idProdutor;
         }
 
         public Produtor(int idProdutor, string nome, string cpf, Endereco endereco)
@@ -24,6 +30,13 @@ namespace ControleBovideoSquad.Domain.Entities.Produtores
             Nome = nome;
             CPF = cpf;
             this.Endereco = endereco;
+        }
+
+        public virtual void AtualizarProdutor(ProdutorDto produtorDto)
+        {
+            CPF = produtorDto.CPF;
+            Nome = produtorDto.Nome;
+            this.Endereco.AtualizarEndereco(produtorDto);
         }
     }
 }

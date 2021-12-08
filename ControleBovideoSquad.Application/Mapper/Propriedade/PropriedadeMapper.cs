@@ -4,6 +4,7 @@ using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
 using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Entities.Municipios;
+using ControleBovideoSquad.Domain.Entities.Produtores;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
 using System;
@@ -25,22 +26,16 @@ namespace ControleBovideoSquad.Application.Mapper.Propriedades
 
         public Propriedade MapearDtoParaEntidade(PropriedadeDto source)
         {
-            Municipio municipio = new Municipio
-                (
-                    source.IdMunicipio,
-                    source.Municipio,
-                    source.Estado
-                );
-
             Endereco endereco = new Endereco
                 (
-                    source.IdEndereco,
+                    0,
                     source.Rua,
                     source.Numero,
-                    municipio
+                    new Municipio(source.IdMunicipio)
                 );
 
-            var produtor = produtorRepository.ObterProdutorPorId(source.IdProdutor);
+            //var produtor = produtorRepository.ObterProdutorPorId(source.IdProdutor);
+            
 
             return new Propriedade
                 (
@@ -48,7 +43,7 @@ namespace ControleBovideoSquad.Application.Mapper.Propriedades
                     source.InscricaoEstadual,
                     source.Nome,
                     endereco,
-                    produtor
+                    new Produtor(source.IdProdutor)
                 );
         }
 

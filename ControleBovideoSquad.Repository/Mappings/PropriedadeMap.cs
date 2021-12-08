@@ -29,7 +29,7 @@ namespace ControleBovideoSquad.Repository.Mappings
                 .Length(50)
                 .Not.Nullable();
 
-            References(x => x.Endereco, "IdEndereco").Cascade.All();
+            References(x => x.Endereco, "IdEndereco").Not.Nullable().Cascade.SaveUpdate();
 
             References(x => x.Produtor, "IdProdutor").Not.Nullable();
         }

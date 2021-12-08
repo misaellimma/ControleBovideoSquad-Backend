@@ -1,11 +1,4 @@
-﻿using ControleBovideoSquad.Domain.Entities.Enderecos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleBovideoSquad.CrossCutting.Dto.Produtor
+﻿namespace ControleBovideoSquad.CrossCutting.Dto.Produtor
 {
     public class ProdutorDto
     {

@@ -9,8 +9,8 @@ namespace ControleBovideoSquad.Domain.Entities.Municipios
     public class Municipio
     {
         public virtual int IdMunicipio { get; protected set; }
-        public virtual string? Nome { get; protected set; }
-        public virtual string? Estado { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string Estado { get; protected set; }
 
         protected Municipio()
         {

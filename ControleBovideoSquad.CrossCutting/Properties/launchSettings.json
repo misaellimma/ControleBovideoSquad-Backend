@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ControleBovideoSquad.CrossCutting": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Executable"
+    }
+  }
+}

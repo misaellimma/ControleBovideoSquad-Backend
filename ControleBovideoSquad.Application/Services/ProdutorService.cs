@@ -18,14 +18,13 @@ namespace ControleBovideoSquad.Application.Services
             this.produtorMapper = produtorMapper;
         }
 
-        public Result<ProdutorDto> AlterarProdutor(int id, ProdutorDto produtor)
+        public Result<bool> AlterarProdutor(int id, ProdutorDto produtor)
         {
-            if (produtor.IdProdutor != id)
-                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Id da Url está divergente do body!");
-
+            var produtorBD = produtorRepository.ObterProdutorPorId(id);
+            produtorBD.AtualizarProdutor(produtor);
             produtor.CPF = Formatar.FormatarString(produtor.CPF);
-            produtorRepository.CriarOuAlterarProdutor(produtorMapper.MapearDtoParaEntidade(produtor));
-            return Result<ProdutorDto>.Success(produtor);
+            produtorRepository.CriarOuAlterarProdutor(produtorBD);
+            return Result<bool>.Success(true);
         }
 
         public Result<ProdutorDto> CriarProdutor(ProdutorDto produtorDto)
