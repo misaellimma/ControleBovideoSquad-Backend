@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.CrossCutting.Dto.Produtor;
+using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using System;
 using System.Collections.Generic;

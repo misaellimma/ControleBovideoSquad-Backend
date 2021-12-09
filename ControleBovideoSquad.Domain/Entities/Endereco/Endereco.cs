@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.CrossCutting.Dto.Produtor;
+using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
 using ControleBovideoSquad.Domain.Entities.Municipios;
 
 namespace ControleBovideoSquad.Domain.Entities.Enderecos
@@ -34,6 +35,13 @@ namespace ControleBovideoSquad.Domain.Entities.Enderecos
             Rua = produtorDto.Rua;
             Numero = produtorDto.Numero;
             Municipio = new Municipio(produtorDto.IdMunicipio);
+        }
+
+        public virtual void AtualizarEndereco(PropriedadeDto propriedadeDto)
+        {
+            Rua = propriedadeDto.Rua;
+            Numero = propriedadeDto.Numero;
+            Municipio = new Municipio(propriedadeDto.IdMunicipio);
         }
     }
 }

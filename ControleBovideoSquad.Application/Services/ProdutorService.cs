@@ -18,16 +18,16 @@ namespace ControleBovideoSquad.Application.Services
             this.produtorMapper = produtorMapper;
         }
 
-        public Result<bool> AlterarProdutor(int id, ProdutorDto produtor)
+        public Result<bool> Alterar(int id, ProdutorDto produtor)
         {
             var produtorBD = produtorRepository.ObterProdutorPorId(id);
             produtor.CPF = Formatar.FormatarString(produtor.CPF);
             produtorBD.AtualizarProdutor(produtor);           
-            produtorRepository.CriarOuAlterarProdutor(produtorBD);
+            produtorRepository.Salvar(produtorBD);
             return Result<bool>.Success(true);
         }
 
-        public Result<ProdutorDto> CriarProdutor(ProdutorDto produtorDto)
+        public Result<ProdutorDto> Incluir(ProdutorDto produtorDto)
         {
             if (!Validacao.ValidaCpf(produtorDto.CPF))
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
@@ -38,10 +38,8 @@ namespace ControleBovideoSquad.Application.Services
             if(produtorDtoCpf != null)
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF já cadastrado!");
 
-            produtorDto.IdProdutor = 0;
-            produtorDto.IdEndereco = null;
             var produtor = produtorMapper.MapearDtoParaEntidade(produtorDto);
-            produtorRepository.CriarOuAlterarProdutor(produtor);
+            produtorRepository.Salvar(produtor);
 
             return Result<ProdutorDto>.Success(produtorDto);
         }

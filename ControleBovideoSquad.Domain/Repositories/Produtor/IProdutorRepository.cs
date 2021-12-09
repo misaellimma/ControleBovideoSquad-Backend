@@ -12,6 +12,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Produtores
         List<Produtor> ObterTodos();
         Produtor ObterProdutorPorCpf(string cpf);
         Produtor ObterProdutorPorId(int id);
-        void CriarOuAlterarProdutor(Produtor produtor);
+        void Salvar(Produtor produtor);
     }
 }

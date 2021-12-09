@@ -71,7 +71,7 @@ namespace ControleBovideoSquad.Api.Controllers
             if(produtorDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
-            var produtor = produtorService.CriarProdutor(produtorDto);
+            var produtor = produtorService.Incluir(produtorDto);
             
             if(produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
@@ -85,7 +85,7 @@ namespace ControleBovideoSquad.Api.Controllers
             if (produtorDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
-            var produtor = produtorService.AlterarProdutor(id, produtorDto);
+            var produtor = produtorService.Alterar(id, produtorDto);
 
             if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);

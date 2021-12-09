@@ -31,8 +31,8 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
                     0,
                     produtorDto.Rua,
                     produtorDto.Numero,
-                    municipio
-                );
+                    new Municipio(produtorDto.IdMunicipio)
+                ) ;
 
             return new Produtor
                 (

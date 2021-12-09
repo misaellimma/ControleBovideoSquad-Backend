@@ -8,7 +8,7 @@ namespace ControleBovideoSquad.Application.IServices
         List<ProdutorDto> ObterTodos();
         Result<ProdutorDto> ObterProdutorPorCpf(string cpf);
         Result<ProdutorDto> ObterProdutorPorId(int id);
-        Result<ProdutorDto> CriarProdutor(ProdutorDto produtor);
-        Result<bool> AlterarProdutor(int id, ProdutorDto produtor);
+        Result<ProdutorDto> Incluir(ProdutorDto produtor);
+        Result<bool> Alterar(int id, ProdutorDto produtor);
     }
 }

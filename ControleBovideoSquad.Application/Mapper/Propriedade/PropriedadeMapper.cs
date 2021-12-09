@@ -32,10 +32,7 @@ namespace ControleBovideoSquad.Application.Mapper.Propriedades
                     source.Rua,
                     source.Numero,
                     new Municipio(source.IdMunicipio)
-                );
-
-            //var produtor = produtorRepository.ObterProdutorPorId(source.IdProdutor);
-            
+                );            
 
             return new Propriedade
                 (
