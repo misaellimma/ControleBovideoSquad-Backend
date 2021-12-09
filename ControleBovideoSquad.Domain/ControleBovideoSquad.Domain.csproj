@@ -13,11 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ControleBovideoSquad.CrossCutting\ControleBovideoSquad.CrossCutting.csproj" />
   </ItemGroup>
-
 </Project>

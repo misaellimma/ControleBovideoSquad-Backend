@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.CrossCutting", "ControleBovideoSquad.CrossCutting\ControleBovideoSquad.CrossCutting.csproj", "{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Domain", "ControleBovideoSquad.Domain\ControleBovideoSquad.Domain.csproj", "{D88FC511-638F-4C5E-A550-637958A52832}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FDC5F12-2A97-46DF-B20F-23698EF3BB2D} = {4FDC5F12-2A97-46DF-B20F-23698EF3BB2D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleBovideoSquad.Repository", "ControleBovideoSquad.Repository\ControleBovideoSquad.Repository.csproj", "{1C377E9B-CF55-49FC-96BA-9A39D69D340C}"
 EndProject
