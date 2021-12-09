@@ -1,5 +1,4 @@
-﻿using ControleBovideoSquad.Application.IServices;
-using ControleBovideoSquad.Domain.Entities.Municipios;
+﻿using ControleBovideoSquad.Application.IServices.Enderecos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

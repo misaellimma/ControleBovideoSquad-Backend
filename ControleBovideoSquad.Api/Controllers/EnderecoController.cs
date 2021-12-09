@@ -1,7 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IServices.Enderecos;
-using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
-using ControleBovideoSquad.Domain.Entities.Enderecos;
-using Microsoft.AspNetCore.Http;
+using ControleBovideoSquad.CrossCutting.Dto.Enderecos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

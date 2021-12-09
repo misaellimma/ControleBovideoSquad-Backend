@@ -1,11 +1,6 @@
-﻿using ControleBovideoSquad.Application.IServices;
+﻿using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Services
 {

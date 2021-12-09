@@ -1,12 +1,6 @@
-﻿using ControleBovideoSquad.Domain.Entities;
-using ControleBovideoSquad.Domain.Entities.Enderecos;
+﻿using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
 using ControleBovideoSquad.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Enderecos
 {

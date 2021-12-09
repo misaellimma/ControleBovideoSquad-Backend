@@ -1,7 +1,6 @@
 ﻿using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Repository.Interfaces;
-using NHibernate;
 
 namespace ControleBovideoSquad.Repository.Animais
 {

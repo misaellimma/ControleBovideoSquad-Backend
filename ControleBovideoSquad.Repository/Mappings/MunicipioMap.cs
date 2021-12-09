@@ -1,10 +1,5 @@
-﻿using ControleBovideoSquad.Domain.Entities.Municipios;
+﻿using ControleBovideoSquad.Domain.Entities.Enderecos;
 using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Mappings
 {

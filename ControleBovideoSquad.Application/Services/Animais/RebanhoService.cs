@@ -1,10 +1,9 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.IServices.Animais;
-using ControleBovideoSquad.Application.Mapper.Animais;
 using ControleBovideoSquad.CrossCutting;
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;

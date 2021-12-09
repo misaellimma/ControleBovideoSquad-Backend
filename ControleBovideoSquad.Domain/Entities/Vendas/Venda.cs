@@ -1,4 +1,5 @@
 ﻿using ControleBovideoSquad.Domain.Entities.Animais;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 
 namespace ControleBovideoSquad.Domain.Entities.Vendas
 {

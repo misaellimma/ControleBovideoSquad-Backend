@@ -1,5 +1,4 @@
 ﻿using ControleBovideoSquad.Application.IServices.Animais;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

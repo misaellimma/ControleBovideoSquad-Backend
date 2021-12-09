@@ -1,5 +1,4 @@
-﻿using ControleBovideoSquad.Application.IServices;
-using Microsoft.AspNetCore.Http;
+﻿using ControleBovideoSquad.Application.IServices.Vendas;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

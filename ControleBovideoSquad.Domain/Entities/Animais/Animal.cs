@@ -1,3 +1,5 @@
+using ControleBovideoSquad.Domain.Entities.Propriedades;
+
 namespace  ControleBovideoSquad.Domain.Entities.Animais
 {
     public class Animal

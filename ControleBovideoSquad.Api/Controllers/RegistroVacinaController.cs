@@ -1,8 +1,5 @@
-﻿using ControleBovideoSquad.Application.IServices;
-using ControleBovideoSquad.CrossCutting.Dto.RegistroVacina;
-using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Animal;
-using Microsoft.AspNetCore.Http;
+﻿using ControleBovideoSquad.Application.IServices.Vacinacao;
+using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

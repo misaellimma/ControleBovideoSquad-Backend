@@ -1,7 +1,5 @@
-using ControleBovideoSquad.Application.IMapper;
 using ControleBovideoSquad.Application.IMapper.Vendas;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
-using ControleBovideoSquad.Domain.Entities;
 using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;

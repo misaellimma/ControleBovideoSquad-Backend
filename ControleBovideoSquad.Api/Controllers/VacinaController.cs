@@ -1,4 +1,4 @@
-﻿using ControleBovideoSquad.Application.IServices;
+﻿using ControleBovideoSquad.Application.IServices.Vacinacao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

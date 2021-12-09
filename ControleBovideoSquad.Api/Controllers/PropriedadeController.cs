@@ -1,8 +1,7 @@
-﻿using ControleBovideoSquad.Application.IServices;
+﻿using ControleBovideoSquad.Application.IServices.Propriedades;
 using ControleBovideoSquad.CrossCutting;
-using ControleBovideoSquad.CrossCutting.Dto.Propriedade;
+using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
 using ControleBovideoSquad.CrossCutting.Util;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

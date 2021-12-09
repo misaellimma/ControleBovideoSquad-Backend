@@ -1,12 +1,7 @@
-﻿using ControleBovideoSquad.CrossCutting.Dto.RegistroVacina;
+﻿using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.Domain.Entities.Animais;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.Application.Validators.RegistroVacina
+namespace ControleBovideoSquad.Application.Validators.Vacinacao
 {
     public class RegistroVacinaValidator : IRegistroVacinaValidator
     {

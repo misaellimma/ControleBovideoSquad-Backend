@@ -15,11 +15,9 @@ using ControleBovideoSquad.Application.Mapper.Produtores;
 using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.Mapper.Animais;
 using ControleBovideoSquad.Application.IMapper;
-using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
+using ControleBovideoSquad.CrossCutting.Dto.Enderecos;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Application.Mapper.Enderecos;
-using ControleBovideoSquad.CrossCutting.Dto.RegistroVacina;
-using ControleBovideoSquad.Domain.Entities.Animal;
 using ControleBovideoSquad.Application.Mapper.RegistroVacinas;
 using ControleBovideoSquad.Application.Validators;
 using ControleBovideoSquad.Application.Validators.Endereco;
@@ -27,8 +25,11 @@ using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.Application.Mapper.Propriedades;
 using ControleBovideoSquad.Application.IMapper.Vendas;
 using ControleBovideoSquad.Application.Mapper.Vendas;
-using ControleBovideoSquad.Application.Validators.RegistroVacina;
+using ControleBovideoSquad.Application.Validators.Vacinacao;
 using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
+using ControleBovideoSquad.Application.IServices.Vacinacao;
+using ControleBovideoSquad.Application.IServices.Produtores;
+using ControleBovideoSquad.Application.IServices.Propriedades;
 
 var builder = WebApplication.CreateBuilder(args);
 

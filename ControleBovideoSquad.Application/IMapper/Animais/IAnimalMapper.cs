@@ -1,4 +1,4 @@
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using ControleBovideoSquad.Domain.Entities.Animais;
 
 namespace ControleBovideoSquad.Application.IMapper.Animais

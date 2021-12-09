@@ -1,11 +1,6 @@
 ﻿using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Animais
 {

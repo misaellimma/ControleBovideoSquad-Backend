@@ -1,5 +1,5 @@
 using ControleBovideoSquad.Application.IServices.Animais;
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

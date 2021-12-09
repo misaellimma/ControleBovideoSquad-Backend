@@ -1,10 +1,5 @@
-﻿using ControleBovideoSquad.Domain.Entities;
+﻿using ControleBovideoSquad.Domain.Entities.Propriedades;
 using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Repository.Mappings
 {

@@ -1,7 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers

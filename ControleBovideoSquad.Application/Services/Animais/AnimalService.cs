@@ -1,9 +1,9 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.CrossCutting;
-using ControleBovideoSquad.CrossCutting.Dto.AnimaisDto;
+using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
@@ -63,7 +63,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var response = ValidarAnimal(animalDto);
 
             if (response.Any())
-                return Result<Animal>.Error(EStatusCode.NOT_FOUND, response);
+                return Result<Animal>.Error(EStatusCode.BAD_REQUEST, response);
 
             var animal = _animalMapper.MapearDtoParaEntidade(animalDto);
 
@@ -77,9 +77,9 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 rebanhoAtual.AdicionarNoRebanho(animal.QuantidadeTotal, animal.QuantidadeVacinada);
                 this._rebanhoRepository.Salvar(rebanhoAtual);
 
-            this._animalRepository.Salvar(_animalMapper.MapearDtoParaEntidade(animalDto));
+            this._animalRepository.Salvar(animal);
 
-            return Result<Animal>.Success(_animalMapper.MapearDtoParaEntidade(animalDto));
+            return Result<Animal>.Success(animal);
         }
 
         public string Cancelar(int id)

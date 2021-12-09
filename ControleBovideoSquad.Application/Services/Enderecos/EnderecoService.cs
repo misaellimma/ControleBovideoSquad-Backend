@@ -2,7 +2,7 @@
 using ControleBovideoSquad.Application.IServices.Enderecos;
 using ControleBovideoSquad.Application.Validators;
 using ControleBovideoSquad.CrossCutting;
-using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
+using ControleBovideoSquad.CrossCutting.Dto.Enderecos;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;

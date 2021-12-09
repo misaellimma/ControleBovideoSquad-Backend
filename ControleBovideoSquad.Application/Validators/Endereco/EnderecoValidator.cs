@@ -1,9 +1,4 @@
-﻿using ControleBovideoSquad.CrossCutting.Dto.EnderecoDto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleBovideoSquad.CrossCutting.Dto.Enderecos;
 
 namespace ControleBovideoSquad.Application.Validators.Endereco
 {
