@@ -28,8 +28,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(vendas);
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
             var venda = _vendaService.ObterVendaPorId(id);
@@ -40,8 +39,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(venda);
         }
 
-        [HttpGet]
-        [Route("produtor/{cpfComMascara}")]
+        [HttpGet("produtor/{cpfComMascara}")]
         public IActionResult GetByProdutor(string cpfComMascara)
         {
             var cpf = Formatar.FormatarString(cpfComMascara);
@@ -64,8 +62,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
-        [Route("{id:int}")]
+        [HttpDelete("{id:int}")]
         public IActionResult Cancel(int id)
         {
             var response = _vendaService.CancelarVenda(id);
