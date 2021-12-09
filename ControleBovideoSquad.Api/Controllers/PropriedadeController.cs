@@ -51,7 +51,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }
 
-        [HttpGet("{Id}/Produtor")]
+        [HttpGet("Produtor/{Id}")]
         public IActionResult ObterPorIdProdutor(int id)
         {
             var result = propriedadeService.ObterPorIdProdutor(id);
