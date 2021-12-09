@@ -2,7 +2,7 @@
 using ControleBovideoSquad.Domain.Entities.Vacinacao;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
 
-namespace ControleBovideoSquad.Application.Services
+namespace ControleBovideoSquad.Application.Services.Vacinacao
 {
     public class VacinaService : IVacinaService
     {

@@ -2,7 +2,7 @@
 using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
 
-namespace ControleBovideoSquad.Application.Services
+namespace ControleBovideoSquad.Application.Services.Vendas
 {
     public class FinalidadeDeVendaService : IFinalidadeDeVendaService
     {
@@ -10,7 +10,7 @@ namespace ControleBovideoSquad.Application.Services
 
         public FinalidadeDeVendaService(IFinalidadeDeVendaRepository finalidadeDeVendaRepository)
         {
-            this._finalidadeDeVendaRepository = finalidadeDeVendaRepository;
+            _finalidadeDeVendaRepository = finalidadeDeVendaRepository;
         }
 
         public FinalidadeDeVenda? Obter(int id)

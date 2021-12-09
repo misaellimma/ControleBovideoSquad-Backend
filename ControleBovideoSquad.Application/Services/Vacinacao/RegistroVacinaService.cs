@@ -1,7 +1,4 @@
-﻿using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
-using ControleBovideoSquad.Application.IServices.Vacinacao;
-using ControleBovideoSquad.Application.Validators.Vacinacao;
-using ControleBovideoSquad.CrossCutting;
+﻿using ControleBovideoSquad.Application.IServices.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
@@ -10,26 +7,29 @@ using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
+using ControleBovideoSquad.CrossCutting.Enums;
+using ControleBovideoSquad.Application.Validators.RegistroVacina;
+using ControleBovideoSquad.Application.IMapper.Vacinacao;
 
-namespace ControleBovideoSquad.Application.Services.Animais
+namespace ControleBovideoSquad.Application.Services.Vacinacao
 {
     public class RegistroVacinaService : IRegistroVacinaService
     {
         private readonly IRegistroVacinaRepository _registroVacinaRepository;
-        private readonly IRegistroVacinaDtoMapper _registroMapper;        
+        private readonly IRegistroVacinaDtoMapper _registroMapper;
         private readonly IRebanhoRepository _rebanhoRepository;
         private readonly IRegistroVacinaValidator _registroVacinaValidator;
         private readonly IVendaRepository _vendaRepository;
 
         public RegistroVacinaService(IRegistroVacinaRepository registroVacinaRepository,
-            IRegistroVacinaDtoMapper registroMapper,            
+            IRegistroVacinaDtoMapper registroMapper,
             IRebanhoRepository rebanhoRepository,
             IRegistroVacinaValidator registroVacinaValidator,
             IVendaRepository vendaRepository
             )
         {
             _registroVacinaRepository = registroVacinaRepository;
-            _registroMapper = registroMapper;            
+            _registroMapper = registroMapper;
             _rebanhoRepository = rebanhoRepository;
             _registroVacinaValidator = registroVacinaValidator;
             _vendaRepository = vendaRepository;
@@ -37,7 +37,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<string> Cancelar(int id)
         {
-            RegistroVacina? registroVacina= _registroVacinaRepository.ObterPorId(id);
+            RegistroVacina? registroVacina = _registroVacinaRepository.ObterPorId(id);
 
             if (registroVacina == null)
                 return Result<string>.Error(EStatusCode.NOT_FOUND, "");
@@ -71,10 +71,10 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<RegistroVacina> Salvar(RegistroVacinaDto registroVacinaDto)
         {
-            Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);          
+            Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);
 
             _registroVacinaValidator.IsValid(registroVacinaDto);
-            _registroVacinaValidator.VerificarQuantidade(registroVacinaDto,rebanho);
+            _registroVacinaValidator.VerificarQuantidade(registroVacinaDto, rebanho);
 
             var validation = _registroVacinaValidator.errors;
 
@@ -82,17 +82,17 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 return Result<RegistroVacina>.Error(EStatusCode.BAD_REQUEST, validation);
 
 
-            if(registroVacinaDto.IdVacina == 2)
+            if (registroVacinaDto.IdVacina == 2)
             {
                 rebanho.AdicionarAftosa(registroVacinaDto.Quantidade);
             }
-            else if(registroVacinaDto.IdVacina == 1)
+            else if (registroVacinaDto.IdVacina == 1)
             {
                 rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);
             }
 
             _rebanhoRepository.Salvar(rebanho);
-            _registroVacinaRepository.Salvar(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));          
+            _registroVacinaRepository.Salvar(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
 
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }
@@ -103,6 +103,6 @@ namespace ControleBovideoSquad.Application.Services.Animais
             var result = _registroMapper.MapearListaParaEntidadeDto(registros);
 
             return result;
-        }             
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Produtores;
 using ControleBovideoSquad.Application.IServices.Produtores;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Produtores;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
 

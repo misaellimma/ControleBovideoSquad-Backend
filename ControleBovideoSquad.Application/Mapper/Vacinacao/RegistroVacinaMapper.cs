@@ -1,10 +1,10 @@
-﻿using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
+﻿using ControleBovideoSquad.Application.IMapper.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.Domain.Entities.Vacinacao;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
 
-namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
+namespace ControleBovideoSquad.Application.Mapper.Vacinacao
 {
     public class RegistroVacinaMapper : IRegistroVacinaDtoMapper
     {
@@ -21,7 +21,7 @@ namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
         {
             var vacina = _vacinaRepository.ObterPorId(registroVacinaDto.IdVacina);
             var rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);
-            return new RegistroVacina(registroVacinaDto.IdRegistroVacina, registroVacinaDto.Quantidade, registroVacinaDto.DataDaVacina, vacina,rebanho);
+            return new RegistroVacina(registroVacinaDto.IdRegistroVacina, registroVacinaDto.Quantidade, registroVacinaDto.DataDaVacina, vacina, rebanho);
         }
 
         public RegistroVacinaDto MapearEntidadeParaDto(RegistroVacina registroVacina)
@@ -32,7 +32,7 @@ namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
                                          registroVacina.Vacina.Doenca,
                                          registroVacina.Rebanho.IdRebanho,
                                          registroVacina.Rebanho.Especie.Nome,
-                                         registroVacina.DataDaVacina                                         
+                                         registroVacina.DataDaVacina
                                          );
         }
 
@@ -40,7 +40,7 @@ namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
         {
             var listRegistroVacinaDto = new List<RegistroVacinaDto>();
 
-            foreach(var registroVacina in registroVacinaList)
+            foreach (var registroVacina in registroVacinaList)
             {
                 listRegistroVacinaDto.Add(new RegistroVacinaDto(
                                          registroVacina.IdRegistroVacina,

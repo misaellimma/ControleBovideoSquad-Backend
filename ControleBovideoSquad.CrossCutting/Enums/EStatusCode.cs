@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleBovideoSquad.CrossCutting
+namespace ControleBovideoSquad.CrossCutting.Enums
 {
     public enum EStatusCode
     {

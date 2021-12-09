@@ -1,6 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Propriedades;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Mvc;
 
