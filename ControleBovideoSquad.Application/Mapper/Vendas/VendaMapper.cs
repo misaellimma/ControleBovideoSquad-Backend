@@ -27,7 +27,7 @@ namespace ControleBovideoSquad.Application.Mapper.Vendas
         {
             Console.Write($"flag de venda: {source.DataDeVenda}");
             var finalidadeDeVenda = _finalidadeDeVendaRepository.ObterPorId(source.IdFinalidadeDeVenda);
-            var especie = _especieRepository.ObterEspeciePorId(source.IdEspecie);
+            var especie = _especieRepository.ObterPorId(source.IdEspecie);
             var propriedadeOrigem = _propriedadeRepository.ObterPorId(source.IdPropriedadeOrigem);
             var propriedadeDestino = _propriedadeRepository.ObterPorId(source.IdPropriedadeDestino);
             return new Venda(0, source.Quantidade, propriedadeOrigem, propriedadeDestino, especie,

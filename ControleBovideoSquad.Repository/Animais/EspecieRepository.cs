@@ -15,7 +15,7 @@ namespace ControleBovideoSquad.Repository.Animais
             this._unityOfWork = unityOfWork;
         }
 
-        public Especie? ObterEspeciePorId(int id)
+        public Especie ObterPorId(int id)
         {
             return _unityOfWork.Query<Especie>().FirstOrDefault(x => x.IdEspecie == id);
         }

@@ -35,20 +35,20 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public AnimalDto ObterPorId(int id)
         {
-            var animal = _animalRepository.ObterAnimalPorId(id);
+            var animal = _animalRepository.ObterPorId(id);
             var animalDto = _animalMapper.MapearEntidadeParaDto(animal);
             return animalDto;
         }
 
-        public List<Animal> ObterPorProdutor(string cpf)
+        public List<Animal> ObterPorCpfProdutor(string cpf)
         {
-            var animal = _animalRepository.ObterAnimalPorProdutor(cpf);
+            var animal = _animalRepository.ObterPorCpfProdutor(cpf);
             return animal;
         }
 
-        public List<Animal> ObterPorPropriedade(string inscricaoEstadual)
+        public List<Animal> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            var animal = _animalRepository.ObterAnimalPorPropriedade(inscricaoEstadual);
+            var animal = _animalRepository.ObterPorInscricaoPropriedade(inscricaoEstadual);
             return animal;
         }
 
@@ -58,7 +58,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return animais;
         }
 
-        public Result<Animal> SalvarAnimal(AnimalDto animalDto)
+        public Result<Animal> Salvar(AnimalDto animalDto)
         {
             var response = ValidarAnimal(animalDto);
 
@@ -67,25 +67,25 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
             var animal = _animalMapper.MapearDtoParaEntidade(animalDto);
 
-            var rebanhoAtual = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual, 
+            var rebanhoAtual = _rebanhoRepository.ObterPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual, 
                 animal.EspecieAnimal.IdEspecie);
 
             if (rebanhoAtual == null)
-                this._rebanhoRepository.Save(new Rebanho(0, animalDto.QuantidadeTotal, animalDto.QuantidadeVacinada,
+                this._rebanhoRepository.Salvar(new Rebanho(0, animalDto.QuantidadeTotal, animalDto.QuantidadeVacinada,
                     animalDto.QuantidadeVacinada, animal.EspecieAnimal, animal.PropriedadeAnimal));
             else 
                 rebanhoAtual.AdicionarNoRebanho(animal.QuantidadeTotal, animal.QuantidadeVacinada);
-                this._rebanhoRepository.Save(rebanhoAtual);
+                this._rebanhoRepository.Salvar(rebanhoAtual);
 
             this._animalRepository.Salvar(_animalMapper.MapearDtoParaEntidade(animalDto));
 
             return Result<Animal>.Success(_animalMapper.MapearDtoParaEntidade(animalDto));
         }
 
-        public string CancelarAnimal(int id)
+        public string Cancelar(int id)
         {
-            Animal animal = _animalRepository.ObterAnimalPorId(id);
-            Rebanho rebanho = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual,
+            Animal animal = _animalRepository.ObterPorId(id);
+            Rebanho rebanho = _rebanhoRepository.ObterPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual,
                     animal.EspecieAnimal.IdEspecie);
 
             if (animal == null)
@@ -112,7 +112,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 }
             }
 
-            _rebanhoRepository.Save(rebanho);
+            _rebanhoRepository.Salvar(rebanho);
 
             animal.Cancelar();
             _animalRepository.Salvar(animal);
@@ -124,7 +124,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             List<string> errors = new List<string>();
 
             TipoDeEntrada tipoDeEntrada = this._tipoDeEntradaRepository.ObterTipoDeEntradaPorId(animalDto.IdTipoDeEntrada);
-            Especie especie = this._especieRepository.ObterEspeciePorId(animalDto.IdEspecie);
+            Especie especie = this._especieRepository.ObterPorId(animalDto.IdEspecie);
             Propriedade propriedade = this._propriedadeRepository.ObterPorId(animalDto.IdPropriedade);
 
             if (tipoDeEntrada == null)

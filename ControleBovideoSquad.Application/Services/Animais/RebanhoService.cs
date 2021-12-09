@@ -28,33 +28,33 @@ namespace ControleBovideoSquad.Application.Services.Animais
             _especieRepository = especieRepository;
         }
 
-        public Rebanho ObterRebanhoPorId(int id)
+        public Rebanho ObterPorId(int id)
         {
-            return _rebanhoRepository.ObterRebanhosPorId(id);
+            return _rebanhoRepository.ObterPorId(id);
         }
 
-        public List<RebanhoDto> ObterRebanhos()
+        public List<RebanhoDto> ObterTodos()
         {
-            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhos());
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterTodos());
         }
 
-        public List<RebanhoDto> ObterRebanhosPorProdutor(string cpf)
+        public List<RebanhoDto> ObterPorCpfProdutor(string cpf)
         {
             cpf = Formatar.FormatarString(cpf);
-            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhosPorProdutor(cpf));
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterPorCpfProdutor(cpf));
         }
 
-        public List<RebanhoDto> ObterRebanhosPorPropriedade(string inscricaoEstadual)
+        public List<RebanhoDto> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterRebanhosPorPropriedade(inscricaoEstadual));
+            return _rebanhoMapper.MaperListaEntidadeParaDto(_rebanhoRepository.ObterPorInscricaoPropriedade(inscricaoEstadual));
         }
 
-        public Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
+        public Rebanho ObterPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
         {
-            return _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(inscricaoEstadual, idEspecie);
+            return _rebanhoRepository.ObterPorPropriedadeEEspecie(inscricaoEstadual, idEspecie);
         }
 
-        public Result<Rebanho> SalvarRebanho(RebanhoDto rebanhoDto)
+        public Result<Rebanho> Salvar(RebanhoDto rebanhoDto)
         {
             var response =  ValidarRebanho(rebanhoDto);
 
@@ -62,7 +62,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 return Result<Rebanho>.Error(EStatusCode.BAD_REQUEST,response);
 
             Rebanho rebanho = this._rebanhoMapper.MapearDtoParaEntidade(rebanhoDto);
-            this._rebanhoRepository.Save(rebanho);
+            this._rebanhoRepository.Salvar(rebanho);
 
             return Result<Rebanho>.Success(rebanho);
         }
@@ -71,7 +71,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
         {
             List<string> errors = new List<string>();
 
-            Especie especie = this._especieRepository.ObterEspeciePorId(rebanhoDto.IdEspecie);
+            Especie especie = this._especieRepository.ObterPorId(rebanhoDto.IdEspecie);
             Propriedade propriedade = this._propriedadeRepository.ObterPorId(rebanhoDto.IdPropriedade);
 
             if (especie == null)

@@ -20,7 +20,7 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
 
         public Rebanho MapearDtoParaEntidade(RebanhoDto source)
         {
-            Especie Especie = _especieRepository.ObterEspeciePorId(source.IdEspecie);
+            Especie Especie = _especieRepository.ObterPorId(source.IdEspecie);
             Propriedade Propriedade = _propriedadeRepository.ObterPorId(source.IdPropriedade);
             return new Rebanho(source.IdRebanho, source.QuantidadeTotal, source.QuantidadeVacinadaAftosa, 
                 source.QuantidadeVacinadaBrucelose, Especie, Propriedade);

@@ -9,10 +9,10 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
 {
     public interface IAnimalRepository
     {
-        Animal ObterAnimalPorId(int id);
+        Animal ObterPorId(int id);
         List<Animal> ObterTodos();
-        List<Animal> ObterAnimalPorProdutor(string cpfProdutor);
-        List<Animal> ObterAnimalPorPropriedade(string inscricaoEstadual);
+        List<Animal> ObterPorCpfProdutor(string cpfProdutor);
+        List<Animal> ObterPorInscricaoPropriedade(string inscricaoEstadual);
         void Salvar(Animal animal);
     }
 }

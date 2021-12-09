@@ -57,19 +57,19 @@ namespace ControleBovideoSquad.Application.Services.Vendas
 
             Venda venda = _vendaMapper.MapearDtoParaEntidade(vendaDto);
             // Adicionar no rebanho da propriedade de destino e tirar do rebanho da propriedade de origem;
-            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeOrigem.InscricaoEstadual, venda.Especie.IdEspecie);
+            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeOrigem.InscricaoEstadual, venda.Especie.IdEspecie);
             rebanhoNaOrigem.DebitarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
-            _rebanhoRepository.Save(rebanhoNaOrigem);
+            _rebanhoRepository.Salvar(rebanhoNaOrigem);
 
-            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, 
+            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, 
                 venda.Especie.IdEspecie);
 
             if (rebanhoNoDestino == null)
-                _rebanhoRepository.Save(new Rebanho(0, vendaDto.Quantidade, vendaDto.Quantidade, vendaDto.Quantidade
+                _rebanhoRepository.Salvar(new Rebanho(0, vendaDto.Quantidade, vendaDto.Quantidade, vendaDto.Quantidade
                     , venda.Especie, venda.PropriedadeDestino));
             else 
                 rebanhoNoDestino.AdicionarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
-                _rebanhoRepository.Save(rebanhoNoDestino);
+                _rebanhoRepository.Salvar(rebanhoNoDestino);
         
             _vendaRepository.Save(venda);
 
@@ -87,13 +87,13 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             
             venda.CancelarVenda();
             // Creditar de volta na propriedade de origem
-            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeOrigem.InscricaoEstadual, venda.Especie.IdEspecie);
+            Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeOrigem.InscricaoEstadual, venda.Especie.IdEspecie);
             rebanhoNaOrigem.AdicionarNoRebanho(venda.Quantidade, venda.Quantidade);
-            _rebanhoRepository.Save(rebanhoNaOrigem);
+            _rebanhoRepository.Salvar(rebanhoNaOrigem);
             // Debitar da propriedade de destino
-            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, venda.Especie.IdEspecie);
+            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, venda.Especie.IdEspecie);
             rebanhoNoDestino.DebitarNoRebanho(venda.Quantidade, venda.Quantidade);
-            _rebanhoRepository.Save(rebanhoNaOrigem);
+            _rebanhoRepository.Salvar(rebanhoNaOrigem);
 
             _vendaRepository.Save(venda);
             return "venda cancelada";
@@ -104,7 +104,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             List<string> errors = new List<string>();
             Propriedade propriedadeOrigem = _propriedadeRepository.ObterPorId(vendaDto.IdPropriedadeOrigem);
             Propriedade propriedadeDestino = _propriedadeRepository.ObterPorId(vendaDto.IdPropriedadeDestino);
-            Rebanho rebanho = _rebanhoRepository.ObterRebanhoPorPropriedadeEEspecie(propriedadeOrigem.InscricaoEstadual, vendaDto.IdEspecie);
+            Rebanho rebanho = _rebanhoRepository.ObterPorPropriedadeEEspecie(propriedadeOrigem.InscricaoEstadual, vendaDto.IdEspecie);
             FinalidadeDeVenda finalidade = _finalidadeDeVendaRepository.ObterPorId(vendaDto.IdFinalidadeDeVenda);
             // verificar se existe propriedade origem e destino
             // verificar na propriedade origem se tem rebanho vacinado disponivel

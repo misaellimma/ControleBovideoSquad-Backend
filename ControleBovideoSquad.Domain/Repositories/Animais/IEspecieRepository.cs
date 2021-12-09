@@ -9,7 +9,7 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
 {
     public interface IEspecieRepository
     {
-        Especie ObterEspeciePorId(int id);
+        Especie ObterPorId(int id);
         List<Especie> ObterTodos();
     }
 }

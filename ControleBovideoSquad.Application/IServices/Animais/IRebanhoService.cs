@@ -11,11 +11,11 @@ namespace ControleBovideoSquad.Application.IServices.Animais
 {
     public interface IRebanhoService
     {
-        List<RebanhoDto> ObterRebanhos();
-        List<RebanhoDto> ObterRebanhosPorPropriedade(string inscricaoEstadual);
-        Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie);
-        List<RebanhoDto> ObterRebanhosPorProdutor(string cpf);
-        Rebanho ObterRebanhoPorId(int id);
-        Result<Rebanho> SalvarRebanho(RebanhoDto rebanhoDto);
+        List<RebanhoDto> ObterTodos();
+        List<RebanhoDto> ObterPorInscricaoPropriedade(string inscricaoEstadual);
+        Rebanho ObterPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie);
+        List<RebanhoDto> ObterPorCpfProdutor(string cpf);
+        Rebanho ObterPorId(int id);
+        Result<Rebanho> Salvar(RebanhoDto rebanhoDto);
     }
 }

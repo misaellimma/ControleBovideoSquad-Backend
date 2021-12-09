@@ -20,19 +20,19 @@ namespace ControleBovideoSquad.Repository.Animais
                 .Query<Animal>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeAnimal.Nome).ToList();
         }
 
-        public Animal ObterAnimalPorId(int id)
+        public Animal ObterPorId(int id)
         {
             return _unitOfWork
                 .Query<Animal>()
                 .SingleOrDefault(x => x.IdAnimal == id);
         }
 
-        public List<Animal> ObterAnimalPorProdutor(string cpfProdutor)
+        public List<Animal> ObterPorCpfProdutor(string cpfProdutor)
         {
             throw new NotImplementedException();
         }
 
-        public List<Animal> ObterAnimalPorPropriedade(string inscricaoEstadual)
+        public List<Animal> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
             throw new NotImplementedException();
         }

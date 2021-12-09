@@ -13,9 +13,9 @@ namespace ControleBovideoSquad.Application.IServices.Animais
     {
         List<Animal> ObterTodos();
         AnimalDto ObterPorId(int id);
-        List<Animal> ObterPorProdutor(string cpf);
-        List<Animal> ObterPorPropriedade(string inscricaoEstadual);
-        Result<Animal> SalvarAnimal(AnimalDto animal);
-        string CancelarAnimal(int id);
+        List<Animal> ObterPorCpfProdutor(string cpf);
+        List<Animal> ObterPorInscricaoPropriedade(string inscricaoEstadual);
+        Result<Animal> Salvar(AnimalDto animal);
+        string Cancelar(int id);
     }
 }

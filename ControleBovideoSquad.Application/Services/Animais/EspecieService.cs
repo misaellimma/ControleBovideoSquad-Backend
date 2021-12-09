@@ -18,9 +18,9 @@ namespace ControleBovideoSquad.Application.Services
             this._especieRepository = especieRepository;
         }
 
-        public Especie? ObterPorId(int id)
+        public Especie ObterPorId(int id)
         {
-            return _especieRepository.ObterEspeciePorId(id);
+            return _especieRepository.ObterPorId(id);
         }
 
         public List<Especie> ObterTodos()

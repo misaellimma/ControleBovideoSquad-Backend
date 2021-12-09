@@ -26,7 +26,7 @@ namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
         public RegistroVacina MapearDtoParaEntidade(RegistroVacinaDto registroVacinaDto)
         {
             var vacina = _vacinaRepository.ObterPorId(registroVacinaDto.IdVacina);
-            var rebanho = _rebanhoRepository.ObterRebanhosPorId(registroVacinaDto.IdRebanho);
+            var rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);
             return new RegistroVacina(registroVacinaDto.IdRegistroVacina, registroVacinaDto.Quantidade, registroVacinaDto.DataDaVacina, vacina,rebanho);
         }
 

@@ -17,7 +17,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
             var animais = _animalService.ObterTodos();
 
@@ -27,9 +27,8 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(animais);
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
-        public IActionResult GetById([FromRoute] int id)
+        [HttpGet("{id:int}")]
+        public IActionResult ObterPorId([FromRoute] int id)
         {
             var animal = _animalService.ObterPorId(id);
 
@@ -40,9 +39,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] AnimalDto animalDto)
+        public IActionResult Salvar([FromBody] AnimalDto animalDto)
         {
-            var response = this._animalService.SalvarAnimal(animalDto);
+            var response = this._animalService.Salvar(animalDto);
 
             if (response.Errors != null)
                 return BadRequest(response.Errors);
@@ -50,11 +49,10 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(response.Data);
         }
 
-        [HttpDelete]
-        [Route("{id}")]
-        public IActionResult Cancel(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Cancelar(int id)
         {
-            var response = _animalService.CancelarAnimal(id);
+            var response = _animalService.Cancelar(id);
             return Ok(response);
         }
     }

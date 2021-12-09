@@ -4,11 +4,11 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
 {
     public interface IRebanhoRepository
     {
-        List<Rebanho> ObterRebanhos();
-        List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual);
-        List<Rebanho> ObterRebanhosPorProdutor(string cpf);
-        Rebanho ObterRebanhosPorId(int id);
-        void Save(Rebanho rebanho); 
-        Rebanho ObterRebanhoPorPropriedadeEEspecie(string ie, int idEspecie);
+        List<Rebanho> ObterTodos();
+        List<Rebanho> ObterPorInscricaoPropriedade(string inscricaoEstadual);
+        List<Rebanho> ObterPorCpfProdutor(string cpf);
+        Rebanho ObterPorId(int id);
+        void Salvar(Rebanho rebanho); 
+        Rebanho ObterPorPropriedadeEEspecie(string ie, int idEspecie);
     }
 }

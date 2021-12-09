@@ -42,7 +42,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             if (registroVacina == null)
                 return Result<string>.Error(EStatusCode.NOT_FOUND, "");
 
-            Rebanho rebanho = _rebanhoRepository.ObterRebanhosPorId(registroVacina.Rebanho.IdRebanho);
+            Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacina.Rebanho.IdRebanho);
             List<Venda> venda = _vendaRepository.ObterVendaPorProdutor(rebanho.Propriedade.Produtor.CPF)
               .Where(x => x.PropriedadeOrigem.IdPropriedade == registroVacina.Rebanho.Propriedade.IdPropriedade).ToList();
 
@@ -63,7 +63,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             }
             registroVacina.Cancelar();
 
-            _rebanhoRepository.Save(rebanho);
+            _rebanhoRepository.Salvar(rebanho);
             _registroVacinaRepository.Save(registroVacina);
 
             return Result<string>.Success("");
@@ -71,7 +71,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<RegistroVacina> Incluir(RegistroVacinaDto registroVacinaDto)
         {
-            Rebanho rebanho = _rebanhoRepository.ObterRebanhosPorId(registroVacinaDto.IdRebanho);          
+            Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);          
 
             _registroVacinaValidator.IsValid(registroVacinaDto);
             _registroVacinaValidator.VerificarQuantidade(registroVacinaDto,rebanho);
@@ -91,7 +91,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);
             }
 
-            _rebanhoRepository.Save(rebanho);
+            _rebanhoRepository.Salvar(rebanho);
             _registroVacinaRepository.Save(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));          
 
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));

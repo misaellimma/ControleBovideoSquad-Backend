@@ -16,9 +16,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
-            var rebanhos = _rebanhoService.ObterRebanhos();
+            var rebanhos = _rebanhoService.ObterTodos();
 
             if (rebanhos == null)
                 return NotFound("Animais não encontrados");
@@ -26,11 +26,10 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(rebanhos);
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
-        public IActionResult GetById([FromRoute] int id)
+        [HttpGet("{id:int}")]
+        public IActionResult ObterPorId([FromRoute] int id)
         {
-            var rebanho = _rebanhoService.ObterRebanhoPorId(id);
+            var rebanho = _rebanhoService.ObterPorId(id);
 
             if (rebanho == null)
                 return NotFound("animais não encontrados");
@@ -39,9 +38,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] RebanhoDto rebanhoDto)
+        public IActionResult Salvar([FromBody] RebanhoDto rebanhoDto)
         {
-            var response = this._rebanhoService.SalvarRebanho(rebanhoDto);
+            var response = this._rebanhoService.Salvar(rebanhoDto);
 
             if (response.Errors != null)
                 return BadRequest(response.Errors);
@@ -50,9 +49,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{inscricaoEstadual}/Propriedade")]
-        public IActionResult GetByPropriedade(string inscricaoEstadual)
+        public IActionResult ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            var response = this._rebanhoService.ObterRebanhosPorPropriedade(inscricaoEstadual);
+            var response = this._rebanhoService.ObterPorInscricaoPropriedade(inscricaoEstadual);
 
             if (response == null) return NotFound();
 
@@ -60,9 +59,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{cpf}/Produtor")]
-        public IActionResult GetByProdutor(string cpf)
+        public IActionResult ObterPorCpfProdutor(string cpf)
         {
-            var response = this._rebanhoService.ObterRebanhosPorProdutor(cpf);
+            var response = this._rebanhoService.ObterPorCpfProdutor(cpf);
 
             if(response == null) return NotFound();
 

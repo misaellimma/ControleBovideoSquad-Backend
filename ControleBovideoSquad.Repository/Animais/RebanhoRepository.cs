@@ -13,18 +13,18 @@ namespace ControleBovideoSquad.Repository.Animais
             _unityOfWork = unityOfWork;
         }
 
-        public List<Rebanho> ObterRebanhos()
+        public List<Rebanho> ObterTodos()
         {
             return _unityOfWork.Query<Rebanho>().OrderBy(x => x.Propriedade.Nome).ToList();
         }
 
         // TODO: implementar quando a classe de Propriedade estiver pronta.
-        public List<Rebanho> ObterRebanhosPorPropriedade(string inscricaoEstadual)
+        public List<Rebanho> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
             return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.InscricaoEstadual == inscricaoEstadual).ToList();
         }
 
-        public Rebanho ObterRebanhoPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
+        public Rebanho ObterPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
         {
             var rebanho = _unityOfWork.Query<Rebanho>().Where(
                 x => x.Propriedade.InscricaoEstadual == inscricaoEstadual && x.Especie.IdEspecie == idEspecie
@@ -33,17 +33,17 @@ namespace ControleBovideoSquad.Repository.Animais
             return rebanho;
         }
 
-        public List<Rebanho> ObterRebanhosPorProdutor(string cpf)
+        public List<Rebanho> ObterPorCpfProdutor(string cpf)
         {
             return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.Produtor.CPF == cpf).ToList();
         }
 
-        public Rebanho ObterRebanhosPorId(int id)
+        public Rebanho ObterPorId(int id)
         {
             return _unityOfWork.Query<Rebanho>().FirstOrDefault(x => x.IdRebanho == id);
         }
 
-        public void Save(Rebanho rebanho)
+        public void Salvar(Rebanho rebanho)
         {
             this._unityOfWork.SaveOrUpdate(rebanho);
         }
