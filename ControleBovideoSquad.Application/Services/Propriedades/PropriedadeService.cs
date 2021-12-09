@@ -68,6 +68,17 @@ namespace ControleBovideoSquad.Application.Services
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
         }
 
+        public Result<bool> ValidaPorInscricaoEstadual(string InscricaoEstadual)
+        {
+            if (!Validacao.ValidarInscricaoEstadual(InscricaoEstadual))
+                return Result<bool>.Error(EStatusCode.NOT_FOUND, "Inscrição Estadual inválida!");
+
+            if (propriedadeRepository.ValidaPorInscricaoEstadual(InscricaoEstadual))
+                return Result<bool>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!");
+            else
+                return Result<bool>.Success(true);
+        }
+
         public List<PropriedadeDto> ObterPorIdProdutor(int Id)
         {
             var result = propriedadeMapper.MapearEntidadeParaDto(propriedadeRepository.ObterPorIdProdutor(Id));
