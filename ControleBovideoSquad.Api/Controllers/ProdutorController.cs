@@ -38,39 +38,16 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var produtor = produtorService.ObterProdutorPorCpf(cpf);
 
-            if (produtor.StatusCode == EStatusCode.NOT_FOUND 
-                && produtor.Errors.FirstOrDefault().Length == 0)
-            {
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o CPF na base de dados!"));
-            }
-
-            if (produtor.StatusCode == EStatusCode.NOT_FOUND
-                && produtor.Errors.FirstOrDefault().Length > 0)
-            {
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, produtor.Errors));
-            }
-
-            return StatusCode((int)produtor.StatusCode, produtor.Data);
-        }
-
-        [HttpGet("validacpf/{cpf}")]
-        public IActionResult ValidaCpf(string cpf)
-        {
-            var produtor = produtorService.ObterProdutorPorCpf(cpf);
-
-            if (produtor.Data != null)
-                return StatusCode((int)produtor.StatusCode, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF já cadastrado!"));
-
-            return StatusCode((int)produtor.StatusCode, produtor.Data);
+            return StatusCode(
+                (int)produtor.StatusCode, 
+                produtor.Data != null ? produtor.Data : produtor.Errors
+                );
         }
 
         [HttpPost]
         public ActionResult Post([FromBody] ProdutorDto produtorDto)
         {
-            if(produtorDto == null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
-
-            var produtor = produtorService.CriarProdutor(produtorDto);
+            var produtor = produtorService.Incluir(produtorDto);
             
             if(produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
@@ -84,7 +61,7 @@ namespace ControleBovideoSquad.Api.Controllers
             if (produtorDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
-            var produtor = produtorService.AlterarProdutor(id, produtorDto);
+            var produtor = produtorService.Alterar(id, produtorDto);
 
             if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
