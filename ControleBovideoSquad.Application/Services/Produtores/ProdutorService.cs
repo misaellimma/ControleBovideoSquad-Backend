@@ -18,23 +18,13 @@ namespace ControleBovideoSquad.Application.Services.Produtores
             this.produtorMapper = produtorMapper;
         }
 
-        public Result<bool> Alterar(int id, ProdutorDto produtor)
+        public Result<bool> Alterar(ProdutorDto produtor)
         {
-            var produtorBD = produtorRepository.ObterProdutorPorId(id);
+            var produtorBD = produtorRepository.ObterProdutorPorId(produtor.IdProdutor);
             produtor.CPF = Formatar.FormatarString(produtor.CPF);
             produtorBD.AtualizarProdutor(produtor);           
             produtorRepository.Salvar(produtorBD);
             return Result<bool>.Success(true);
-        }
-
-        public Result<bool> AlterarProdutor(int id, ProdutorDto produtor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Result<ProdutorDto> CriarProdutor(ProdutorDto produtor)
-        {
-            throw new NotImplementedException();
         }
 
         public Result<ProdutorDto> Incluir(ProdutorDto produtorDto)
@@ -56,9 +46,6 @@ namespace ControleBovideoSquad.Application.Services.Produtores
 
         public Result<ProdutorDto> ObterProdutorPorCpf(string cpf)
         {
-            if (cpf == null)
-                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF vazio!");
-
             if (!Validacao.ValidaCpf(cpf))
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF invalido!");
 
@@ -67,7 +54,7 @@ namespace ControleBovideoSquad.Application.Services.Produtores
             var produtor = produtorRepository.ObterProdutorPorCpf(cpf);
 
             if (produtor == null)
-                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "");
+                return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o CPF na base de dados!");
             
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
