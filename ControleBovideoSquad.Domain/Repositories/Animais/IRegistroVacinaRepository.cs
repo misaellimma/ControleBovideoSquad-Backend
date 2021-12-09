@@ -9,7 +9,7 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
 {
     public interface IRegistroVacinaRepository
     {
-        void Save(RegistroVacina registroVacina);
+        void Salvar(RegistroVacina registroVacina);
         RegistroVacina? Obter(int id);
         List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual);        
     }

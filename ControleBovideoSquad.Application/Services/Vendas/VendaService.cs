@@ -71,7 +71,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
                 rebanhoNoDestino.AdicionarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
                 _rebanhoRepository.Salvar(rebanhoNoDestino);
         
-            _vendaRepository.Save(venda);
+            _vendaRepository.Salvar(venda);
 
             return Result<Venda>.Success(venda);
         }
@@ -95,7 +95,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             rebanhoNoDestino.DebitarNoRebanho(venda.Quantidade, venda.Quantidade);
             _rebanhoRepository.Salvar(rebanhoNaOrigem);
 
-            _vendaRepository.Save(venda);
+            _vendaRepository.Salvar(venda);
             return "venda cancelada";
         }
 

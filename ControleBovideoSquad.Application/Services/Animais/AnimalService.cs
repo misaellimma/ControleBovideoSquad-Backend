@@ -123,7 +123,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
         {
             List<string> errors = new List<string>();
 
-            TipoDeEntrada tipoDeEntrada = this._tipoDeEntradaRepository.ObterTipoDeEntradaPorId(animalDto.IdTipoDeEntrada);
+            TipoDeEntrada tipoDeEntrada = this._tipoDeEntradaRepository.ObterPorId(animalDto.IdTipoDeEntrada);
             Especie especie = this._especieRepository.ObterPorId(animalDto.IdEspecie);
             Propriedade propriedade = this._propriedadeRepository.ObterPorId(animalDto.IdPropriedade);
 

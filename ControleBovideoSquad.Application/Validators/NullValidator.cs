@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleBovideoSquad.Application.Validators
 {
-    public class NullValidator<T> : IValidator<T>
+    public class NullValidator<T> :  IValidator<T>
     {
         public NullValidator(){
             errors = new List<string>();

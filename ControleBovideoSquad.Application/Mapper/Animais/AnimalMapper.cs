@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
         public Animal MapearDtoParaEntidade(AnimalDto source)
         {
             Especie Especie = _especieRepository.ObterPorId(source.IdEspecie);
-            TipoDeEntrada TipoDeEntrada = _tipoDeEntradaRepository.ObterTipoDeEntradaPorId(source.IdTipoDeEntrada);
+            TipoDeEntrada TipoDeEntrada = _tipoDeEntradaRepository.ObterPorId(source.IdTipoDeEntrada);
             Propriedade Propriedade = _propriedadeRepository.ObterPorId(source.IdPropriedade);
             return new Animal(source.IdAnimal, source.QuantidadeTotal, source.QuantidadeVacinada, Especie,
                 Propriedade, TipoDeEntrada, source.DataDeEntrada);

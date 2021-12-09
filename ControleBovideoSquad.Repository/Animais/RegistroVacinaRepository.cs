@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Repository.Animais
             return _unityOfWork.Query<RegistroVacina>().Where(x => x.Rebanho.Propriedade.InscricaoEstadual == inscricaoEstadual && x.Ativo == true).ToList();
         }
 
-        public void Save(RegistroVacina registroVacina)
+        public void Salvar(RegistroVacina registroVacina)
         {
             _unityOfWork.SaveOrUpdate(registroVacina);
         }

@@ -16,7 +16,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
             var tiposDeEntrada = this._tipoDeEntradaService.ObterTodos();
             
@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public IActionResult GetById(int id)
+        public IActionResult ObterPorId(int id)
         {
             var tipoDeEntrada = this._tipoDeEntradaService.ObterPorId(id);
 

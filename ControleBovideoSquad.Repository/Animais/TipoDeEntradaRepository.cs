@@ -16,16 +16,14 @@ namespace ControleBovideoSquad.Repository.Animais
         {
             this._unityOfWork = unityOfWork;
         }
-        public TipoDeEntrada ObterTipoDeEntradaPorId(int id)
+        public TipoDeEntrada ObterPorId(int id)
         {
-#pragma warning disable CS8603 // Possible null reference return.
             return this._unityOfWork
                 .Query<TipoDeEntrada>()
                 .SingleOrDefault(x => x.IdTipoDeEntrada == id);
-#pragma warning restore CS8603 // Possible null reference return.
         }
 
-        public List<TipoDeEntrada> ObterTipos()
+        public List<TipoDeEntrada> ObterTodos()
         {
             return this._unityOfWork
                 .Query<TipoDeEntrada>()

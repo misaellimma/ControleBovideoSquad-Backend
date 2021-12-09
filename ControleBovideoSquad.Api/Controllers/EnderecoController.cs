@@ -24,15 +24,15 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        public IActionResult ObterPorID(int id)
         {
-            return Ok(_enderecoService.Obter(id));
+            return Ok(_enderecoService.ObterPorID(id));
         }
 
         [HttpPost]
-        public IActionResult IncluirEndereco([FromBody]EnderecoDto Endereco)
+        public IActionResult Incluir([FromBody]EnderecoDto Endereco)
         {
-            var result =  _enderecoService.Save(Endereco);
+            var result =  _enderecoService.Salvar(Endereco);
 
             if(result.Errors != null)
             {

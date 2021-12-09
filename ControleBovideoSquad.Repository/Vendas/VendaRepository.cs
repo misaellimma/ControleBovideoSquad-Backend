@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Repository.Vendas
             return _unityOfWork.Query<Venda>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeOrigem.Nome).ToList();    
         }
 
-        public void Save(Venda venda) 
+        public void Salvar(Venda venda) 
         {
             _unityOfWork.SaveOrUpdate(venda);
         }

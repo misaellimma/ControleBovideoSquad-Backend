@@ -16,7 +16,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
             var municipios = municipioService.ObterTodos();
 
@@ -24,7 +24,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult ObterPorID(int id)
         {
             var municipio = municipioService.ObterPorId(id);
 

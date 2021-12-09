@@ -15,7 +15,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
             var vacinas = vacinaService.ObterTodos();
 
@@ -23,7 +23,7 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult ObterPorID(int id)
         {
             var vacina = vacinaService.ObterPorId(id);
 
