@@ -27,6 +27,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return Ok();
         }
+
         [HttpPost]
         public IActionResult Incluir(RegistroVacinaDto registroVacina)
         {
@@ -37,6 +38,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
             return Ok();
         }
+
         [HttpGet("{inscricaoEstadual}")]
         public IActionResult ObterPorPropriedade(string inscricaoEstadual)
         {

@@ -26,8 +26,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(tiposDeEntrada);
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
             var tipoDeEntrada = this._tipoDeEntradaService.ObterPorId(id);

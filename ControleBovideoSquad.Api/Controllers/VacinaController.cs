@@ -28,7 +28,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var vacina = vacinaService.ObterPorId(id);
 
             if (vacina == null)
-                return NotFound("Vacina não encontrado!");
+                return NotFound("Vacina não encontrada!");
 
             return Ok(vacina);
         }
