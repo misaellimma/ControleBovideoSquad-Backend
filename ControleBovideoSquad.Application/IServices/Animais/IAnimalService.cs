@@ -11,6 +11,6 @@ namespace ControleBovideoSquad.Application.IServices.Animais
         List<Animal> ObterPorCpfProdutor(string cpf);
         List<Animal> ObterPorInscricaoPropriedade(string inscricaoEstadual);
         Result<Animal> Salvar(AnimalDto animal);
-        string Cancelar(int id);
+        Result<string> Cancelar(int id);
     }
 }

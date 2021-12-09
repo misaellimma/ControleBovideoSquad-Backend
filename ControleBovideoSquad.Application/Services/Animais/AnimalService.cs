@@ -82,14 +82,14 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return Result<Animal>.Success(animal);
         }
 
-        public string Cancelar(int id)
+        public Result<string> Cancelar(int id)
         {
             Animal animal = _animalRepository.ObterPorId(id);
             Rebanho rebanho = _rebanhoRepository.ObterPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual,
                     animal.EspecieAnimal.IdEspecie);
 
             if (animal == null)
-                return "animal nao encontrado";
+                return Result<string>.Error(EStatusCode.NOT_FOUND, "animal não encontrado");
 
             if (rebanho.QuantidadeTotal < animal.QuantidadeTotal)
             {
@@ -116,7 +116,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
             animal.Cancelar();
             _animalRepository.Salvar(animal);
-            return "animal cancelado";
+            return Result<string>.Success(""); // devolver o objeto depois de cancelado?
         }
 
         public List<string> ValidarAnimal(AnimalDto animalDto)

@@ -12,18 +12,18 @@ namespace ControleBovideoSquad.Repository.Vendas
         {
             _unityOfWork = unityOfWork;
         }
-        public Venda ObterVendaPorId(int id)
+        public Venda ObterPorId(int id)
         {
             return _unityOfWork
                 .Query<Venda>().FirstOrDefault(x => x.IdVenda == id);
         }
 
-        public List<Venda> ObterVendaPorProdutor(string cpf)
+        public List<Venda> ObterPorCpfProdutor(string cpf)
         {
             return _unityOfWork.Query<Venda>().Where(x => x.PropriedadeOrigem.Produtor.CPF == cpf && x.Ativo == true).OrderBy(x => x.PropriedadeOrigem.Nome).ToList();
         }
 
-        public List<Venda> ObterVendas()
+        public List<Venda> ObterTodos()
         {
             return _unityOfWork.Query<Venda>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeOrigem.Nome).ToList();    
         }
@@ -33,9 +33,5 @@ namespace ControleBovideoSquad.Repository.Vendas
             _unityOfWork.SaveOrUpdate(venda);
         }
 
-        public void Cancel(Venda venda)
-        {
-            
-        }
     }
 }

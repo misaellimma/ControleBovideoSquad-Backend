@@ -26,9 +26,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Incluir(RegistroVacinaDto registroVacina)
+        public IActionResult Salvar(RegistroVacinaDto registroVacina)
         {
-            var response = _registroVacinaService.Incluir(registroVacina);
+            var response = _registroVacinaService.Salvar(registroVacina);
 
             if (response.Errors != null)
                 return BadRequest(response.Errors);
@@ -37,9 +37,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{inscricaoEstadual}")]
-        public IActionResult ObterPorPropriedade(string inscricaoEstadual)
+        public IActionResult ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            return Ok(_registroVacinaService.ObterPorPropriedade(inscricaoEstadual));
+            return Ok(_registroVacinaService.ObterPorInscricaoPropriedade(inscricaoEstadual));
         }
     }
 }

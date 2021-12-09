@@ -13,12 +13,12 @@ namespace ControleBovideoSquad.Repository.Vacinacao
             _unityOfWork = unityOfWork;
         }
 
-        public RegistroVacina? Obter(int id)
+        public RegistroVacina? ObterPorId(int id)
         {
             return _unityOfWork.Query<RegistroVacina>().FirstOrDefault(x => x.IdRegistroVacina == id);
         }
 
-        public List<RegistroVacina> ObterPorPropriedade(string inscricaoEstadual)
+        public List<RegistroVacina> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {            
             return _unityOfWork.Query<RegistroVacina>().Where(x => x.Rebanho.Propriedade.InscricaoEstadual == inscricaoEstadual && x.Ativo == true).ToList();
         }

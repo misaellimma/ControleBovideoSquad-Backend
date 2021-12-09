@@ -33,22 +33,22 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             _vendaMapper = vendaMapper;
         }
 
-        public Venda ObterVendaPorId(int id)
+        public Venda ObterPorId(int id)
         {
-            return _vendaRepository.ObterVendaPorId(id);
+            return _vendaRepository.ObterPorId(id);
         }
 
-        public List<Venda> ObterVendaPorProdutor(string cpf)
+        public List<Venda> ObterPorCpfProdutor(string cpf)
         {
-            return _vendaRepository.ObterVendaPorProdutor(cpf);
+            return _vendaRepository.ObterPorCpfProdutor(cpf);
         }
 
-        public List<Venda> ObterVendas()
+        public List<Venda> ObterTodos()
         {
-            return _vendaRepository.ObterVendas();
+            return _vendaRepository.ObterTodos();
         }
 
-        public Result<Venda> SalvarVenda(VendaDto vendaDto)
+        public Result<Venda> Salvar(VendaDto vendaDto)
         {
             var response = ValidarVenda(vendaDto);
 
@@ -76,14 +76,12 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             return Result<Venda>.Success(venda);
         }
 
-        public string CancelarVenda(int id)
+        public Result<string> Cancelar(int id)
         {
-            Venda venda = _vendaRepository.ObterVendaPorId(id);
+            Venda venda = _vendaRepository.ObterPorId(id);
 
-            if (venda == null)
-                return "venda nao encontrada";
-            if (venda.Ativo == false)
-                return "essa venda ja esta inativa";
+            if (venda == null || venda.Ativo == false)
+                return Result<string>.Error(EStatusCode.NOT_FOUND, "venda nao encontrada");
             
             venda.CancelarVenda();
             // Creditar de volta na propriedade de origem
@@ -96,7 +94,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             _rebanhoRepository.Salvar(rebanhoNaOrigem);
 
             _vendaRepository.Salvar(venda);
-            return "venda cancelada";
+            return Result<string>.Success("");
         }
 
         public List<string> ValidarVenda(VendaDto vendaDto)

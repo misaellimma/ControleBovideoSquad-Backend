@@ -37,13 +37,13 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<string> Cancelar(int id)
         {
-            RegistroVacina? registroVacina= _registroVacinaRepository.Obter(id);
+            RegistroVacina? registroVacina= _registroVacinaRepository.ObterPorId(id);
 
             if (registroVacina == null)
                 return Result<string>.Error(EStatusCode.NOT_FOUND, "");
 
             Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacina.Rebanho.IdRebanho);
-            List<Venda> venda = _vendaRepository.ObterVendaPorProdutor(rebanho.Propriedade.Produtor.CPF)
+            List<Venda> venda = _vendaRepository.ObterPorCpfProdutor(rebanho.Propriedade.Produtor.CPF)
               .Where(x => x.PropriedadeOrigem.IdPropriedade == registroVacina.Rebanho.Propriedade.IdPropriedade).ToList();
 
             if (venda.Count != 0)
@@ -69,7 +69,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return Result<string>.Success("");
         }
 
-        public Result<RegistroVacina> Incluir(RegistroVacinaDto registroVacinaDto)
+        public Result<RegistroVacina> Salvar(RegistroVacinaDto registroVacinaDto)
         {
             Rebanho rebanho = _rebanhoRepository.ObterPorId(registroVacinaDto.IdRebanho);          
 
@@ -97,9 +97,9 @@ namespace ControleBovideoSquad.Application.Services.Animais
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }
 
-        public List<RegistroVacinaDto> ObterPorPropriedade(string inscricaoEstadual)
+        public List<RegistroVacinaDto> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            var registros = _registroVacinaRepository.ObterPorPropriedade(inscricaoEstadual);
+            var registros = _registroVacinaRepository.ObterPorInscricaoPropriedade(inscricaoEstadual);
             var result = _registroMapper.MapearListaParaEntidadeDto(registros);
 
             return result;

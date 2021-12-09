@@ -4,10 +4,9 @@ namespace ControleBovideoSquad.Domain.Repositories.Vendas
 {
     public interface IVendaRepository
     {
-        List<Venda> ObterVendas();
-        Venda ObterVendaPorId(int id);
-        List<Venda> ObterVendaPorProdutor(string cpf);
+        List<Venda> ObterTodos();
+        Venda ObterPorId(int id);
+        List<Venda> ObterPorCpfProdutor(string cpf);
         void Salvar(Venda Venda);
-        void Cancel(Venda venda);
     }
 }

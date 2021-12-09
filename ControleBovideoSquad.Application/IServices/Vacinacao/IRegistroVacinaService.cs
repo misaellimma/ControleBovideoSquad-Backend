@@ -7,7 +7,7 @@ namespace ControleBovideoSquad.Application.IServices.Vacinacao
     public interface IRegistroVacinaService
     {
         Result<string> Cancelar(int id);
-        Result<RegistroVacina> Incluir(RegistroVacinaDto registroVacina);
-        List<RegistroVacinaDto> ObterPorPropriedade(string inscricaoEstadual); 
+        Result<RegistroVacina> Salvar(RegistroVacinaDto registroVacina);
+        List<RegistroVacinaDto> ObterPorInscricaoPropriedade(string inscricaoEstadual); 
     }
 }

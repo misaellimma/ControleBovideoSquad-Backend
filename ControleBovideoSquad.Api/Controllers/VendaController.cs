@@ -17,9 +17,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult ObterTodos()
         {
-            var vendas = _vendaService.ObterVendas();
+            var vendas = _vendaService.ObterTodos();
 
             if (vendas == null)
                 return NotFound("as vendas não foram encontradas");
@@ -28,9 +28,9 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        public IActionResult ObterPorId(int id)
         {
-            var venda = _vendaService.ObterVendaPorId(id);
+            var venda = _vendaService.ObterPorId(id);
 
             if (venda == null)
                 return NotFound("as vendas não foram encontradas");
@@ -39,10 +39,10 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpGet("produtor/{cpfComMascara}")]
-        public IActionResult GetByProdutor(string cpfComMascara)
+        public IActionResult ObterPorCpfProdutor(string cpfComMascara)
         {
             var cpf = Formatar.FormatarString(cpfComMascara);
-            var venda = _vendaService.ObterVendaPorProdutor(cpf);
+            var venda = _vendaService.ObterPorCpfProdutor(cpf);
 
             if (venda == null)
                 return NotFound("as vendas não foram encontradas");
@@ -51,21 +51,25 @@ namespace ControleBovideoSquad.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] VendaDto vendaDto)
+        public IActionResult Salvar([FromBody] VendaDto vendaDto)
         {
-            var response = _vendaService.SalvarVenda(vendaDto);
+            var response = _vendaService.Salvar(vendaDto);
 
             if (response.Errors != null)
-                return BadRequest(response.Errors);
+                return StatusCode((int) response.StatusCode, response.Errors);
 
-            return Ok(response);
+            return Ok(response.Data);
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult Cancel(int id)
+        public IActionResult Cancelar(int id)
         {
-            var response = _vendaService.CancelarVenda(id);
-            return Ok(response);
+            var response = _vendaService.Cancelar(id);
+
+            if (response.Errors != null) 
+                return StatusCode((int) response.StatusCode, response.Errors);
+
+            return Ok(response.Data);
         }
     }
 }
