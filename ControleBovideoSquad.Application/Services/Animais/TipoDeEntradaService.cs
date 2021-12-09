@@ -15,13 +15,13 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public List<TipoDeEntrada> ObterTodos()
         {
-            var tiposDeEntrada = this._tipoDeEntradaRepository.ObterTipos();
+            var tiposDeEntrada = this._tipoDeEntradaRepository.ObterTodos();
             return tiposDeEntrada;
         }
 
         public TipoDeEntrada ObterPorId(int id)
         {
-            var tipoDeEntrada = this._tipoDeEntradaRepository.ObterTipoDeEntradaPorId(id);
+            var tipoDeEntrada = this._tipoDeEntradaRepository.ObterPorId(id);
             return tipoDeEntrada;
         }
     }

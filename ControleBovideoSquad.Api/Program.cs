@@ -1,4 +1,4 @@
-using ControleBovideoSquad.Application.IServices;
+using ControleBovideoSquad.Application.IServices.Produtores;
 using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.Application.Services;
@@ -28,8 +28,8 @@ using ControleBovideoSquad.Application.Mapper.Vendas;
 using ControleBovideoSquad.Application.Validators.Vacinacao;
 using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
 using ControleBovideoSquad.Application.IServices.Vacinacao;
-using ControleBovideoSquad.Application.IServices.Produtores;
 using ControleBovideoSquad.Application.IServices.Propriedades;
+using ControleBovideoSquad.Application.Services.Produtores;
 
 var builder = WebApplication.CreateBuilder(args);
 

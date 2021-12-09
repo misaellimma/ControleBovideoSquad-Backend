@@ -48,7 +48,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(response.Data);
         }
 
-        [HttpGet("{inscricaoEstadual}/Propriedade")]
+        [HttpGet("Propriedade/{inscricaoEstadual}")]
         public IActionResult ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
             var response = this._rebanhoService.ObterPorInscricaoPropriedade(inscricaoEstadual);
@@ -58,7 +58,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{cpf}/Produtor")]
+        [HttpGet("Produtor/{cpf}")]
         public IActionResult ObterPorCpfProdutor(string cpf)
         {
             var response = this._rebanhoService.ObterPorCpfProdutor(cpf);

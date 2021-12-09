@@ -9,7 +9,7 @@ namespace ControleBovideoSquad.Domain.Repositories.Animais
 {
     public interface ITipoDeEntradaRepository
     {
-        TipoDeEntrada ObterTipoDeEntradaPorId(int id);
-        List<TipoDeEntrada> ObterTipos();
+        TipoDeEntrada ObterPorId(int id);
+        List<TipoDeEntrada> ObterTodos();
     }
 }

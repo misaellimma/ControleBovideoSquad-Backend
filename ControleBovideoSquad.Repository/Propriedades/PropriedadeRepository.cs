@@ -13,7 +13,7 @@ namespace ControleBovideoSquad.Repository.Propriedades
             this.unityOfWork = unityOfWork;
         }
 
-        public void CriarOuAlterar(Propriedade produtor)
+        public void Salvar(Propriedade produtor)
         {
             unityOfWork.SaveOrUpdate(produtor);
         }

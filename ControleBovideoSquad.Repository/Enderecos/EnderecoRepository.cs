@@ -13,17 +13,17 @@ namespace ControleBovideoSquad.Repository.Enderecos
             this.unityOfWork = unityOfWork;
         }
 
-        public void Save(Endereco endereco)
+        public void Salvar(Endereco endereco)
         {
             this.unityOfWork.SaveOrUpdate(endereco);
         }
 
-        public Endereco ObterEnderecoPorID(int id)
+        public Endereco ObterPorID(int id)
         {
             return this.unityOfWork.Query<Endereco>().FirstOrDefault(x => x.IdEndereco == id);
         }
 
-        public List<Endereco> ObterEnderecos()
+        public List<Endereco> ObterTodos()
         {
             return this.unityOfWork.Query<Endereco>().ToList();
         }

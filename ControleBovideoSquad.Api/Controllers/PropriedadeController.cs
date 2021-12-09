@@ -50,7 +50,7 @@ namespace ControleBovideoSquad.Api.Controllers
             return StatusCode((int)propriedade.StatusCode, propriedade.Data);
         }
 
-        [HttpGet("{Id}/Produtor")]
+        [HttpGet("Produtor/{Id}")]
         public IActionResult ObterPorIdProdutor(int id)
         {
             var result = propriedadeService.ObterPorIdProdutor(id);
@@ -85,7 +85,7 @@ namespace ControleBovideoSquad.Api.Controllers
             if (propriedadeDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
 
-            var produtor = propriedadeService.Criar(propriedadeDto);
+            var produtor = propriedadeService.Incluir(propriedadeDto);
 
             if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);

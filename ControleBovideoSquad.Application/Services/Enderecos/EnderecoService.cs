@@ -24,24 +24,24 @@ namespace ControleBovideoSquad.Application.Services.Enderecos
             this.enderecoValidator = enderecoValidator;
         }
 
-        public Endereco Obter(int id)
+        public Endereco ObterPorID(int id)
         {
-            return this._enderecoRepository.ObterEnderecoPorID(id);
+            return this._enderecoRepository.ObterPorID(id);
         }
 
         public List<Endereco> ObterTodos()
         {
-            return this._enderecoRepository.ObterEnderecos();
+            return this._enderecoRepository.ObterTodos();
         }
 
-        public Result<Endereco> Save(EnderecoDto enderecoDto)
+        public Result<Endereco> Salvar(EnderecoDto enderecoDto)
         {
             var validator = enderecoValidator.IsValid(enderecoDto);
 
             if(validator.Count > 0)
                 return Result<Endereco>.Error(EStatusCode.BAD_REQUEST, validator);
 
-            _enderecoRepository.Save(_enderecoMapper.MapearDtoParaEntidade(enderecoDto));
+            _enderecoRepository.Salvar(_enderecoMapper.MapearDtoParaEntidade(enderecoDto));
             return Result<Endereco>.Success(_enderecoMapper.MapearDtoParaEntidade(enderecoDto));
 
         }

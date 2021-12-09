@@ -8,6 +8,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Propriedades
         List<Propriedade> ObterPorIdProdutor(int id);
         Propriedade ObterPorInscricaoEstadual(string InscricaoEstadual);
         Propriedade ObterPorId(int id);
-        void CriarOuAlterar(Propriedade produtor);
+        void Salvar(Propriedade produtor);
     }
 }

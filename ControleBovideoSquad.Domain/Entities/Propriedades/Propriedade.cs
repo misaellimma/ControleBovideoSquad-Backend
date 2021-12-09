@@ -1,3 +1,4 @@
+using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Entities.Produtores;
 
@@ -22,6 +23,13 @@ namespace ControleBovideoSquad.Domain.Entities.Propriedades
             Nome = nome;
             Endereco = endereco;
             Produtor = produtor;
+        }
+
+        public virtual void AlterarPropriedade(PropriedadeDto propriedadeDto)
+        {
+            Nome = propriedadeDto.Nome;
+            Endereco.AtualizarEndereco(propriedadeDto);
+            Produtor = new Produtor(propriedadeDto.IdProdutor);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ControleBovideoSquad.Repository.Produtores
             this.unityOfWork = unityOfWork;
         }
 
-        public void CriarOuAlterarProdutor(Produtor produtor)
+        public void Salvar(Produtor produtor)
         {
             unityOfWork.SaveOrUpdate(produtor);
         }
@@ -37,6 +37,11 @@ namespace ControleBovideoSquad.Repository.Produtores
             return unityOfWork
                 .Query<Produtor>()
                 .ToList();
+        }
+
+        public void CriarOuAlterarProdutor(Produtor produtor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

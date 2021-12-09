@@ -64,7 +64,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             registroVacina.Cancelar();
 
             _rebanhoRepository.Salvar(rebanho);
-            _registroVacinaRepository.Save(registroVacina);
+            _registroVacinaRepository.Salvar(registroVacina);
 
             return Result<string>.Success("");
         }
@@ -92,7 +92,7 @@ namespace ControleBovideoSquad.Application.Services.Animais
             }
 
             _rebanhoRepository.Salvar(rebanho);
-            _registroVacinaRepository.Save(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));          
+            _registroVacinaRepository.Salvar(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));          
 
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }

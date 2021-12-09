@@ -19,14 +19,16 @@ namespace ControleBovideoSquad.Application.Services
             this.propriedadeMapper = propriedadeMapper;
         }
 
-        public Result<PropriedadeDto> Alterar(PropriedadeDto propriedadeDto)
+        public Result<bool> Alterar(PropriedadeDto propriedadeDto)
         {
+            var propriedadeDB = propriedadeRepository.ObterPorId(propriedadeDto.IdPropriedade);
             propriedadeDto.InscricaoEstadual = Formatar.FormatarString(propriedadeDto.InscricaoEstadual);
-            propriedadeRepository.CriarOuAlterar(propriedadeMapper.MapearDtoParaEntidade(propriedadeDto));
-            return Result<PropriedadeDto>.Success(propriedadeDto);
+            propriedadeDB.AlterarPropriedade(propriedadeDto);
+            propriedadeRepository.Salvar(propriedadeDB);
+            return Result<bool>.Success(true);
         }
 
-        public Result<PropriedadeDto> Criar(PropriedadeDto propriedadeDto)
+        public Result<PropriedadeDto> Incluir(PropriedadeDto propriedadeDto)
         {
             if (!Validacao.ValidarInscricaoEstadual(propriedadeDto.InscricaoEstadual))
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual invalida!");
@@ -37,13 +39,8 @@ namespace ControleBovideoSquad.Application.Services
             if (propriedadeInscricao != null)
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!");
 
-            //var enderecoDto = new EnderecoDto(0, propriedadeDto.Rua, propriedadeDto.Numero, propriedadeDto.IdMunicipio);
-            //var endereco = enderecoMapper.MapearDtoParaEntidade(enderecoDto);
-            //enderecoRepository.Save(endereco);
-
-            //propriedadeDto.IdEndereco = endereco.IdEndereco;
             var propriedade = propriedadeMapper.MapearDtoParaEntidade(propriedadeDto);
-            propriedadeRepository.CriarOuAlterar(propriedade);
+            propriedadeRepository.Salvar(propriedade);
 
             return Result<PropriedadeDto>.Success(propriedadeDto);
         }

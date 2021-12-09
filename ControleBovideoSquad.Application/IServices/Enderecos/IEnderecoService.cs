@@ -6,8 +6,8 @@ namespace ControleBovideoSquad.Application.IServices.Enderecos
 {
     public interface IEnderecoService
     {
-        Result<Endereco> Save(EnderecoDto endereco);
+        Result<Endereco> Salvar(EnderecoDto endereco);
         List<Endereco> ObterTodos();
-        Endereco Obter(int id);
+        Endereco ObterPorID(int id);
     }
 }
