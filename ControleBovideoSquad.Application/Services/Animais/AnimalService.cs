@@ -74,8 +74,10 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 this._rebanhoRepository.Salvar(new Rebanho(0, animalDto.QuantidadeTotal, animalDto.QuantidadeVacinada,
                     animalDto.QuantidadeVacinada, animal.EspecieAnimal, animal.PropriedadeAnimal));
             else
+            {
                 rebanhoAtual.AdicionarNoRebanho(animal.QuantidadeTotal, animal.QuantidadeVacinada);
-            this._rebanhoRepository.Salvar(rebanhoAtual);
+                this._rebanhoRepository.Salvar(rebanhoAtual);
+            }
 
             this._animalRepository.Salvar(animal);
 
