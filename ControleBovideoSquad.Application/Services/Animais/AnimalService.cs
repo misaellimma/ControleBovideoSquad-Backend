@@ -1,12 +1,12 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Animais;
 using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.CrossCutting.Dto.Animais;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
-using ControleBovideoSquad.CrossCutting.Enums;
 
 namespace ControleBovideoSquad.Application.Services.Animais
 {
@@ -17,20 +17,18 @@ namespace ControleBovideoSquad.Application.Services.Animais
         private readonly IEspecieRepository _especieRepository;
         private readonly IPropriedadeRepository _propriedadeRepository;
         private readonly IRebanhoRepository _rebanhoRepository;
-        private readonly IAnimalMapper _animalMapper;
-        private readonly IRebanhoMapper _rebanhoMapper;
+        private readonly IAnimalMapper _animalMapper;   
 
         public AnimalService(IAnimalRepository animalRepository, ITipoDeEntradaRepository tipoDeEntradaRepository,
             IEspecieRepository especieRepository, IAnimalMapper animalMapper, IPropriedadeRepository propriedadeRepository,
-            IRebanhoRepository rebanhoRepository, IRebanhoMapper rebanhoMapper)
+            IRebanhoRepository rebanhoRepository)
         {
-            this._animalRepository = animalRepository;
-            this._tipoDeEntradaRepository = tipoDeEntradaRepository;
-            this._especieRepository = especieRepository;
-            this._animalMapper = animalMapper;
-            this._propriedadeRepository = propriedadeRepository;
-            this._rebanhoRepository = rebanhoRepository;
-            this._rebanhoMapper = rebanhoMapper;
+            _animalRepository = animalRepository;
+            _tipoDeEntradaRepository = tipoDeEntradaRepository;
+            _especieRepository = especieRepository;
+            _animalMapper = animalMapper;
+            _propriedadeRepository = propriedadeRepository;
+            _rebanhoRepository = rebanhoRepository;            
         }
 
         public AnimalDto ObterPorId(int id)

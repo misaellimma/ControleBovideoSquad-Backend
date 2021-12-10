@@ -34,7 +34,7 @@
             {
                 return false;
             }
-            tempCpf = cpf.Substring(0, 9);
+            tempCpf = cpf[..9];
             soma = 0;
 
             for (int i = 0; i < 9; i++)
@@ -52,7 +52,7 @@
                 resto = 11 - resto;
             }
             digito = resto.ToString();
-            tempCpf = tempCpf + digito;
+            tempCpf += digito;
             soma = 0;
 
             for (int i = 0; i < 10; i++)
@@ -69,7 +69,7 @@
             {
                 resto = 11 - resto;
             }
-            digito = digito + resto.ToString();
+            digito += resto.ToString();
 
             return cpf.EndsWith(digito);
         }
@@ -102,11 +102,11 @@
             {
                 if ((("0123456789P".IndexOf(Inscricao_estadual.Substring((intPos - 1), 1), 0, System.StringComparison.OrdinalIgnoreCase) + 1) > 0))
                 {
-                    strOrigem = (strOrigem + Inscricao_estadual.Substring((intPos - 1), 1));
+                    strOrigem += Inscricao_estadual.Substring((intPos - 1), 1);
                 }
             }
 
-            strBase = (strOrigem.Trim() + "000000000").Substring(0, 9);
+            strBase = (strOrigem.Trim() + "000000000")[..9];
 
             int ie = int.Parse(strBase);
             if (ie >= 285000000)
@@ -116,13 +116,13 @@
                 for (intPos = 1; (intPos <= 8); intPos++)
                 {
                     intValor = int.Parse(strBase.Substring((intPos - 1), 1));
-                    intValor = (intValor * (10 - intPos));
-                    intSoma = (intSoma + intValor);
+                    intValor *= (10 - intPos);
+                    intSoma += intValor;
                 }
 
                 intResto = (intSoma % 11);
                 strDigito1 = ((intResto < 2) ? "0" : Convert.ToString((11 - intResto))).Substring((((intResto < 2) ? "0" : Convert.ToString((11 - intResto))).Length - 1));
-                strBase2 = (strBase.Substring(0, 8) + strDigito1);
+                strBase2 = (string.Concat(strBase.AsSpan(0, 8), strDigito1));
 
                 if ((strBase2 == strOrigem))
                 {

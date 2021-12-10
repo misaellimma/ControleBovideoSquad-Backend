@@ -11,6 +11,6 @@ namespace ControleBovideoSquad.Application.IServices.Propriedades
         Result<bool> ValidaPorInscricaoEstadual(string InscricaoEstadual);
         Result<PropriedadeDto> ObterPorId(int id);
         Result<bool> Alterar(PropriedadeDto propriedadeDto);
-        Result<PropriedadeDto> Incluir(PropriedadeDto propriedadeDto); 
+        Result<PropriedadeDto> Incluir(PropriedadeDto propriedadeDto);
     }
 }

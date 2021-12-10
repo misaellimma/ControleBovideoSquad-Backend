@@ -21,7 +21,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var response = _registroVacinaService.Cancelar(id);
 
             if (response.Errors != null)
-                return StatusCode((int)response.StatusCode,response.Errors);
+                return StatusCode((int)response.StatusCode, response.Errors);
 
             return Ok();
         }
@@ -32,7 +32,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var response = _registroVacinaService.Salvar(registroVacina);
 
             if (response.Errors != null)
-                return StatusCode((int)response.StatusCode,response.Errors);
+                return StatusCode((int)response.StatusCode, response.Errors);
 
             return StatusCode((int)response.StatusCode, response.Errors);
         }
@@ -44,7 +44,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
             if (result.Errors != null)
                 return StatusCode((int)result.StatusCode, result.Errors);
-            
+
             return StatusCode((int)result.StatusCode, result.Data);
         }
     }

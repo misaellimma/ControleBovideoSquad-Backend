@@ -1,5 +1,8 @@
-﻿using ControleBovideoSquad.Application.IServices.Vacinacao;
+﻿using ControleBovideoSquad.Application.IMapper.Vacinacao;
+using ControleBovideoSquad.Application.IServices.Vacinacao;
+using ControleBovideoSquad.Application.Validators.RegistroVacina;
 using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Entities.Vacinacao;
@@ -7,9 +10,6 @@ using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
-using ControleBovideoSquad.CrossCutting.Enums;
-using ControleBovideoSquad.Application.Validators.RegistroVacina;
-using ControleBovideoSquad.Application.IMapper.Vacinacao;
 
 namespace ControleBovideoSquad.Application.Services.Vacinacao
 {
@@ -52,11 +52,11 @@ namespace ControleBovideoSquad.Application.Services.Vacinacao
                     return Result<string>.Error(EStatusCode.BAD_REQUEST, "Existe uma venda posterior a esta vacina e ela não pode ser cancelada!");
             }
 
-            if (registroVacina.Vacina.IdVacina == 2)            
-                rebanho.DebitarAftosa(registroVacina.Quantidade);            
-            else if (registroVacina.Vacina.IdVacina == 1)            
-                rebanho.DebitarBrucelose(registroVacina.Quantidade); 
-            
+            if (registroVacina.Vacina.IdVacina == 2)
+                rebanho.DebitarAftosa(registroVacina.Quantidade);
+            else if (registroVacina.Vacina.IdVacina == 1)
+                rebanho.DebitarBrucelose(registroVacina.Quantidade);
+
             registroVacina.Cancelar();
 
             _rebanhoRepository.Salvar(rebanho);
@@ -77,10 +77,10 @@ namespace ControleBovideoSquad.Application.Services.Vacinacao
             if (validation.Any())
                 return Result<RegistroVacina>.Error(EStatusCode.BAD_REQUEST, validation);
 
-            if (registroVacinaDto.IdVacina == 2)            
-                rebanho.AdicionarAftosa(registroVacinaDto.Quantidade);            
-            else if (registroVacinaDto.IdVacina == 1)            
-                rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);            
+            if (registroVacinaDto.IdVacina == 2)
+                rebanho.AdicionarAftosa(registroVacinaDto.Quantidade);
+            else if (registroVacinaDto.IdVacina == 1)
+                rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);
 
             _rebanhoRepository.Salvar(rebanho);
             _registroVacinaRepository.Salvar(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));

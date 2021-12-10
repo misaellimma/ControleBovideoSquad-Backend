@@ -5,6 +5,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Vendas
     public interface IFinalidadeDeVendaRepository
     {
         List<FinalidadeDeVenda> ObterTodos();
-        FinalidadeDeVenda ObterPorId(int id);
+        FinalidadeDeVenda? ObterPorId(int id);
     }
 }

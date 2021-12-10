@@ -23,7 +23,7 @@ namespace ControleBovideoSquad.Repository.Util
             return _sessionFactory.OpenSession();
         }
 
-        private ISessionFactory BuildSessionFactory()
+        private static ISessionFactory BuildSessionFactory()
         {
             var configuration = new Configuration();
 

@@ -1,7 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Propriedades;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
 using ControleBovideoSquad.CrossCutting.Enums;
-using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers
@@ -42,7 +41,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var propriedade = propriedadeService.ObterPorInscricaoEstadual(inscricao);
 
             return StatusCode(
-                (int)propriedade.StatusCode, 
+                (int)propriedade.StatusCode,
                 propriedade.Data != null ? propriedade.Data : propriedade.Errors
                 );
         }
@@ -63,7 +62,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var propriedade = propriedadeService.ValidaPorInscricaoEstadual(inscricao);
 
             return StatusCode(
-                (int)propriedade.StatusCode, 
+                (int)propriedade.StatusCode,
                 propriedade.Errors != null ? propriedade.Errors : propriedade.Data
                 );
         }
