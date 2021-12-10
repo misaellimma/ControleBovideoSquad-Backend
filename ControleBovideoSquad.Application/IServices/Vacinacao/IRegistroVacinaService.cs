@@ -8,6 +8,6 @@ namespace ControleBovideoSquad.Application.IServices.Vacinacao
     {
         Result<string> Cancelar(int id);
         Result<RegistroVacina> Salvar(RegistroVacinaDto registroVacina);
-        List<RegistroVacinaDto> ObterPorInscricaoPropriedade(string inscricaoEstadual);
+        Result<List<RegistroVacinaDto>> ObterPorInscricaoPropriedade(string inscricaoEstadual);
     }
 }

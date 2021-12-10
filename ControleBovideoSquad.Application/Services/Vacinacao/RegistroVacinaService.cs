@@ -50,17 +50,13 @@ namespace ControleBovideoSquad.Application.Services.Vacinacao
             {
                 if (venda.Last().DataDeVenda.CompareTo(registroVacina.DataDeCadastro) > 0)
                     return Result<string>.Error(EStatusCode.BAD_REQUEST, "Existe uma venda posterior a esta vacina e ela não pode ser cancelada!");
-
             }
 
-            if (registroVacina.Vacina.IdVacina == 2)
-            {
-                rebanho.DebitarAftosa(registroVacina.Quantidade);
-            }
-            else if (registroVacina.Vacina.IdVacina == 1)
-            {
-                rebanho.DebitarBrucelose(registroVacina.Quantidade);
-            }
+            if (registroVacina.Vacina.IdVacina == 2)            
+                rebanho.DebitarAftosa(registroVacina.Quantidade);            
+            else if (registroVacina.Vacina.IdVacina == 1)            
+                rebanho.DebitarBrucelose(registroVacina.Quantidade); 
+            
             registroVacina.Cancelar();
 
             _rebanhoRepository.Salvar(rebanho);
@@ -76,20 +72,15 @@ namespace ControleBovideoSquad.Application.Services.Vacinacao
             _registroVacinaValidator.IsValid(registroVacinaDto);
             _registroVacinaValidator.VerificarQuantidade(registroVacinaDto, rebanho);
 
-            var validation = _registroVacinaValidator.errors;
+            List<string> validation = _registroVacinaValidator.errors;
 
             if (validation.Any())
                 return Result<RegistroVacina>.Error(EStatusCode.BAD_REQUEST, validation);
 
-
-            if (registroVacinaDto.IdVacina == 2)
-            {
-                rebanho.AdicionarAftosa(registroVacinaDto.Quantidade);
-            }
-            else if (registroVacinaDto.IdVacina == 1)
-            {
-                rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);
-            }
+            if (registroVacinaDto.IdVacina == 2)            
+                rebanho.AdicionarAftosa(registroVacinaDto.Quantidade);            
+            else if (registroVacinaDto.IdVacina == 1)            
+                rebanho.AdicionarBrucelose(registroVacinaDto.Quantidade);            
 
             _rebanhoRepository.Salvar(rebanho);
             _registroVacinaRepository.Salvar(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
@@ -97,12 +88,15 @@ namespace ControleBovideoSquad.Application.Services.Vacinacao
             return Result<RegistroVacina>.Success(_registroMapper.MapearDtoParaEntidade(registroVacinaDto));
         }
 
-        public List<RegistroVacinaDto> ObterPorInscricaoPropriedade(string inscricaoEstadual)
+        public Result<List<RegistroVacinaDto>> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            var registros = _registroVacinaRepository.ObterPorInscricaoPropriedade(inscricaoEstadual);
-            var result = _registroMapper.MapearListaParaEntidadeDto(registros);
+            List<RegistroVacina> registros = _registroVacinaRepository.ObterPorInscricaoPropriedade(inscricaoEstadual);
+            List<RegistroVacinaDto> result = _registroMapper.MapearListaParaEntidadeDto(registros);
 
-            return result;
+            if (!result.Any())
+                return Result<List<RegistroVacinaDto>>.Error(EStatusCode.NOT_FOUND, "Nenhum registro de vacina encontrado!");
+
+            return Result<List<RegistroVacinaDto>>.Success(result);
         }
     }
 }

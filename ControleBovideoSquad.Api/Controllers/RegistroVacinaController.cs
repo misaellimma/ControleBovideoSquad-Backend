@@ -19,8 +19,9 @@ namespace ControleBovideoSquad.Api.Controllers
         public IActionResult Cancelar(int id)
         {
             var response = _registroVacinaService.Cancelar(id);
+
             if (response.Errors != null)
-                return BadRequest(response.Errors);
+                return StatusCode((int)response.StatusCode,response.Errors);
 
             return Ok();
         }
@@ -31,15 +32,20 @@ namespace ControleBovideoSquad.Api.Controllers
             var response = _registroVacinaService.Salvar(registroVacina);
 
             if (response.Errors != null)
-                return BadRequest(response.Errors);
+                return StatusCode((int)response.StatusCode,response.Errors);
 
-            return Ok();
+            return StatusCode((int)response.StatusCode, response.Errors);
         }
 
         [HttpGet("{inscricaoEstadual}")]
         public IActionResult ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            return Ok(_registroVacinaService.ObterPorInscricaoPropriedade(inscricaoEstadual));
+            var result = _registroVacinaService.ObterPorInscricaoPropriedade(inscricaoEstadual);
+
+            if (result.Errors != null)
+                return StatusCode((int)result.StatusCode, result.Errors);
+            
+            return StatusCode((int)result.StatusCode, result.Data);
         }
     }
 }
