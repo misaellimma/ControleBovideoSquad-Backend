@@ -1,7 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Produtores;
 using ControleBovideoSquad.CrossCutting.Dto.Produtores;
 using ControleBovideoSquad.CrossCutting.Enums;
-using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleBovideoSquad.Api.Controllers
@@ -30,7 +29,10 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var produtor = produtorService.ObterProdutorPorId(id);
 
-            return StatusCode((int)produtor.StatusCode, produtor.Data);
+            return StatusCode(
+                (int)produtor.StatusCode,
+                produtor.Data != null ? produtor.Data : produtor.Errors
+                );
         }
 
         [HttpGet("cpf/{cpf}")]
@@ -48,14 +50,13 @@ namespace ControleBovideoSquad.Api.Controllers
         public ActionResult Post([FromBody] ProdutorDto produtorDto)
         {
             var produtor = produtorService.Incluir(produtorDto);
-            
-            if(produtor.Errors != null) return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
+
+            if (produtor.Errors != null) return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
 
             return Ok();
         }
 
         [HttpPut("{id}")]
-        
         public ActionResult Put([FromBody] ProdutorDto produtorDto)
         {
             var produtor = produtorService.Alterar(produtorDto);
