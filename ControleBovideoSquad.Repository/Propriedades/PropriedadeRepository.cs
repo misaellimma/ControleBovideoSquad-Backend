@@ -32,6 +32,13 @@ namespace ControleBovideoSquad.Repository.Propriedades
                 .FirstOrDefault(e => e.InscricaoEstadual == InscricaoEstadual);
         }
 
+        public bool ValidaPorInscricaoEstadual(string InscricaoEstadual)
+        {
+            return unityOfWork
+                .Query<Propriedade>()
+                .Any(e => e.InscricaoEstadual == InscricaoEstadual);
+        }
+
         public List<Propriedade> ObterTodos()
         {
             return unityOfWork

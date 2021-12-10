@@ -2,7 +2,7 @@
 using ControleBovideoSquad.Domain.Entities.Animais;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 
-namespace ControleBovideoSquad.Application.Services
+namespace ControleBovideoSquad.Application.Services.Animais
 {
     public class EspecieService : IEspecieService
     {
@@ -10,7 +10,7 @@ namespace ControleBovideoSquad.Application.Services
 
         public EspecieService(IEspecieRepository especieRepository)
         {
-            this._especieRepository = especieRepository;
+            _especieRepository = especieRepository;
         }
 
         public Especie ObterPorId(int id)

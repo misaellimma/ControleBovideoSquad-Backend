@@ -1,4 +1,4 @@
-﻿namespace ControleBovideoSquad.CrossCutting
+﻿namespace ControleBovideoSquad.CrossCutting.Enums
 {
     public enum EStatusCode
     {

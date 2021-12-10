@@ -1,4 +1,6 @@
-﻿namespace ControleBovideoSquad.CrossCutting.Util
+﻿using ControleBovideoSquad.CrossCutting.Enums;
+
+namespace ControleBovideoSquad.CrossCutting.Util
 {
     public class Result<TResult>
     {

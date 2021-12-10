@@ -1,10 +1,10 @@
-﻿using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
+﻿using ControleBovideoSquad.Application.IMapper.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.Domain.Entities.Vacinacao;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
 
-namespace ControleBovideoSquad.Application.Mapper.RegistroVacinas
+namespace ControleBovideoSquad.Application.Mapper.Vacinacao
 {
     public class RegistroVacinaMapper : IRegistroVacinaDtoMapper
     {

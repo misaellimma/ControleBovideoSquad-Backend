@@ -2,7 +2,7 @@
 using ControleBovideoSquad.CrossCutting.Dto.Enderecos;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 
-namespace ControleBovideoSquad.Application.Mapper
+namespace ControleBovideoSquad.Application.Mapper.Enderecos
 {
     public class MunicipioMapper : IMapper<MunicipioDto, Municipio>
     {

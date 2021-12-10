@@ -2,7 +2,7 @@
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Repositories.Enderecos;
 
-namespace ControleBovideoSquad.Application.Services
+namespace ControleBovideoSquad.Application.Services.Enderecos
 {
     public class MunicipioService : IMunicipioService
     {

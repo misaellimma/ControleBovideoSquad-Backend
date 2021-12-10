@@ -1,6 +1,5 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Vendas;
 using ControleBovideoSquad.Application.IServices.Vendas;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
@@ -9,6 +8,7 @@ using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
+using ControleBovideoSquad.CrossCutting.Enums;
 
 namespace ControleBovideoSquad.Application.Services.Vendas
 {

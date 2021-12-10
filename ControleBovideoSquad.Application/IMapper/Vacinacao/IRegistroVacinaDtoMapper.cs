@@ -1,7 +1,7 @@
 ﻿using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.Domain.Entities.Vacinacao;
 
-namespace ControleBovideoSquad.Application.IMapper.RegistroVacinas
+namespace ControleBovideoSquad.Application.IMapper.Vacinacao
 {
     public interface IRegistroVacinaDtoMapper : IMapper<RegistroVacinaDto, RegistroVacina>
     {

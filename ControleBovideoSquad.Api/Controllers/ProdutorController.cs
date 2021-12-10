@@ -1,6 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Produtores;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Produtores;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,20 +48,17 @@ namespace ControleBovideoSquad.Api.Controllers
         public ActionResult Post([FromBody] ProdutorDto produtorDto)
         {
             var produtor = produtorService.Incluir(produtorDto);
-
-            if (produtor.Errors != null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
+            
+            if(produtor.Errors != null) return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
 
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ProdutorDto produtorDto)
+        
+        public ActionResult Put([FromBody] ProdutorDto produtorDto)
         {
-            if (produtorDto == null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
-
-            var produtor = produtorService.Alterar(id, produtorDto);
+            var produtor = produtorService.Alterar(produtorDto);
 
             if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);

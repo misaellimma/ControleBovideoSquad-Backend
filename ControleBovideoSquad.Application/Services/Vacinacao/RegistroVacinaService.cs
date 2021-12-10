@@ -1,7 +1,4 @@
-﻿using ControleBovideoSquad.Application.IMapper.RegistroVacinas;
-using ControleBovideoSquad.Application.IServices.Vacinacao;
-using ControleBovideoSquad.Application.Validators.Vacinacao;
-using ControleBovideoSquad.CrossCutting;
+﻿using ControleBovideoSquad.Application.IServices.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Dto.Vacinacao;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Entities.Animais;
@@ -10,8 +7,11 @@ using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Vacinacao;
 using ControleBovideoSquad.Domain.Repositories.Vendas;
+using ControleBovideoSquad.CrossCutting.Enums;
+using ControleBovideoSquad.Application.Validators.RegistroVacina;
+using ControleBovideoSquad.Application.IMapper.Vacinacao;
 
-namespace ControleBovideoSquad.Application.Services.Animais
+namespace ControleBovideoSquad.Application.Services.Vacinacao
 {
     public class RegistroVacinaService : IRegistroVacinaService
     {

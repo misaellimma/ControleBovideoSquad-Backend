@@ -1,11 +1,11 @@
 ﻿using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.Application.IServices.Propriedades;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
 
-namespace ControleBovideoSquad.Application.Services
+namespace ControleBovideoSquad.Application.Services.Propriedades
 {
 
     public class PropriedadeService : IPropriedadeService
@@ -66,6 +66,17 @@ namespace ControleBovideoSquad.Application.Services
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Propriedade não localizada!");
             else
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
+        }
+
+        public Result<bool> ValidaPorInscricaoEstadual(string InscricaoEstadual)
+        {
+            if (!Validacao.ValidarInscricaoEstadual(InscricaoEstadual))
+                return Result<bool>.Error(EStatusCode.NOT_FOUND, "Inscrição Estadual inválida!");
+
+            if (propriedadeRepository.ValidaPorInscricaoEstadual(InscricaoEstadual))
+                return Result<bool>.Error(EStatusCode.NOT_FOUND, "Inscricao Estadual já cadastrada!");
+            else
+                return Result<bool>.Success(true);
         }
 
         public List<PropriedadeDto> ObterPorIdProdutor(int Id)

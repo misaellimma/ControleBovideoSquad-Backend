@@ -1,6 +1,6 @@
 ﻿using ControleBovideoSquad.Application.IServices.Propriedades;
-using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
+using ControleBovideoSquad.CrossCutting.Enums;
 using ControleBovideoSquad.CrossCutting.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,15 +39,12 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpGet("inscricao/{inscricao}")]
         public IActionResult GetCpf(string inscricao)
         {
-            if (inscricao == null)
-                return NotFound("Inscricao Estadual vazia!");
-
             var propriedade = propriedadeService.ObterPorInscricaoEstadual(inscricao);
 
-            if (propriedade.Data == null)
-                return StatusCode((int)propriedade.StatusCode, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, propriedade.Errors));
-
-            return StatusCode((int)propriedade.StatusCode, propriedade.Data);
+            return StatusCode(
+                (int)propriedade.StatusCode, 
+                propriedade.Data != null ? propriedade.Data : propriedade.Errors
+                );
         }
 
         [HttpGet("Produtor/{Id}")]
@@ -63,28 +60,17 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpGet("validainscricao/{inscricao}")]
         public IActionResult ValidaCpf(string inscricao)
         {
-            if (inscricao == null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, "Inscricao Estadual vazia!");
+            var propriedade = propriedadeService.ValidaPorInscricaoEstadual(inscricao);
 
-            var propriedade = propriedadeService.ObterPorInscricaoEstadual(inscricao);
-
-            if (propriedade.Data != null)
-                return StatusCode((int)propriedade.StatusCode, "Inscricao Estadual já cadastrada!");
-
-            if (propriedade.StatusCode == EStatusCode.NOT_FOUND)
-                if (propriedade.Errors.FirstOrDefault().Contains("Propriedade"))
-                    return StatusCode((int)EStatusCode.OK);
-            return StatusCode((int)propriedade.StatusCode, propriedade.Errors.FirstOrDefault());
-
-            return StatusCode((int)propriedade.StatusCode, propriedade.Data);
+            return StatusCode(
+                (int)propriedade.StatusCode, 
+                propriedade.Errors != null ? propriedade.Errors : propriedade.Data
+                );
         }
 
         [HttpPost]
         public ActionResult Post([FromBody] PropriedadeDto propriedadeDto)
         {
-            if (propriedadeDto == null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
-
             var produtor = propriedadeService.Incluir(propriedadeDto);
 
             if (produtor.Errors != null)
@@ -96,9 +82,6 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpPut]
         public ActionResult Put([FromBody] PropriedadeDto propriedadeDto)
         {
-            if (propriedadeDto == null)
-                return StatusCode((int)EStatusCode.NOT_FOUND, Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));
-
             var produtor = propriedadeService.Alterar(propriedadeDto);
 
             if (produtor.Errors != null)
