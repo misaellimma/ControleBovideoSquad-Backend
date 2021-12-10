@@ -15,9 +15,9 @@ namespace ControleBovideoSquad.Application.Services.Enderecos
         private readonly IMapper<EnderecoDto, Endereco> _enderecoMapper;
         private readonly IValidator<EnderecoDto> enderecoValidator;
 
-        public EnderecoService(IEnderecoRepository enderecoRepository, 
+        public EnderecoService(IEnderecoRepository enderecoRepository,
             IMapper<EnderecoDto, Endereco> enderecoMapper,
-            IValidator<EnderecoDto> enderecoValidator)            
+            IValidator<EnderecoDto> enderecoValidator)
         {
             _enderecoRepository = enderecoRepository;
             _enderecoMapper = enderecoMapper;
@@ -38,13 +38,13 @@ namespace ControleBovideoSquad.Application.Services.Enderecos
         {
             var validator = enderecoValidator.IsValid(enderecoDto);
 
-            if(validator.Count > 0)
+            if (validator.Count > 0)
                 return Result<Endereco>.Error(EStatusCode.BAD_REQUEST, validator);
 
             _enderecoRepository.Salvar(_enderecoMapper.MapearDtoParaEntidade(enderecoDto));
             return Result<Endereco>.Success(_enderecoMapper.MapearDtoParaEntidade(enderecoDto));
 
         }
-       
+
     }
 }

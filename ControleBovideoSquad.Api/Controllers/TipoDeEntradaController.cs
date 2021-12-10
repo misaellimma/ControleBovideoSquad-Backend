@@ -11,14 +11,14 @@ namespace ControleBovideoSquad.Api.Controllers
 
         public TipoDeEntradaController(ITipoDeEntradaService tipoDeEntradaService)
         {
-            this._tipoDeEntradaService = tipoDeEntradaService; 
+            this._tipoDeEntradaService = tipoDeEntradaService;
         }
 
         [HttpGet]
         public IActionResult ObterTodos()
         {
             var tiposDeEntrada = this._tipoDeEntradaService.ObterTodos();
-            
+
             if (tiposDeEntrada == null)
                 return NotFound();
 

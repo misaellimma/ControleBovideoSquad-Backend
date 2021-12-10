@@ -37,7 +37,7 @@ namespace ControleBovideoSquad.Application.Mapper.Animais
         public AnimalDto MapearEntidadeParaDto(Animal source)
         {
             return new AnimalDto(source.IdAnimal, source.QuantidadeTotal, source.QuantidadeVacinada,
-                source.EspecieAnimal.IdEspecie, source.PropriedadeAnimal.IdPropriedade, 
+                source.EspecieAnimal.IdEspecie, source.PropriedadeAnimal.IdPropriedade,
                 source.TipoDeEntradaAnimal.IdTipoDeEntrada,
                 source.DataDeEntrada);
         }

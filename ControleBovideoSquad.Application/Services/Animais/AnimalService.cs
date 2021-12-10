@@ -3,8 +3,8 @@ using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Animais;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
 
@@ -67,15 +67,15 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
             var animal = _animalMapper.MapearDtoParaEntidade(animalDto);
 
-            var rebanhoAtual = _rebanhoRepository.ObterPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual, 
+            var rebanhoAtual = _rebanhoRepository.ObterPorPropriedadeEEspecie(animal.PropriedadeAnimal.InscricaoEstadual,
                 animal.EspecieAnimal.IdEspecie);
 
             if (rebanhoAtual == null)
                 this._rebanhoRepository.Salvar(new Rebanho(0, animalDto.QuantidadeTotal, animalDto.QuantidadeVacinada,
                     animalDto.QuantidadeVacinada, animal.EspecieAnimal, animal.PropriedadeAnimal));
-            else 
+            else
                 rebanhoAtual.AdicionarNoRebanho(animal.QuantidadeTotal, animal.QuantidadeVacinada);
-                this._rebanhoRepository.Salvar(rebanhoAtual);
+            this._rebanhoRepository.Salvar(rebanhoAtual);
 
             this._animalRepository.Salvar(animal);
 
@@ -105,7 +105,8 @@ namespace ControleBovideoSquad.Application.Services.Animais
                 {
                     rebanho.QuantidadeVacinadaBrucelose = 0;
                     rebanho.QuantidadeVacinadaAftosa = 0;
-                } else
+                }
+                else
                 {
                     rebanho.QuantidadeVacinadaBrucelose -= animal.QuantidadeVacinada;
                     rebanho.QuantidadeVacinadaAftosa -= animal.QuantidadeVacinada;

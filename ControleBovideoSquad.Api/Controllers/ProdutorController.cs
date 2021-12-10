@@ -39,7 +39,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var produtor = produtorService.ObterProdutorPorCpf(cpf);
 
             return StatusCode(
-                (int)produtor.StatusCode, 
+                (int)produtor.StatusCode,
                 produtor.Data != null ? produtor.Data : produtor.Errors
                 );
         }
@@ -48,15 +48,15 @@ namespace ControleBovideoSquad.Api.Controllers
         public ActionResult Post([FromBody] ProdutorDto produtorDto)
         {
             var produtor = produtorService.Incluir(produtorDto);
-            
-            if(produtor.Errors != null)
+
+            if (produtor.Errors != null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, produtor.Errors);
 
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id,[FromBody] ProdutorDto produtorDto)
+        public ActionResult Put(int id, [FromBody] ProdutorDto produtorDto)
         {
             if (produtorDto == null)
                 return StatusCode((int)EStatusCode.NOT_FOUND, Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Produtor não pode ser vazio!"));

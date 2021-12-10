@@ -22,7 +22,7 @@ namespace ControleBovideoSquad.Application.Services.Produtores
         {
             var produtorBD = produtorRepository.ObterProdutorPorId(produtor.IdProdutor);
             produtor.CPF = Formatar.FormatarString(produtor.CPF);
-            produtorBD.AtualizarProdutor(produtor);           
+            produtorBD.AtualizarProdutor(produtor);
             produtorRepository.Salvar(produtorBD);
             return Result<bool>.Success(true);
         }
@@ -35,7 +35,7 @@ namespace ControleBovideoSquad.Application.Services.Produtores
             produtorDto.CPF = Formatar.FormatarString(produtorDto.CPF);
             var produtorDtoCpf = produtorRepository.ObterProdutorPorCpf(produtorDto.CPF);
 
-            if(produtorDtoCpf != null)
+            if (produtorDtoCpf != null)
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "CPF já cadastrado!");
 
             var produtor = produtorMapper.MapearDtoParaEntidade(produtorDto);
@@ -55,7 +55,7 @@ namespace ControleBovideoSquad.Application.Services.Produtores
 
             if (produtor == null)
                 return Result<ProdutorDto>.Error(EStatusCode.NOT_FOUND, "Não existe o CPF na base de dados!");
-            
+
             return Result<ProdutorDto>.Success(produtorMapper.MapearEntidadeParaDto(produtor));
         }
 

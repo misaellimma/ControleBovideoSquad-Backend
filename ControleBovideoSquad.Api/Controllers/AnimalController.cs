@@ -12,7 +12,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
         public AnimalController(IAnimalService animalService)
         {
-            _animalService = animalService; 
+            _animalService = animalService;
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace ControleBovideoSquad.Api.Controllers
         public IActionResult Cancelar(int id)
         {
             var response = _animalService.Cancelar(id);
-            if (response.Errors != null) return StatusCode((int) response.StatusCode, response.Errors);
+            if (response.Errors != null) return StatusCode((int)response.StatusCode, response.Errors);
 
             return Ok(response);
         }

@@ -1,5 +1,5 @@
-﻿using FluentNHibernate.Mapping;
-using ControleBovideoSquad.Domain.Entities.Vendas;
+﻿using ControleBovideoSquad.Domain.Entities.Vendas;
+using FluentNHibernate.Mapping;
 
 namespace ControleBovideoSquad.Repository.Mappings
 {

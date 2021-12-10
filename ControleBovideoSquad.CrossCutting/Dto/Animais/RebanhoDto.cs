@@ -7,7 +7,7 @@
         public virtual int QuantidadeVacinadaAftosa { get; set; }
         public virtual int QuantidadeVacinadaBrucelose { get; set; }
         public virtual int IdEspecie { get; set; }
-        public virtual string Especie { get; set; }        
+        public virtual string Especie { get; set; }
         public virtual int IdPropriedade { get; set; }
         public virtual string NomePropriedade { get; set; }
 

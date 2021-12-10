@@ -49,7 +49,7 @@ namespace ControleBovideoSquad.Application.Services
         {
             var propriedade = propriedadeRepository.ObterPorId(id);
 
-            if(propriedade == null)
+            if (propriedade == null)
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Propriedade não localizada!");
             else
                 return Result<PropriedadeDto>.Success(propriedadeMapper.MapearEntidadeParaDto(propriedade));
@@ -61,7 +61,7 @@ namespace ControleBovideoSquad.Application.Services
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Inscrição Estadual inválida!");
 
             var propriedade = propriedadeRepository.ObterPorInscricaoEstadual(InscricaoEstadual);
-            
+
             if (propriedade == null)
                 return Result<PropriedadeDto>.Error(EStatusCode.NOT_FOUND, "Propriedade não localizada!");
             else

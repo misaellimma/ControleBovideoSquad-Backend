@@ -27,19 +27,19 @@ namespace ControleBovideoSquad.Repository.Entity
 
         public void Delete<T>(T entity)
         {
-           _session.Delete(entity);
+            _session.Delete(entity);
         }
 
         public void Dispose()
         {
-           if(!_isAlive)
+            if (!_isAlive)
                 return;
 
             _isAlive = false;
 
             try
             {
-                if(_isCommited)
+                if (_isCommited)
                     _transaction.Commit();
             }
             finally

@@ -20,7 +20,7 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public List<Especie> ObterTodos()
         {
-            return _unityOfWork.Query<Especie>().ToList();            
+            return _unityOfWork.Query<Especie>().ToList();
         }
     }
 }

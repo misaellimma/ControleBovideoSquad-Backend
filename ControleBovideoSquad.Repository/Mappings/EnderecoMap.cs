@@ -24,7 +24,7 @@ namespace ControleBovideoSquad.Repository.Mappings
                 .Length(11)
                 .Not.Nullable();
 
-            References(x => x.Municipio,"IdMunicipio").Not.Nullable();
+            References(x => x.Municipio, "IdMunicipio").Not.Nullable();
         }
     }
 }

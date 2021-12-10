@@ -1,4 +1,4 @@
-namespace ControleBovideoSquad.CrossCutting.Dto.Vendas 
+namespace ControleBovideoSquad.CrossCutting.Dto.Vendas
 {
     public class VendaDto
     {
@@ -11,7 +11,7 @@ namespace ControleBovideoSquad.CrossCutting.Dto.Vendas
         public DateTime DataDeVenda { get; protected set; }
         public bool Ativo { get; protected set; } = true;
 
-        public VendaDto(int idVenda, int quantidade, int idPropriedadeOrigem, int idPropriedadeDestino, 
+        public VendaDto(int idVenda, int quantidade, int idPropriedadeOrigem, int idPropriedadeDestino,
             int idEspecie, int idFinalidadeDeVenda, DateTime dataDeVenda)
         {
             IdVenda = idVenda;

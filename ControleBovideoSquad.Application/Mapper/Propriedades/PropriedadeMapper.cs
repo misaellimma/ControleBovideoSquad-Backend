@@ -1,8 +1,8 @@
 using ControleBovideoSquad.Application.IMapper.Propriedades;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
-using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Enderecos;
 using ControleBovideoSquad.Domain.Entities.Produtores;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Produtores;
 
 namespace ControleBovideoSquad.Application.Mapper.Propriedades
@@ -24,7 +24,7 @@ namespace ControleBovideoSquad.Application.Mapper.Propriedades
                     source.Rua,
                     source.Numero,
                     new Municipio(source.IdMunicipio)
-                );            
+                );
 
             return new Propriedade
                 (

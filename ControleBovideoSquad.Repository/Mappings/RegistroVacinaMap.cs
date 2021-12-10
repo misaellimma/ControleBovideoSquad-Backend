@@ -29,7 +29,7 @@ namespace ControleBovideoSquad.Repository.Mappings
                 .CustomSqlType("bit")
                 .Not.Nullable();
 
-            References(x => x.Vacina, "IdVacina").Not.Nullable();           
+            References(x => x.Vacina, "IdVacina").Not.Nullable();
 
             References(x => x.Rebanho, "IdRebanho").Not.Nullable();
 

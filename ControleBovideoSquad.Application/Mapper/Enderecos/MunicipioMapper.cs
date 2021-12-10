@@ -4,7 +4,7 @@ using ControleBovideoSquad.Domain.Entities.Enderecos;
 
 namespace ControleBovideoSquad.Application.Mapper
 {
-    public class MunicipioMapper :IMapper<MunicipioDto, Municipio>
+    public class MunicipioMapper : IMapper<MunicipioDto, Municipio>
     {
         public Municipio MapearDtoParaEntidade(MunicipioDto municipioDto)
         {

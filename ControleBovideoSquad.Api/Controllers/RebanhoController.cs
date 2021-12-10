@@ -12,7 +12,7 @@ namespace ControleBovideoSquad.Api.Controllers
 
         public RebanhoController(IRebanhoService rebanhoService)
         {
-            _rebanhoService = rebanhoService; 
+            _rebanhoService = rebanhoService;
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._rebanhoService.ObterPorInscricaoPropriedade(inscricaoEstadual);
 
-            if (response == null) 
+            if (response == null)
                 return NotFound("animais nao encontrados");
 
             return Ok(response);
@@ -64,7 +64,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._rebanhoService.ObterPorCpfProdutor(cpf);
 
-            if(response == null) 
+            if (response == null)
                 return NotFound("animais nao encontrados");
 
             return Ok(response);

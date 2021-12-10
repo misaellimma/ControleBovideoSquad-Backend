@@ -1,5 +1,5 @@
-﻿using FluentNHibernate.Mapping;
-using ControleBovideoSquad.Domain.Entities.Animais;
+﻿using ControleBovideoSquad.Domain.Entities.Animais;
+using FluentNHibernate.Mapping;
 
 
 namespace ControleBovideoSquad.Repository.Mappings

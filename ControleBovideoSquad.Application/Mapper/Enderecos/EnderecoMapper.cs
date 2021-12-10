@@ -17,7 +17,7 @@ namespace ControleBovideoSquad.Application.Mapper.Enderecos
         public Endereco MapearDtoParaEntidade(EnderecoDto enderecoDto)
         {
             var Municipio = _municipioRepository.ObterPorId(enderecoDto.IdMunicipio);
-            return new Endereco(enderecoDto.IdEndereco, enderecoDto.Rua,enderecoDto.Numero, Municipio);
+            return new Endereco(enderecoDto.IdEndereco, enderecoDto.Rua, enderecoDto.Numero, Municipio);
         }
 
         public EnderecoDto MapearEntidadeParaDto(Endereco endereco)

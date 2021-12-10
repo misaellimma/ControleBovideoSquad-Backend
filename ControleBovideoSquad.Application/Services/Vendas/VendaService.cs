@@ -3,8 +3,8 @@ using ControleBovideoSquad.Application.IServices.Vendas;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Vendas;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Animais;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Vendas;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
@@ -61,16 +61,16 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             rebanhoNaOrigem.DebitarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
             _rebanhoRepository.Salvar(rebanhoNaOrigem);
 
-            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual, 
+            Rebanho rebanhoNoDestino = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeDestino.InscricaoEstadual,
                 venda.Especie.IdEspecie);
 
             if (rebanhoNoDestino == null)
                 _rebanhoRepository.Salvar(new Rebanho(0, vendaDto.Quantidade, vendaDto.Quantidade, vendaDto.Quantidade
                     , venda.Especie, venda.PropriedadeDestino));
-            else 
+            else
                 rebanhoNoDestino.AdicionarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
-                _rebanhoRepository.Salvar(rebanhoNoDestino);
-        
+            _rebanhoRepository.Salvar(rebanhoNoDestino);
+
             _vendaRepository.Salvar(venda);
 
             return Result<Venda>.Success(venda);
@@ -82,7 +82,7 @@ namespace ControleBovideoSquad.Application.Services.Vendas
 
             if (venda == null || venda.Ativo == false)
                 return Result<string>.Error(EStatusCode.NOT_FOUND, "venda nao encontrada");
-            
+
             venda.CancelarVenda();
             // Creditar de volta na propriedade de origem
             Rebanho rebanhoNaOrigem = _rebanhoRepository.ObterPorPropriedadeEEspecie(venda.PropriedadeOrigem.InscricaoEstadual, venda.Especie.IdEspecie);
@@ -110,16 +110,18 @@ namespace ControleBovideoSquad.Application.Services.Vendas
             if (finalidade == null)
                 errors.Add("Finalidade de venda nao encontrada");
 
-            if(propriedadeOrigem == null)
+            if (propriedadeOrigem == null)
                 errors.Add("Propriedade de origem nao encontrada");
 
-            if(propriedadeDestino == null)
+            if (propriedadeDestino == null)
                 errors.Add("Propriedade de destino nao encontrada");
 
-            if (rebanho == null) {
+            if (rebanho == null)
+            {
                 errors.Add("Rebanho nao encontrado");
             }
-            else {
+            else
+            {
                 Console.Write(rebanho.QuantidadeTotal);
                 if (rebanho.QuantidadeVacinadaAftosa < vendaDto.Quantidade || rebanho.QuantidadeVacinadaBrucelose < vendaDto.Quantidade)
                     errors.Add("Numero insuficiente de rebanhos vacinados");

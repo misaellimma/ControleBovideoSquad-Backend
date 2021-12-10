@@ -56,7 +56,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var response = _vendaService.Salvar(vendaDto);
 
             if (response.Errors != null)
-                return StatusCode((int) response.StatusCode, response.Errors);
+                return StatusCode((int)response.StatusCode, response.Errors);
 
             return Ok(response.Data);
         }
@@ -66,8 +66,8 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = _vendaService.Cancelar(id);
 
-            if (response.Errors != null) 
-                return StatusCode((int) response.StatusCode, response.Errors);
+            if (response.Errors != null)
+                return StatusCode((int)response.StatusCode, response.Errors);
 
             return Ok(response.Data);
         }

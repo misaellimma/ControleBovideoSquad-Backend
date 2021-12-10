@@ -6,6 +6,6 @@ namespace ControleBovideoSquad.Domain.Repositories.Vacinacao
     {
         void Salvar(RegistroVacina registroVacina);
         RegistroVacina? ObterPorId(int id);
-        List<RegistroVacina> ObterPorInscricaoPropriedade(string inscricaoEstadual);        
+        List<RegistroVacina> ObterPorInscricaoPropriedade(string inscricaoEstadual);
     }
 }

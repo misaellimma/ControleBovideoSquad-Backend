@@ -3,8 +3,8 @@ using ControleBovideoSquad.Application.IServices.Animais;
 using ControleBovideoSquad.CrossCutting;
 using ControleBovideoSquad.CrossCutting.Dto.Animais;
 using ControleBovideoSquad.CrossCutting.Util;
-using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Entities.Animais;
+using ControleBovideoSquad.Domain.Entities.Propriedades;
 using ControleBovideoSquad.Domain.Repositories.Animais;
 using ControleBovideoSquad.Domain.Repositories.Propriedades;
 
@@ -17,11 +17,11 @@ namespace ControleBovideoSquad.Application.Services.Animais
         private readonly IEspecieRepository _especieRepository;
         private readonly IRebanhoMapper _rebanhoMapper;
 
-        public RebanhoService(IRebanhoRepository rebanhoRepository, IRebanhoMapper rebanhoMapper, 
+        public RebanhoService(IRebanhoRepository rebanhoRepository, IRebanhoMapper rebanhoMapper,
             IPropriedadeRepository propriedadeRepository,
             IEspecieRepository especieRepository)
         {
-            _rebanhoRepository = rebanhoRepository; 
+            _rebanhoRepository = rebanhoRepository;
             _rebanhoMapper = rebanhoMapper;
             _propriedadeRepository = propriedadeRepository;
             _especieRepository = especieRepository;
@@ -55,10 +55,10 @@ namespace ControleBovideoSquad.Application.Services.Animais
 
         public Result<Rebanho> Salvar(RebanhoDto rebanhoDto)
         {
-            var response =  ValidarRebanho(rebanhoDto);
+            var response = ValidarRebanho(rebanhoDto);
 
             if (response.Any())
-                return Result<Rebanho>.Error(EStatusCode.BAD_REQUEST,response);
+                return Result<Rebanho>.Error(EStatusCode.BAD_REQUEST, response);
 
             Rebanho rebanho = this._rebanhoMapper.MapearDtoParaEntidade(rebanhoDto);
             this._rebanhoRepository.Salvar(rebanho);

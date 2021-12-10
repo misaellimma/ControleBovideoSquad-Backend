@@ -21,8 +21,8 @@ namespace ControleBovideoSquad.Domain.Entities.Vendas
             Especie especie, FinalidadeDeVenda finalidadeDeVenda, DateTime dataDeVenda)
         {
             this.IdVenda = idVenda;
-            this.Quantidade = quantidade;   
-            this.PropriedadeOrigem = propriedadeOrigem;   
+            this.Quantidade = quantidade;
+            this.PropriedadeOrigem = propriedadeOrigem;
             this.PropriedadeDestino = propriedadeDestino;
             this.Especie = especie;
             this.DataDeVenda = dataDeVenda;

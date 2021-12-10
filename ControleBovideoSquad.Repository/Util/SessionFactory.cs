@@ -11,7 +11,7 @@ namespace ControleBovideoSquad.Repository.Util
 {
     public class SessionFactory
     {
-        private readonly ISessionFactory _sessionFactory;        
+        private readonly ISessionFactory _sessionFactory;
 
         public SessionFactory()
         {

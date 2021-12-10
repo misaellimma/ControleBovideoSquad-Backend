@@ -26,7 +26,7 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
                     produtorDto.Rua,
                     produtorDto.Numero,
                     new Municipio(produtorDto.IdMunicipio)
-                ) ;
+                );
 
             return new Produtor
                 (
@@ -41,7 +41,7 @@ namespace ControleBovideoSquad.Application.Mapper.Produtores
         {
             var produtoresDto = new List<ProdutorDto>();
             if (produtores.Any())
-                foreach(Produtor produtor in produtores)
+                foreach (Produtor produtor in produtores)
                 {
                     var produtorDto = new ProdutorDto
                         (

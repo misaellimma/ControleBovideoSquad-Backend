@@ -25,10 +25,10 @@ namespace ControleBovideoSquad.Repository.Vendas
 
         public List<Venda> ObterTodos()
         {
-            return _unityOfWork.Query<Venda>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeOrigem.Nome).ToList();    
+            return _unityOfWork.Query<Venda>().Where(x => x.Ativo == true).OrderBy(x => x.PropriedadeOrigem.Nome).ToList();
         }
 
-        public void Salvar(Venda venda) 
+        public void Salvar(Venda venda)
         {
             _unityOfWork.SaveOrUpdate(venda);
         }

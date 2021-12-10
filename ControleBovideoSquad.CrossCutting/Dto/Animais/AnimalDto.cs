@@ -11,7 +11,7 @@ namespace ControleBovideoSquad.CrossCutting.Dto.Animais
         public int IdTipoDeEntrada { get; set; }
         public DateTime DataDeEntrada { get; set; }
 
-        public AnimalDto(int idAnimal, int quantidadeTotal, int quantidadeVacinada, int idEspecie, 
+        public AnimalDto(int idAnimal, int quantidadeTotal, int quantidadeVacinada, int idEspecie,
             int idPropriedade, int idTipoDeEntrada, DateTime dataDeEntrada)
         {
             IdAnimal = idAnimal;

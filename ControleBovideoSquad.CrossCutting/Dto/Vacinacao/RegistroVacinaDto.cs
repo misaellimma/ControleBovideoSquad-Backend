@@ -10,7 +10,7 @@
         public string? Especie { get; set; }
         public DateTime DataDaVacina { get; set; }
 
-        public RegistroVacinaDto(int idRegistroVacina, int quantidade, int idVacina, string vacina, int idRebanho,string especie, DateTime dataDaVacina)
+        public RegistroVacinaDto(int idRegistroVacina, int quantidade, int idVacina, string vacina, int idRebanho, string especie, DateTime dataDaVacina)
         {
             IdRegistroVacina = idRegistroVacina;
             Quantidade = quantidade;
@@ -19,6 +19,6 @@
             Especie = especie;
             IdRebanho = idRebanho;
             DataDaVacina = dataDaVacina;
-        }   
+        }
     }
 }

@@ -4,7 +4,7 @@
     {
         void Commit();
         void SaveOrUpdate<T>(T entity);
-        void Delete<T>(T entity); 
-        IQueryable<T> Query<T>();        
+        void Delete<T>(T entity);
+        IQueryable<T> Query<T>();
     }
 }

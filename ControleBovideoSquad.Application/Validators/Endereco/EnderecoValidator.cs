@@ -9,8 +9,8 @@ namespace ControleBovideoSquad.Application.Validators.Endereco
 
         public EnderecoValidator()
         {
-                _nullValidator = new NullValidator<EnderecoDto>();
-                errors = new List<string>();
+            _nullValidator = new NullValidator<EnderecoDto>();
+            errors = new List<string>();
         }
 
         public List<string> errors { get; }

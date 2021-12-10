@@ -17,27 +17,27 @@ namespace ControleBovideoSquad.Application.Validators.Vacinacao
 
         public List<string> IsValid(RegistroVacinaDto registroVacinaDto)
         {
-           errors.AddRange(_nullValidator.IsValid(registroVacinaDto));
+            errors.AddRange(_nullValidator.IsValid(registroVacinaDto));
             return errors;
         }
 
         public void VerificarQuantidade(RegistroVacinaDto registroVacinaDto, Rebanho rebanho)
         {
-            if(rebanho == null)
+            if (rebanho == null)
             {
                 errors.Add("Especie não encontrada para respectiva propriedade!");
                 return;
             }
-            if (registroVacinaDto.Quantidade == 0|| registroVacinaDto.IdVacina == 0)
+            if (registroVacinaDto.Quantidade == 0 || registroVacinaDto.IdVacina == 0)
             {
                 errors.Add("Quantidade ou Vacina não pode ser 0 ou nulo");
-            }            
+            }
             if (registroVacinaDto.IdVacina == 1)
             {
-                if(rebanho.QuantidadeVacinadaBrucelose == rebanho.QuantidadeTotal)
+                if (rebanho.QuantidadeVacinadaBrucelose == rebanho.QuantidadeTotal)
                     errors.Add("Animais já vacinados contra brucelose");
                 else if (registroVacinaDto.Quantidade > rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaBrucelose)
-                    errors.Add($"Quantidade de vacinados não pode ser maior que quantidade restante a vacinar: {rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaBrucelose}");                
+                    errors.Add($"Quantidade de vacinados não pode ser maior que quantidade restante a vacinar: {rebanho.QuantidadeTotal - rebanho.QuantidadeVacinadaBrucelose}");
             }
             else if (registroVacinaDto.IdVacina == 2)
             {

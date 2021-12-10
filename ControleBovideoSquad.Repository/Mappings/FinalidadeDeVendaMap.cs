@@ -3,7 +3,7 @@ using FluentNHibernate.Mapping;
 
 namespace ControleBovideoSquad.Repository.Mappings
 {
-    public class FinalidadeDeVendaMap: ClassMap<FinalidadeDeVenda>
+    public class FinalidadeDeVendaMap : ClassMap<FinalidadeDeVenda>
     {
         public FinalidadeDeVendaMap()
         {

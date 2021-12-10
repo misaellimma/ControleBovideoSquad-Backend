@@ -27,9 +27,9 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var municipio = municipioService.ObterPorId(id);
 
-            if(municipio == null)
+            if (municipio == null)
                 return NotFound("Município não encontrado!");
-            
+
             return Ok(municipio);
         }
     }

@@ -13,7 +13,7 @@ namespace ControleBovideoSquad.Domain.Entities.Animais
 
         protected Rebanho() { }
 
-        public Rebanho(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa, 
+        public Rebanho(int idRebanho, int quantidadeTotal, int quantidadeVacinadaAftosa,
             int quantidadeVacinadaBrucelose, Especie especie, Propriedade propriedade)
         {
             IdRebanho = idRebanho;

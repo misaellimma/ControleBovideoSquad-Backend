@@ -1,6 +1,5 @@
 ﻿using ControleBovideoSquad.CrossCutting.Dto.Produtores;
 using ControleBovideoSquad.CrossCutting.Dto.Propriedades;
-using ControleBovideoSquad.Domain.Entities.Enderecos;
 
 namespace ControleBovideoSquad.Domain.Entities.Enderecos
 {
@@ -15,7 +14,7 @@ namespace ControleBovideoSquad.Domain.Entities.Enderecos
         {
             Rua = "";
             Numero = "";
-            Municipio = new Municipio(0,"","");
+            Municipio = new Municipio(0, "", "");
         }
 
         public Endereco(int idEndereco)

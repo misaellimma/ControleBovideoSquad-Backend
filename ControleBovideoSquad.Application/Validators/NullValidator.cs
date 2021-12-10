@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleBovideoSquad.Application.Validators
+﻿namespace ControleBovideoSquad.Application.Validators
 {
-    public class NullValidator<T> :  IValidator<T>
+    public class NullValidator<T> : IValidator<T>
     {
-        public NullValidator(){
+        public NullValidator()
+        {
             errors = new List<string>();
         }
 
@@ -16,14 +11,15 @@ namespace ControleBovideoSquad.Application.Validators
 
         public List<string> IsValid(T value)
         {
-            if(value != null)
-            foreach (var item in value.GetType().GetProperties()){
-                               
-                if (item.GetValue(value)?.ToString() is null or "" && item.PropertyType.IsValueType)
-                {                
-                    errors.Add($"{item.Name} não pode ser Nulo");
+            if (value != null)
+                foreach (var item in value.GetType().GetProperties())
+                {
+
+                    if (item.GetValue(value)?.ToString() is null or "" && item.PropertyType.IsValueType)
+                    {
+                        errors.Add($"{item.Name} não pode ser Nulo");
+                    }
                 }
-            }
 
             return errors;
         }

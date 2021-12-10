@@ -1,6 +1,6 @@
 using ControleBovideoSquad.Domain.Entities.Propriedades;
 
-namespace  ControleBovideoSquad.Domain.Entities.Animais
+namespace ControleBovideoSquad.Domain.Entities.Animais
 {
     public class Animal
     {
@@ -18,7 +18,7 @@ namespace  ControleBovideoSquad.Domain.Entities.Animais
         }
 
         public Animal(
-            int idAnimal, int quantidadeTotal, int quantidadeVacinada, 
+            int idAnimal, int quantidadeTotal, int quantidadeVacinada,
             Especie especieAnimal, Propriedade propriedadeAnimal, TipoDeEntrada tipoDeEntradaAnimal,
             DateTime dataDeEntrada
             )
