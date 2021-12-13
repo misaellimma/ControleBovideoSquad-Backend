@@ -17,19 +17,14 @@ namespace ControleBovideoSquad.Api.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            var tiposDeEntrada = this._tipoDeEntradaService.ObterTodos();
-
-            if (tiposDeEntrada == null)
-                return NotFound();
-
-            return Ok(tiposDeEntrada);
+            return Ok(_tipoDeEntradaService.ObterTodos());
         }
 
         [HttpGet]
         [Route("{id:int}")]
         public IActionResult ObterPorId(int id)
         {
-            var tipoDeEntrada = this._tipoDeEntradaService.ObterPorId(id);
+            var tipoDeEntrada = _tipoDeEntradaService.ObterPorId(id);
 
             if (tipoDeEntrada == null)
                 return NotFound();

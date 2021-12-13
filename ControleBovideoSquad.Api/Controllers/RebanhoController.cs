@@ -20,7 +20,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var rebanhos = _rebanhoService.ObterTodos();
 
-            if (rebanhos == null)
+            if (!rebanhos.Any())
                 return NotFound("animais nao encontrados");
 
             return Ok(rebanhos);
@@ -53,7 +53,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._rebanhoService.ObterPorInscricaoPropriedade(inscricaoEstadual);
 
-            if (response == null)
+            if (!response.Any())
                 return NotFound("animais nao encontrados");
 
             return Ok(response);
@@ -64,7 +64,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var response = this._rebanhoService.ObterPorCpfProdutor(cpf);
 
-            if (response == null)
+            if (!response.Any())
                 return NotFound("animais nao encontrados");
 
             return Ok(response);

@@ -20,7 +20,7 @@ namespace ControleBovideoSquad.Api.Controllers
         {
             var animais = _animalService.ObterTodos();
 
-            if (animais == null)
+            if (!animais.Any())
                 return NotFound("Animais não encontrados");
 
             return Ok(animais);
