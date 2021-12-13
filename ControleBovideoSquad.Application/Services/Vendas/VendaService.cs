@@ -68,8 +68,10 @@ namespace ControleBovideoSquad.Application.Services.Vendas
                 _rebanhoRepository.Salvar(new Rebanho(0, vendaDto.Quantidade, vendaDto.Quantidade, vendaDto.Quantidade
                     , venda.Especie, venda.PropriedadeDestino));
             else
+            {
                 rebanhoNoDestino.AdicionarNoRebanho(vendaDto.Quantidade, vendaDto.Quantidade);
-            _rebanhoRepository.Salvar(rebanhoNoDestino);
+                _rebanhoRepository.Salvar(rebanhoNoDestino);
+            }
 
             _vendaRepository.Salvar(venda);
 

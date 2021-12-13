@@ -15,13 +15,13 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public List<Rebanho> ObterTodos()
         {
-            return _unityOfWork.Query<Rebanho>().OrderBy(x => x.Propriedade.Nome).ToList();
+            return _unityOfWork.Query<Rebanho>().OrderBy(x => x.Propriedade.Nome).Where(x => x.QuantidadeTotal != 0).ToList();
         }
 
         // TODO: implementar quando a classe de Propriedade estiver pronta.
         public List<Rebanho> ObterPorInscricaoPropriedade(string inscricaoEstadual)
         {
-            return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.InscricaoEstadual == inscricaoEstadual).ToList();
+            return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.InscricaoEstadual == inscricaoEstadual && x.QuantidadeTotal != 0).ToList();
         }
 
         public Rebanho ObterPorPropriedadeEEspecie(string inscricaoEstadual, int idEspecie)
@@ -35,7 +35,7 @@ namespace ControleBovideoSquad.Repository.Animais
 
         public List<Rebanho> ObterPorCpfProdutor(string cpf)
         {
-            return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.Produtor.CPF == cpf).ToList();
+            return _unityOfWork.Query<Rebanho>().Where(x => x.Propriedade.Produtor.CPF == cpf && x.QuantidadeTotal != 0).ToList();
         }
 
         public Rebanho ObterPorId(int id)
