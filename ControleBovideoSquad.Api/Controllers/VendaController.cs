@@ -44,7 +44,7 @@ namespace ControleBovideoSquad.Api.Controllers
             var cpf = Formatar.FormatarString(cpfComMascara);
             var venda = _vendaService.ObterPorCpfProdutor(cpf);
 
-            if (venda == null)
+            if (!venda.Any())
                 return NotFound("as vendas não foram encontradas");
 
             return Ok(venda);

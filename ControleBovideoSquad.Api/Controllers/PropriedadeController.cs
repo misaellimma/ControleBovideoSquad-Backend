@@ -46,11 +46,11 @@ namespace ControleBovideoSquad.Api.Controllers
                 );
         }
 
-        [HttpGet("Produtor/{Id}")]
+        [HttpGet("Produtor/{id}")]
         public IActionResult ObterPorIdProdutor(int id)
         {
             var result = propriedadeService.ObterPorIdProdutor(id);
-            if (result == null) return NotFound();
+            if (!result.Any()) return NotFound();
 
             return Ok(result);
         }
